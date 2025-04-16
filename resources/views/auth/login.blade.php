@@ -12,7 +12,7 @@
         <!-- Left Side: Image -->
         <!-- Left Side: Image (Online Property Vector) -->
 <div class="col-md-6 d-none d-md-block">
-  <img src="{{ asset('images/signin/signin.png') }}"
+  <img src="{{ asset('images/signin/login.jpg') }}"
        alt="Property Vector Illustration" 
        class="img-fluid w-100 h-100 object-fit-cover">
 </div>
@@ -42,26 +42,29 @@
   
                 <!----------password------->
                 <div class="mb-4">
-                  <label class="form-label">Password</label>
-                  <div class="password-container">
-                  <input type="password"  name="password" placeholder="">
-                  <span class="eye-icon" onclick="togglePassword()">
-                    <i id="eyeIcon" class="fa fa-eye"></i>
-                   </span>
-                 </div>
-                </div>
-
+  <label class="form-label">Password</label>
+  <div class="password-container" style="position: relative;">
+    <input type="password" id="passwordInput" name="password" placeholder="" style="padding-right: 40px;">
+    <span class="eye-icon" onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+      <i id="eyeIcon" class="fa fa-eye"></i>
+    </span>
+  </div>
+</div>
                 <!----------remeber--------->
                 <div class="d-flex align-items-center justify-content-between mb-4">
                   <div class="form-check">
                     <input class="form-check-input " type="checkbox" name="remeber" value="true" >
-                    <label class="form-check-label text-dark" >
+                    <label class="form-check-label text-dark " style="color: #21295C;" >
                       Remember this Device
                     </label>
                   </div>
-                  <a class="text-primary fw-bold" href="">Forgot Password?</a>
+                  <a class="text-primary fw-bold " href="" style="color: #21295C;">Forgot Password?</a>
+
                 </div>
-                <button type="submit" class="btn btn-primary w-100 py-3 fs-4 mb-4 mt-4 rounded-2">Sign In</button>
+                <button type="submit" class="btn btn-primary w-100 py-3 fs-4 mb-4 mt-4 rounded-2" style="background-color: #21295C; border-color: #21295C;">
+  Sign In
+</button>
+
                 <div class="d-flex align-items-center justify-content-center">
                   <p class="fs-4 mb-0 fw-bold">New to Propertyware ?</p>
                   <a class="text-primary fw-bold ms-2" href="register">Create an account</a>

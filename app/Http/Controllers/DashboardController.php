@@ -17,11 +17,11 @@ public function admin_dashboard(Request $request)
 
 public function user_dashboard(Request $request)
 {
-    echo "user";die();
+ return view('user.dashboard.index');
 }
 
 public function vendor_dashboard(Request $request)
 {
-    echo "vendor";die();
+    return view('vendor.dashboard.index');
 }
 }

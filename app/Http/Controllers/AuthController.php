@@ -54,7 +54,9 @@ public function register_post(Request $request)
         'name' => 'required',
         'email' =>'required|unique:users',
         'password' => 'required|min:8',
-        'confirm_password' => 'required_with:password|same:password|min:8'
+        'confirm_password' => 'required_with:password|same:password|min:8',
+        'user_type' => 'required|in:user,partner', 
+         
        ]);
          
        
@@ -70,7 +72,9 @@ public function register_post(Request $request)
      $user->remember_token= Str::random(50);
      $user->status = 0;
      $user->is_admin = 0;
+     $user->user_type = $request->user_type;
      $user->save();
+
 
     
      return redirect('/')->with('success','Register successfully.');

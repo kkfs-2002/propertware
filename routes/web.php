@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AMCController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,14 @@ Route::post('register', [AuthController::class, 'register_post']);
 
 Route::group(['middleware' => 'admin'], function () {
    Route::get('admin/dashboard', [DashboardController::class, 'admin_dashboard']);
+
+Route::get('admin/amc/list', [AMCController::class, 'amc_list']);
+Route::get('admin/amc/add', [AMCController::class, 'amc_add']);
+Route::post('admin/amc/add', [AMCController::class, 'amc_insert']);
+
+Route::get('admin/amc/edit/{id}', [AMCController::class, 'amc_edit']);
+  
+Route::post('admin/amc/edit/{id}', [AMCController::class, 'amc_update']);
 });
 
 Route::group(['middleware' => 'user'], function () {

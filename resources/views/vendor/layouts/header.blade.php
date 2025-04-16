@@ -1,5 +1,5 @@
-  <!--  Header Start -->
-  <header class="app-header">
+ <!--  Header Start -->
+ <header class="app-header">
         <nav class="navbar navbar-expand-lg navbar-light">
           <ul class="navbar-nav">
             <li class="nav-item d-block d-xl-none">
@@ -33,7 +33,7 @@
               <a class="nav-link " href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
                   <img src="{{ asset('images/profile/img.png') }}" alt="" width="50" height="50" class="rounded-circle">
-                  <h6 >Admin</h6>
+                  <h6 >Vendor</h6>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up show" aria-labelledby="drop2" data-bs-popper="static">
@@ -50,8 +50,7 @@
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
                     </a>
-                    <a href="{{ url('logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block" style="color: #21295C;">Logout</a>
-
+                    <a href= "{{ url ('logout')}}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
 
                   </div>
                 </div>

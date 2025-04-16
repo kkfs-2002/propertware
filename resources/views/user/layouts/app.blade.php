@@ -12,10 +12,10 @@
 
 <body>
 
-@include('admin.layouts.header') 
+@include('user.layouts.header') 
 
    
-  @include('admin.layouts.sidebar')
+  @include('user.layouts.sidebar')
 
  <!--  Body Wrapper -->
  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -24,7 +24,7 @@
     @yield('content')
      <!--  Main wrapper -->
 
-  @include('admin.layouts.footer')
+  @include('user.layouts.footer')
     
 <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

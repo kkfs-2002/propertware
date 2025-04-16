@@ -19,131 +19,69 @@
               <!-- <span class="hide-menu">Home</span> -->
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link  @if(Request::segment(2) == 'dashboard') @else collapsed  @endif " href="{{ url ('admin/dashboard') }}" aria-expanded="false">
+              <a class="sidebar-link" href="http://127.0.0.1:8000/admin/dashboard" aria-expanded="false">
                 <i class="ti ti-atom"></i>
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
-           
-            <!----Dashboard ---->
-              
+
+
+         
+           <!----dashboard---->
+           <ul class="sidebar">
+
             <li class="sidebar-item">
-            <a class="sidebar-link justify-content-between" target="_blank"
-            href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index.html" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-                <span class="d-flex">
-                     <i class="ti ti-list"></i>
-                </span>
-                <span class="hide-menu">Vendor List</span>
-                </div>
-             </a>
-          </li>
+    <a class="sidebar-link justify-content-between" href="my-calendar.html">
+      <div class="d-flex align-items-center gap-2">
+        <span class="d-flex">
+          <i class="fas fa-calendar-alt"></i>
+        </span>
+        <span class="hide-menu">My Calendar</span>
+      </div>
+    </a>
+  </li>
 
-          <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" target="_blank"
-            href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index.html" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-                <i class="ti ti-users"></i>
-            </span>
-            <span class="hide-menu">User List</span>
-            </div>
-          </a>
-          </li>
-         
-          <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" target="_blank"
-            href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index.html" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-                <i class="ti ti-briefcase"></i>
-                </span>
-                <span class="hide-menu">Service Type</span>
-                </div>
-          </a>
-          </li>
-
-          <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" target="_blank"
-            href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index.html" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-                 <i class="ti ti-building-store"></i>
-                 </span>
-                 <span class="hide-menu">Vendor Type</span>
-                 </div>
-          </a>
-          </li>
-
-          <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" target="_blank"
-            href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index.html" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-            <i class="ti ti-tag"></i>
-                 </span>
-                 <span class="hide-menu">Category List</span>
-                 </div>
-                 
-          </a>
-          </li>
-
-          <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" target="_blank"
-            href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index.html" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-            <i class="ti ti-tag"></i>
-                 </span>
-                 <span class="hide-menu"> Subcategory List</span>
-                 </div>
-                 
-          </a>
-</li>
-         
-
-        
-
-          <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between  @if(Request::segment(2) == 'amc') @else collapsed  @endif " href="{{ url('admin/amc/list') }}">
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-                 <i class="ti ti-clipboard-list"></i>
-                 </span>
-                 <span class="hide-menu">AMC List</span>
-                 </li>
-          </a>
-          </li>
-
-          <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" href="">
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-            <i class="fas fa-user-cog"></i>
-                </span>
-                <span class="hide-menu"> Profile Update</span>
-                 </li>
-          </a>
-          </li>
+ 
+  <li class="sidebar-item">
+    <a class="sidebar-link justify-content-between" href="my-assignment.html">
+      <div class="d-flex align-items-center gap-2">
+        <span class="d-flex">
+          <i class="fas fa-book"></i>
+        </span>
+        <span class="hide-menu">My Assignment</span>
+      </div>
+    </a>
+  </li>
 
 
-          <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between"    href="{{ url('logout') }}"  >
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-            <i class="ti ti-logout"></i>
+  <li class="sidebar-item">
+    <a class="sidebar-link justify-content-between" href="edit-profile.html">
+      <div class="d-flex align-items-center gap-2">
+        <span class="d-flex">
+          <i class="fas fa-user-cog"></i>
+        </span>
+        <span class="hide-menu">Edit Profile</span>
+      </div>
+    </a>
+  </li>
+
+  <li class="sidebar-item">
+    <a class="sidebar-link justify-content-between"   href="{{ url('logout') }}">
+      <div class="d-flex align-items-center gap-2">
+        <span class="d-flex">
+        <i class="ti ti-logout"></i>
             </span>
             <span class="hide-menu">Logout</span>
-                 </li>
-          </a>
-          </li>
+      </div>
+    </a>
+  </li>
 
+          
+ 
         
-            
-      
-        
-      
-      <!-- <li class="sidebar-item">
+  </ul>
+            <!-- ---------------------------------- -->
+            <!-- <li class="sidebar-item">
               <a class="sidebar-link justify-content-between" target="_blank"
                 href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index.html" aria-expanded="false">
                 <div class="d-flex align-items-center gap-3">
@@ -155,7 +93,6 @@
                 <span class="hide-menu badge text-bg-secondary fs-1 py-1">Pro</span>
               </a>
             </li>
-
             <li class="sidebar-item">
               <a class="sidebar-link justify-content-between" target="_blank"
                 href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index2.html" aria-expanded="false">
@@ -168,7 +105,6 @@
                 <span class="hide-menu badge text-bg-secondary fs-1 py-1">Pro</span>
               </a>
             </li>
-
             <li class="sidebar-item">
               <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
                 <div class="d-flex align-items-center gap-3">
@@ -179,7 +115,6 @@
                 </div>
                 <span class="hide-menu badge text-bg-secondary fs-1 py-1 me-3">Pro</span>
               </a>
-
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
                   <a class="sidebar-link justify-content-between" target="_blank"
@@ -1889,7 +1824,7 @@
                 <i class="ti ti-file"></i>
                 <span class="hide-menu">Sample Page</span>
               </a>
-            </li>
+            
           </ul>
           <div class="unlimited-access hide-menu bg-light-secondary position-relative mb-7 mt-5 rounded">
             <div class="d-flex">
@@ -1903,8 +1838,8 @@
               </div>
             </div>
           </div> -->
-
-      </nav>
+      
+      
         <!-- End Sidebar navigation -->
       </div>
       <!-- End Sidebar scroll-->

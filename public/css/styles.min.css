@@ -15808,12 +15808,13 @@ textarea.form-control-lg {
   border-right: 1px solid rgb(229, 234, 239);
   flex-shrink: 0;
   background-color: #fff;
-  z-index: 99;
+  z-index: 999;
   transition: 0.2s ease-in;
   position: fixed;
   left: 0;
   right: 0;
   height: 100%;
+  top: 0;
 }
 .left-sidebar .scroll-sidebar {
   overflow-y: auto;
@@ -15987,9 +15988,9 @@ textarea.form-control-lg {
   position: relative;
   z-index: 50;
   width: 100%;
-  background: var(--bs-body-bg);
+  background: #21295C;
   padding: 0 10px;
-  top: 65px;
+  top: 0px;
 }
 @media (max-width: 991.98px) {
   .app-header {
@@ -16063,7 +16064,7 @@ textarea.form-control-lg {
 }
 body {
   font-family: "Plus Jakarta Sans", sans-serif !important;
-  background-color: #f6f8fb;
+  background-color: #f4f4f4;
 }
 
 .page-wrapper {
@@ -16082,7 +16083,7 @@ body {
   margin: 0 auto;
   padding: 24px;
   transition: 0.2s ease-in;
-  padding-top: 180px;
+  padding-top: 20px;
 }
 @media (max-width: 991.98px) {
   .body-wrapper .container-fluid, .body-wrapper .container-sm, .body-wrapper .container-md, .body-wrapper .container-lg, .body-wrapper .container-xl, .body-wrapper .container-xxl {
@@ -16261,4 +16262,19 @@ ul {
 }
 #togglePassword:hover {
   color: #000;
+}
+
+h6{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+h6 {
+  color: blue;
+  margin: 0;
+  font-size: 16px;
+  padding-left: 10px; 
+  font-weight: 500;
 }
