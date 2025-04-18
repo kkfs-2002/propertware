@@ -5,15 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AMCController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
+
 */
 
 Route::get('/', [AuthController::class, 'login']);
@@ -28,10 +25,23 @@ Route::group(['middleware' => 'admin'], function () {
 Route::get('admin/amc/list', [AMCController::class, 'amc_list']);
 Route::get('admin/amc/add', [AMCController::class, 'amc_add']);
 Route::post('admin/amc/add', [AMCController::class, 'amc_insert']);
-
 Route::get('admin/amc/edit/{id}', [AMCController::class, 'amc_edit']);
-  
 Route::post('admin/amc/edit/{id}', [AMCController::class, 'amc_update']);
+Route::get('admin/amc/delete/{id}', [AMCController::class, 'amc_delete']);
+Route::get('admin/amc/add_ons/{id}', [AMCController::class, 'amc_add_ons_list']);
+Route::get('admin/amc/add_add_ons/{id}', [AMCController::class, 'amc_add_add_ons']); 
+Route::post('admin/amc/add_add_ons/{id}', [AMCController::class, 'amc_store_add_ons']); 
+Route::get('admin/amc/edit_add_ons/{id}', [AMCController::class, 'amc_edit_add_ons']); 
+
+
+Route::get('admin/category/list', [CategoryController::class, 'Category_list']);
+Route::get('admin/Category/add', [CategoryController::class, 'Category_add']);
+Route::post('admin/category/add', [CategoryController::class, 'Category_insert']);
+Route::get('admin/category/edit/{id}', [CategoryController::class, 'Category_edit']);
+Route::post('admin/category/edit/{id}', [CategoryController::class, 'Category_update']);
+Route::get('admin/category/delete/{id}', [CategoryController::class, 'Category_delete']);
+
+
 });
 
 Route::group(['middleware' => 'user'], function () {

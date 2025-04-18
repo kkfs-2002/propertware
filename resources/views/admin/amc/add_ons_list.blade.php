@@ -3,11 +3,11 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1>Annual Maintenance Contract</h1>
+        <h1>Add ons</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">AMC</li>
+                <li class="breadcrumb-item active">Add ons</li>
                  </ol>
                  </nav>
                   </div>
@@ -19,36 +19,31 @@
                             <div class="card">
                             <div class="card-body">
                             <h5 class="card-title">
-                                <a href="{{ url('admin/amc/add') }}" class="btn btn-primary">Add New AMC</a>
+                                <a href="{{ url('admin/amc/add_add_ons/'.$getrecord->id) }}" class="btn btn-primary">Add New Add ons</a>
                           </h5>
                           <table class="table">
                           <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Amount</th>
-                                    <th>Business Category</th>
-                                    <th>Series</th>
+                                    <th>Price</th>
                                     <th>Action</th>
                             </thead>
                             <tbody>
-                                @forelse($getrecord as $value)
+                                @forelse($get_add_ons as $value)
                                 <tr>
                                     <td>{{  $value->id }}</td>
                                     <td>{{  $value->name }}</td>
-                                    <td>{{ number_format($value->amount, 2) }}</td>
-                                    <td>{{ !empty($value->business_category) ? 'Common-Area' : 'Residentional' }}</td>
-                                    <td>{{  $value->series }}</td>
+                                    <td>{{ number_format($value->price, 2) }}</td>
+                                    
                                     <td>
                                          
-                                    <a href="{{ url('admin/amc/add_ons/'.$value->id ) }}" class="btn btn-warning">Add-ons</a>
-                                        
-
-                                        <a href="{{ url('admin/amc/edit/'.$value->id ) }}" class="btn btn-success">
+                                
+                                    <a href="{{ url('admin/amc/edit_add_ons/'.$value->id ) }}" class="btn btn-success">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
 
-                                        <a onclick=" return confirm('Are you sure you want to delete?')" href="{{ url('admin/amc/delete/'.$value->id) }}" class="btn btn-danger">
+                                        <a onclick=" return confirm('Are you sure you want to delete?')" href="{{ url('admin/amc/delete_add_ons/'.$value->id) }}" class="btn btn-danger">
                                         <i class="fa fa-trash" aria-hidden="true" title="Delete"></i>
                                         </a>
 
@@ -66,7 +61,7 @@
     
                            
                           </table>
-                          {{ $getrecord->links() }}
+                          {{ $get_add_ons->links() }}
                          </div>
                          </div>
                          </div>

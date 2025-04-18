@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AMCModel extends Model
+class CategoryModel extends Model
 {
-    protected $table = 'amc_models';
+    protected $table = 'category';
     public $timestamps = false;  
 
     static public function get_record($request)
     {
-        $return = self::select('amc_models.*')
-                    ->orderBy('id','desc')
+        $return = self::select('category.*')
+                    ->orderBy('category.id','desc')
                     ->where('is_delete', '=', 0);
 
                     $return =  $return->paginate(20);

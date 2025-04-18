@@ -29,33 +29,36 @@
             <!--<a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/?ref=56" target="_blank"
             class="btn btn-primary">Check Pro Template</a>-->
 
-              <li class="nav-item dropdown">
-              <a class="nav-link " href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="{{ asset('images/profile/img.png') }}" alt="" width="50" height="50" class="rounded-circle">
-                  <h6 >Admin</h6>
-                </a>
+            <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="{{ asset('images/profile/img.png') }}" alt="" width="50" height="50" class="rounded-circle">
+    <h6 class="d-inline-block mb-0 ms-2">Admin</h6>
+  </a>
 
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up show" aria-labelledby="drop2" data-bs-popper="static">
-                  <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-mail fs-6"></i>
-                      <p class="mb-0 fs-3">My Account</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-list-check fs-6"></i>
-                      <p class="mb-0 fs-3">My Task</p>
-                    </a>
-                    <a href="{{ url('logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block" style="color: #21295C;">Logout</a>
-
-
-                  </div>
-                </div>
-              </li>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+    <li>
+      <a href="{{ url('/admin/profile') }}" class="dropdown-item">
+        <i class="ti ti-user me-2"></i> My Profile
+      </a>
+    </li>
+    <li>
+      <a href="{{ url('/admin/account') }}" class="dropdown-item">
+        <i class="ti ti-mail me-2"></i> My Account
+      </a>
+    </li>
+    <li>
+      <a href="{{ url('/admin/task') }}" class="dropdown-item">
+        <i class="ti ti-list-check me-2"></i> My Task
+      </a>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li>
+      <a href="{{ url('logout') }}" class="dropdown-item text-danger">
+        <i class="ti ti-logout me-2"></i> Logout
+      </a>
+    </li>
+  </ul>
+</li>
             </ul>
           </div>
         </nav>

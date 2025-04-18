@@ -76,32 +76,35 @@
           </li>
 
           <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" target="_blank"
-            href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index.html" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-            <i class="ti ti-tag"></i>
-                 </span>
-                 <span class="hide-menu">Category List</span>
-                 </div>
-                 
-          </a>
-          </li>
+  <a class="sidebar-link has-arrow collapsed" href="#categoryMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="categoryMenu">
+    <div class="d-flex align-items-center gap-2">
+      <span class="d-flex">
+        <i class="ti ti-tag"></i>
+      </span>
+      <span class="hide-menu">Category Management</span>
+    </div>
+  </a>
 
-          <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" target="_blank"
-            href="https://bootstrapdemos.adminmart.com/modernize/dist/main/index.html" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-            <span class="d-flex">
-            <i class="ti ti-tag"></i>
-                 </span>
-                 <span class="hide-menu"> Subcategory List</span>
-                 </div>
-                 
-          </a>
+  <ul class="collapse" id="categoryMenu">
+    <li class="sidebar-item">
+      <a href="{{ url('admin/category/list') }}" class="sidebar-link @if(Request::segment(2) == 'category') @else collapsed  @endif " href="{{ url('admin/amc/list') }}">
+        <div class="d-flex align-items-center gap-2 ps-4">
+          <i class="ti ti-circle"></i>
+          <span class="hide-menu">Category List</span>
+        </div>
+      </a>
+    </li>
+
+    <li class="sidebar-item">
+      <a href="{{ url('admin/subcategory/list') }}" class="sidebar-link">
+        <div class="d-flex align-items-center gap-2 ps-4">
+          <i class="ti ti-circle"></i>
+          <span class="hide-menu">Subcategory List</span>
+        </div>
+      </a>
+    </li>
+  </ul>
 </li>
-         
-
         
 
           <li class="sidebar-item">
