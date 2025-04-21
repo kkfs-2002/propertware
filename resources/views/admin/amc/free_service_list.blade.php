@@ -40,7 +40,7 @@
                                         <td>{{ $value->limit }}</td>
                                         <td>{{ $value->price }}</td>
                                         <td>
-                                        <a href="{{ url('admin/amc/edit_free_service/'$value->id ) }}" class="btn btn-success">
+                                        <a href="{{ url('admin/amc/edit_free_service/'.$value->id ) }}" class="btn btn-success">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
 

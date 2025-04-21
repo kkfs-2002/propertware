@@ -26,7 +26,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Name <span style="color: red;">*</span></label>
                                 <div class="col-sm-10">
-                                <input type="text" name="name" class="form-control" required value="{{ old('name') }}">
+                                <input type="text" name="name" class="form-control" required value="{{ $getrecord->name }}">
                                 <span style="color: red;">{{ $errors->first('name') }}</span>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                                 <div class="col-sm-10">
                                 <select class="form-control" name="limit">
                                         @for($i=1; $i<=50; $i++)
-                                        <option value ="{{ $i }}">{{ $i}}</option>
+                                        <option {{ ($getrecord->limit == $i) ? 'selected' : ''}} value ="{{ $i }}">{{ $i}}</option>
                                         @endfor
                                     </select>
                                     <span style="color: red;">{{ $errors->first('limit') }}</span>
@@ -48,7 +48,7 @@
                                 <label class="col-sm-2 col-form-label">price <span style="color: red;">*</span></label>
                                 <div class="col-sm-10">
                                 <input type="text" name="price" class="form-control" required 
-                                 value="{{ old('price') }}" 
+                                 value="{{ $getrecord->price }}" 
                                   oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" maxlength="10">
                                   <span style="color: red;">{{ $errors->first('price') }}</span>
                                 </div>
@@ -60,7 +60,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">submit</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </div>
 
