@@ -32,7 +32,12 @@ Route::get('admin/amc/add_ons/{id}', [AMCController::class, 'amc_add_ons_list'])
 Route::get('admin/amc/add_add_ons/{id}', [AMCController::class, 'amc_add_add_ons']); 
 Route::post('admin/amc/add_add_ons/{id}', [AMCController::class, 'amc_store_add_ons']); 
 Route::get('admin/amc/edit_add_ons/{id}', [AMCController::class, 'amc_edit_add_ons']); 
-
+Route::post('admin/amc/edit_add_ons/{id}', [AMCController::class, 'amc_edit_add_ons_update']);
+Route::get('admin/amc/delete_add_ons/{id}', [AMCController::class, 'delete_add_ons']); 
+Route::get('admin/amc/free_service/{id}', [AMCController::class, 'amc_free_service']);
+Route::get('admin/amc/add_free_service/{id}', [AMCController::class, 'amc_add_free_service']);
+Route::post('admin/amc/add_free_service/{id}', [AMCController::class, 'amc_store_free_service']); 
+Route::get('admin/amc/edit_free_service/{id}', [AMCController::class, 'amc_edit_free_service']);
 
 Route::get('admin/category/list', [CategoryController::class, 'Category_list']);
 Route::get('admin/Category/add', [CategoryController::class, 'Category_add']);
@@ -40,6 +45,7 @@ Route::post('admin/category/add', [CategoryController::class, 'Category_insert']
 Route::get('admin/category/edit/{id}', [CategoryController::class, 'Category_edit']);
 Route::post('admin/category/edit/{id}', [CategoryController::class, 'Category_update']);
 Route::get('admin/category/delete/{id}', [CategoryController::class, 'Category_delete']);
+
 
 
 });

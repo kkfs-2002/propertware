@@ -43,6 +43,7 @@
                                          
                                     <a href="{{ url('admin/amc/add_ons/'.$value->id ) }}" class="btn btn-warning">Add-ons</a>
                                         
+                                    <a href="{{ url('admin/amc/free_service/'.$value->id ) }}" class="btn btn-info">Free Service</a>
 
                                         <a href="{{ url('admin/amc/edit/'.$value->id ) }}" class="btn btn-success">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>

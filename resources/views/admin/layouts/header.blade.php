@@ -29,7 +29,7 @@
             <!--<a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/?ref=56" target="_blank"
             class="btn btn-primary">Check Pro Template</a>-->
 
-            <li class="nav-item dropdown">
+    <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <img src="{{ asset('images/profile/img.png') }}" alt="" width="50" height="50" class="rounded-circle">
     <h6 class="d-inline-block mb-0 ms-2">Admin</h6>
