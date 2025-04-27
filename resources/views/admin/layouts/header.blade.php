@@ -32,7 +32,7 @@
     <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <img src="{{ asset('images/profile/img.png') }}" alt="" width="50" height="50" class="rounded-circle">
-    <h6 class="d-inline-block mb-0 ms-2">Admin</h6>
+    <h6 class="d-inline-block mb-0 ms-2" style="color: white !important;">Admin</h6>
   </a>
 
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">

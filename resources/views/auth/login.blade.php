@@ -11,16 +11,16 @@
         
         <!-- Left Side: Image -->
         <!-- Left Side: Image (Online Property Vector) -->
-<div class="col-md-6 d-none d-md-block">
+<div class="col-md-8 d-none d-md-block">
   <img src="{{ asset('images/signin/login.jpg') }}"
        alt="Property Vector Illustration" 
-       class="img-fluid w-100 h-100 object-fit-cover">
+       class="img-fluid w-150 h-100 object-fit-cover">
 </div>
 
 
         <!-- Right Side: Form -->
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
-          <div class="card w-75 shadow p-5">
+        <div class="col-md-4 d-flex align-items-center justify-content-center">
+          <div class="card w-85 p-5  bg-white">
             <div class="card-body">
               <a href="" class="text-nowrap logo-img text-center d-block  w-100">
                 <img src="{{ asset('images/logos/logo2.png') }}" alt="Company Logo" width="180">
@@ -28,6 +28,9 @@
               <p class="text-center ">Innovative Solutions for Smart Property Management.</p>
                 @include('_message')
               </div>
+              
+
+            
 
               <form method="POST" action="{{ url('login') }}" >
               {{ csrf_field() }}
@@ -58,7 +61,7 @@
                       Remember this Device
                     </label>
                   </div>
-                  <a class="text-primary fw-bold " href="" style="color: #21295C;">Forgot Password?</a>
+                  <a class="text-primary fw-bold " href="forgotpassword" style="color: #21295C;">Forgot Password?</a>
 
                 </div>
                 <button type="submit" class="btn btn-primary w-100 py-3 fs-4 mb-4 mt-4 rounded-2" style="background-color: #21295C; border-color: #21295C;">

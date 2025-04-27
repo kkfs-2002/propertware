@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Hash;
@@ -91,6 +92,32 @@ public function logout()
     Auth::logout();
     return redirect(url(''));
 }
-       }
+
+public function forgotpassword(){
+   
+    return view('auth.forgotpassword');
+}
+
+public function forgotpassword_post(Request $request)
+{
+
+    $request->validate([
+        'email' => 'required|email|exists:users,email', 
+    ]);
+
+
+    $status = Password::sendResetLink(
+        $request->only('email') 
+    );
+
+
+    if ($status === Password::RESET_LINK_SENT) {
+        return back()->with('status', 'A password reset link has been sent to your email.');
+    } else {
+
+        return back()->withErrors(['email' => 'Failed to send reset link. Please try again later.']);
+    }
+}
+}     
 
 ?>

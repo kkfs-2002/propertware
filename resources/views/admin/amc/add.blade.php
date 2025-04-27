@@ -3,7 +3,7 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1>Annual Maintenance Contract</h1>
+        <h1 class="ms-2">Annual Maintenance Contract</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>

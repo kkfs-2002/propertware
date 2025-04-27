@@ -6,6 +6,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AMCController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ServiceTypeController;
+use App\Http\Controllers\SubCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +19,15 @@ Route::get('/', [AuthController::class, 'login']);
 Route::post('login', [AuthController::class, 'login_post']);
 Route::get('register', [AuthController::class, 'register']);
 Route::post('register', [AuthController::class, 'register_post']);
+
+Route::get('forgotpassword', [AuthController::class, 'forgotpassword']);
+Route::post('forgotpassword', [AuthController::class, 'forgotpassword_post']);
+
+Route::get('reset-password/{token}', function (string $token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
+Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 
 Route::group(['middleware' => 'admin'], function () {
@@ -55,7 +66,17 @@ Route::post('admin/category/edit/{id}', [CategoryController::class, 'Category_up
 Route::get('admin/category/delete/{id}', [CategoryController::class, 'Category_delete']);
 
 
+Route::get('admin/service_type/list', [ServiceTypeController::class, 'service_type_list']);
+Route::get('admin/service_type/add', [ServiceTypeController::class, 'service_type_add']);
+Route::post('admin/service_type/add',  [ServiceTypeController::class, 'service_type_add_post']);
+Route::get('admin/service_type/edit/{id}', [ServiceTypeController::class, 'service_type_edit']);
+Route::post('admin/service_type/edit/{id}', [ServiceTypeController::class, 'service_type_edit_update']);
+Route::get('admin/service_type/delete/{id}', [ServiceTypeController::class, 'service_type_delete']);
 
+
+Route::get('admin/sub_category/list', [SubCategoryController::class, 'sub_category_list']);
+Route::get('admin/sub_category/add', [SubCategoryController::class, 'sub_category_add']);
+Route::post('admin/sub_category/add', [SubCategoryController::class, 'sub_category_store']);
 });
 
 Route::group(['middleware' => 'user'], function () {
