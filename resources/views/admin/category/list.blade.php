@@ -53,7 +53,7 @@
                                 <tr>
                                     <td colspan="100%">Record not found.</td>
                                 </tr>
-
+                                    
                                 @endforelse
                                 </tr>
                           </table>

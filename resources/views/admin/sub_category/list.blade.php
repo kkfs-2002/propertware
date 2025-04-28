@@ -30,11 +30,31 @@
                                     <th>Action</th>
                             </thead>
                             <tbody>
-                              
+                              @forelse($getrecord as $value)
+                                 <tr>
+                                    <td>{{ $value->id }}</td>
+                                    <td>{{ $value->category_name }}</td>
+                                    <td>{{ $value->name }}</td>
+                                    <td>
+                                    <a href="{{ url('admin/sub_category/edit/'.$value->id ) }}" class="btn btn-success">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+
+                                        <a onclick=" return confirm('Are you sure you want to delete?')" href="{{ url('admin/sub_category/delete/'.$value->id) }}" class="btn btn-danger">
+                                        <i class="fa fa-trash" aria-hidden="true" title="Delete"></i>
+                                        </a>
+
+                                    </td>
+                                 </tr>
+                                 @empty
+                                 <tr>
+                                    <td colspan="100%">Record not found.</td>
+                                </tr>
+                              @endforelse
                                
                             </tbody>
                              </table> 
-                          
+                             {{ $getrecord->links() }}
                          </div>
                          </div>
                          </div>
