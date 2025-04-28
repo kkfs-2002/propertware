@@ -3,9 +3,9 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1>Service Type</h1>
+        <h1 class="ms-4 mt-2 p-2" >Service Type</h1>
         <nav>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb ms-4 p-2">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
                 <li class="breadcrumb-item active">Service Type</li>
                  </ol>
@@ -20,7 +20,7 @@
                             <div class="card-body">
 
                             <h5 class="card-title">Edit Service Type</h5>
-                            <form action="{{ url('admin/service_type/edit/'.$getrecord->id) }}" method="post" enctype="multipart/form-data"> n
+                            <form action="{{ url('admin/service_type/edit/'.$getrecord->id) }}" method="post" enctype="multipart/form-data"> 
                                  {{ csrf_field() }}
 
                             <div class="row mb-3">

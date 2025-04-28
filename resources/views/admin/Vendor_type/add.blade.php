@@ -3,11 +3,11 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1 class="ms-4 mt-2 p-2">Category</h1>
+        <h1 class="ms-4 mt-2 p-2" >Vendor Type</h1>
         <nav>
             <ol class="breadcrumb ms-4 p-2">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Category</li>
+                <li class="breadcrumb-item active">Vendor Type</li>
                  </ol>
                  </nav>
                   </div>
@@ -19,14 +19,14 @@
                             <div class="card">
                             <div class="card-body">
 
-                            <h5 class="card-title"> Edit Category</h5>
-                            <form action="{{ url('admin/category/edit/'.$getrecord->id) }}" method="post" enctype="multipart/form-data">
+                            <h5 class="card-title"> Add Vendor Type</h5>
+                            <form action="{{ url('admin/Vendor_type/add') }}" method="post" enctype="multipart/form-data">
                                  {{ csrf_field() }}
 
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Catergory Name <span style="color: red;">*</span></label>
+                                <label class="col-sm-2 col-form-label">Vendor Type Name <span style="color: red;">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control" required value="{{ $getrecord->name }}">
+                                    <input type="text" name="name" class="form-control" required value="{{ old('name') }}">
                                     <span style="color:red">{{ $errors->first('name') }}</span>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">submit</button>
                                 </div>
                             </div>
 

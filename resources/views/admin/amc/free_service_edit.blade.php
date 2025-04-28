@@ -3,9 +3,9 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1>Edit Free Service</h1>
+        <h1 class="ms-4 mt-2 p-2">Edit Free Service</h1>
         <nav>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb  ms-4 p-2">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
                 <li class="breadcrumb-item active">Edit Free Service<</li>
                  </ol>
