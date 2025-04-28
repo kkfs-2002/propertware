@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ServiceTypeController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\VendorTypeController;
+use App\Http\Controllers\VendorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,7 +90,15 @@ Route::post('admin/Vendor_type/add', [VendorTypeController::class, 'Vendor_type_
 Route::get ('admin/Vendor_type/edit/{id}', [VendorTypeController::class, 'Vendor_type_edit']);
 Route::post('admin/Vendor_type/edit/{id}', [VendorTypeController::class, 'Vendor_type_update']); 
 Route::get ('admin/Vendor_type/delete/{id}', [VendorTypeController::class, 'Vendor_type_delete']);
+
+
+Route::get ('admin/vendor/list', [VendorController::class, 'vendor_list' ]);
+Route::get ('admin/vendor/add', [VendorController::class, 'vendor_add' ]);
+
+
 });
+
+
 
 Route::group(['middleware' => 'user'], function () {
     Route::get('user/dashboard', [DashboardController::class, 'user_dashboard']);

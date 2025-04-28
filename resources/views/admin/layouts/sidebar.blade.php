@@ -52,7 +52,7 @@
         </li>
         
         <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" target="_blank" href="" aria-expanded="false">
+          <a class="sidebar-link  @if(Request::segment(2) == 'vendor') active @else collapsed @endif"  target="_blank" href="{{ url('admin/vendor/list') }}" aria-expanded="false">
             <div class="d-flex align-items-center gap-2">
               <span class="d-flex">
                 <i class="ti ti-list"></i>

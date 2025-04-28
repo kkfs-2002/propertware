@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Propertyware</title>
-  <link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/logo2.png') }}" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/logo2-.png') }}" />
   <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   
@@ -49,7 +49,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Propertyware</title>
-  <link rel="shortcut icon" type="image/jpg" href="{{ asset('images/logos/logo2.png') }}" />
+  <link rel="shortcut icon" type="image/jpg" href="{{ asset('images/logos/logo2-.png') }}" />
   <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
