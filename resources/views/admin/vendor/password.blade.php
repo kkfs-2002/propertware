@@ -1,0 +1,83 @@
+@extends('layouts.app')
+@section('content')
+              
+          
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="row w-100">
+        
+        <!-- Left Side: Image -->
+        <!-- Left Side: Image (Online Property Vector) -->
+<div class="col-md-8 d-none d-md-block">
+  <img src="{{ asset('images/signin/login.jpg') }}"
+       alt="Property Vector Illustration" 
+       class="img-fluid w-150 h-100 object-fit-cover">
+</div>
+
+
+        <!-- Right Side: Form -->
+        <div class="col-md-4 d-flex align-items-center justify-content-center">
+          <div class="card w-85 p-5  bg-white">
+            <div class="card-body">
+              <a href="" class="text-nowrap logo-img text-center d-block  w-100">
+                <img src="{{ asset('images/logos/logo2.png') }}" alt="Company Logo" width="180">
+              </a>
+              <p class="text-center ">Update Password Your Account</p>
+              <p class="text-center ">Ensure secure access to smart property management with easy password entry and confirmation.</p>
+                @include('_message')
+              </div>
+              
+
+            
+
+              <form method="POST" action="{{ route('password.update') }}" >
+              {{ csrf_field() }}
+
+              <input type="hidden" name="token" value="{{ $token }}">
+              <input type="hidden" name="email" value="{{ request()->email }}">
+
+             <!--------emil----------->
+                <div class="mb-3 mt-2">
+                  <label class="form-label">Password</label>
+                  <div class="input-group has-validation">
+                    <input type="password" class="form-control" name="password" required>
+                    <div style="color: red">{{$errors->first('password')}}</div>
+                </div>
+                </div>
+  
+                <!----------password------->
+                <div class="mb-4">
+  <label class="form-label">Confirm Password</label>
+  <div class="password-container" style="position: relative;">
+  <div style="color: red">{{$errors->first('password')}}</div>
+    <input type="password" id="passwordInput" name="Confirm_password" placeholder="" style="padding-right: 40px;">
+    <span class="eye-icon" onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+      <i id="eyeIcon" class="fa fa-eye"></i>
+    </span>
+  </div>
+</div>
+                <!----------remeber--------->
+         
+                <button type="submit" class="btn btn-primary w-100 py-3 fs-4 mb-4 mt-4 rounded-2" style="background-color: #21295C; border-color: #21295C;">
+                Reset
+                </button>
+
+                <div class="d-flex align-items-center justify-content-center">
+                  <p class="fs-4 mb-0 fw-bold">New to Propertyware ?</p>
+                  <a class="text-primary fw-bold ms-2" href="register">createan account</a>
+                 
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+ 
+
+  @endsection

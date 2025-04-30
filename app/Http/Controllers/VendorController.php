@@ -7,6 +7,10 @@ use App\Models\CategoryModel;
 use App\Models\User;
 use Str;
 use Auth;
+use Mail;
+use Hash;
+use App\Mail\VendorRegisterMail;
+use App\Http\Requests\ResetPassword;
 
 class VendorController extends Controller
 {
@@ -68,7 +72,49 @@ class VendorController extends Controller
          $user->password        = bcrypt('password'); 
          $user->save();
      
+         $this->send_vendor_verification_mail($user);
+
          return redirect('admin/vendor/list')->with('success', 'Record successfully created.');
      }
 
+     public function send_vendor_verification_mail($user)
+{
+    try {
+        Mail::to($user->email)->send(new VendorRegisterMail($user));
+    } catch (\Exception $e) {
+        dd('Mail send error: ' . $e->getMessage());
+    }
+}
+
+public function vendor_password(Request $request,$token)
+{
+  $user = User::where('forgot_token', '=', $token);
+
+  if($user->count() == 0){
+    abort(403);
+  }
+
+  $user =  $user->first();
+
+  $data['token'] = $token;
+
+  return view('admin.vendor.password', $data);
+}
+
+public function vendor_password_post($token, ResetPassword $request)
+{
+    $user = User::where('forgot_token', '=', $token);
+
+    if($user->count() == 0){
+      abort(403);
+    }
+    $user =  $user->first();
+    $user->remeber_token = Str::random(50);
+    $user->forgot_token = Str::random(50);
+    $user->password = Hash::make($request->password);
+    $user->status = 0;
+    $user->save();
+
+    return redirect('/')->with('success','Password has been save');
+}
 }

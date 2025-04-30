@@ -22,6 +22,9 @@ Route::get('/', [AuthController::class, 'login']);
 Route::post('login', [AuthController::class, 'login_post']);
 Route::get('register', [AuthController::class, 'register']);
 Route::post('register', [AuthController::class, 'register_post']);
+Route::get('vendor/password/{token}', [VendorController::class, 'vendor_password']);
+Route::post('vendor/password/{token}', [VendorController::class, 'vendor_password_post']);
+Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 Route::get('forgotpassword', [AuthController::class, 'forgotpassword']);
 Route::post('forgotpassword', [AuthController::class, 'forgotpassword_post']);
