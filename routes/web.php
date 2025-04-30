@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AMCController;
 use App\Http\Controllers\CategoryController;
@@ -24,6 +25,7 @@ Route::post('register', [AuthController::class, 'register_post']);
 
 Route::get('forgotpassword', [AuthController::class, 'forgotpassword']);
 Route::post('forgotpassword', [AuthController::class, 'forgotpassword_post']);
+Route::post('/forgotpassword', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
 
 Route::get('reset-password/{token}', function (string $token) {
     return view('auth.reset-password', ['token' => $token]);
@@ -94,7 +96,7 @@ Route::get ('admin/Vendor_type/delete/{id}', [VendorTypeController::class, 'Vend
 
 Route::get ('admin/vendor/list', [VendorController::class, 'vendor_list' ]);
 Route::get ('admin/vendor/add', [VendorController::class, 'vendor_add' ]);
-
+Route::post('admin/vendor/add',  [VendorController::class, 'vendor_store' ]);
 
 });
 
