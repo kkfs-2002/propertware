@@ -42,4 +42,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    static public function get_record($request)
+    {
+        $return = self::select('users.*', 'vendor_type.name as vendor_type_name', 'category.name as category_name')
+                 ->join('vendor_type', 'vendor_type.id', '=', 'users.vendor_type_id', 'left')
+                 ->join('category', 'category.id', '=', 'users.category_id', 'left')
+                 ->orderBy('users.id','desc')
+                 ->where('users.is_admin', '=', 2)
+                 ->where('users.is_delete', '=', 0);
+
+                 $return =  $return->paginate(20);
+                 return $return;
+    }
+
+
+    static public function get_single($id)
+    {
+        return self::find($id);
+    }
 }

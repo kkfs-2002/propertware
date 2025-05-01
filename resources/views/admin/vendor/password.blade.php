@@ -1,83 +1,96 @@
 @extends('layouts.app')
+
 @section('content')
-              
-          
-<body>
-  <!--  Body Wrapper -->
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
-    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
-      <div class="row w-100">
-        
-        <!-- Left Side: Image -->
-        <!-- Left Side: Image (Online Property Vector) -->
-<div class="col-md-8 d-none d-md-block">
-  <img src="{{ asset('images/signin/login.jpg') }}"
-       alt="Property Vector Illustration" 
-       class="img-fluid w-150 h-100 object-fit-cover">
-</div>
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6"
+     data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+  <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="row w-100">
 
+      <!-- Left Side: Image -->
+      <div class="col-md-8 d-none d-md-block">
+        <img src="{{ asset('images/signin/login.jpg') }}"
+             alt="Property Vector Illustration"
+             class="img-fluid w-100 h-100 object-fit-cover">
+      </div>
 
-        <!-- Right Side: Form -->
-        <div class="col-md-4 d-flex align-items-center justify-content-center">
-          <div class="card w-85 p-5  bg-white">
-            <div class="card-body">
-              <a href="" class="text-nowrap logo-img text-center d-block  w-100">
-                <img src="{{ asset('images/logos/logo2.png') }}" alt="Company Logo" width="180">
-              </a>
-              <p class="text-center ">Update Password Your Account</p>
-              <p class="text-center ">Ensure secure access to smart property management with easy password entry and confirmation.</p>
-                @include('_message')
-              </div>
-              
+      <!-- Right Side: Form -->
+      <div class="col-md-4 d-flex align-items-center justify-content-center">
+        <div class="card w-100 p-4 bg-white rounded shadow">
+          <div class="card-body">
 
-            
+            <div class="text-center mb-3">
+              <img src="{{ asset('images/logos/logo2.png') }}" alt="Company Logo" width="180">
+            </div>
 
-              <form method="POST" action="{{ route('password.update') }}" >
-              {{ csrf_field() }}
+            <h5 class="text-center mb-2">Update Password Your Account</h5>
+            <p class="text-center text-muted mb-4">
+              Ensure secure access to smart property management with easy password entry and confirmation.
+            </p>
 
-              <input type="hidden" name="token" value="{{ $token }}">
-              <input type="hidden" name="email" value="{{ request()->email }}">
+            @include('_message')
 
-             <!--------emil----------->
-                <div class="mb-3 mt-2">
-                  <label class="form-label">Password</label>
-                  <div class="input-group has-validation">
-                    <input type="password" class="form-control" name="password" required>
-                    <div style="color: red">{{$errors->first('password')}}</div>
-                </div>
-                </div>
-  
-                <!----------password------->
-                <div class="mb-4">
-  <label class="form-label">Confirm Password</label>
-  <div class="password-container" style="position: relative;">
-  <div style="color: red">{{$errors->first('password')}}</div>
-    <input type="password" id="passwordInput" name="Confirm_password" placeholder="" style="padding-right: 40px;">
-    <span class="eye-icon" onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
-      <i id="eyeIcon" class="fa fa-eye"></i>
+            <form method="POST" action="{{ route('password.update') }}">
+              @csrf
+
+         <!-- New Password -->
+<div class="mb-3">
+  <label class="form-label">New Password</label>
+  <div class="position-relative">
+    <input type="password" class="form-control" name="password" id="newPasswordInput" required>
+    <span class="position-absolute top-50 end-0 translate-middle-y pe-3" style="cursor: pointer;" onclick="toggleNewPassword()">
+      <i id="newEyeIcon" class="fa fa-eye"></i>
     </span>
   </div>
+  @if ($errors->has('password'))
+    <small class="text-danger">{{ $errors->first('password') }}</small>
+  @endif
 </div>
-                <!----------remeber--------->
-         
-                <button type="submit" class="btn btn-primary w-100 py-3 fs-4 mb-4 mt-4 rounded-2" style="background-color: #21295C; border-color: #21295C;">
-                Reset
-                </button>
 
-                <div class="d-flex align-items-center justify-content-center">
-                  <p class="fs-4 mb-0 fw-bold">New to Propertyware ?</p>
-                  <a class="text-primary fw-bold ms-2" href="register">createan account</a>
-                 
+              <!-- Confirm Password -->
+              <div class="mb-3">
+                <label class="form-label">Confirm Password</label>
+                <div class="position-relative">
+                  <input type="password" class="form-control" id="passwordInput" name="Confirm_password" required>
+                  <span class="position-absolute top-50 end-0 translate-middle-y pe-3" style="cursor: pointer;" onclick="togglePassword()">
+                    <i id="eyeIcon" class="fa fa-eye"></i>
+                  </span>
                 </div>
-              </form>
-            </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary w-100 py-3 fs-5 mt-3" style="background-color: #21295C; border-color: #21295C;">
+                Reset Password
+              </button>
+
+              <!-- Redirect to Register -->
+              <div class="text-center mt-4">
+                <p class="mb-1">New to Propertyware?</p>
+                <a href="{{ url('register') }}" class="fw-bold text-primary">Create an account</a>
+              </div>
+
+            </form>
           </div>
         </div>
-
       </div>
+
     </div>
   </div>
- 
+</div>
 
-  @endsection
+<script>
+  function toggleNewPassword() {
+    const input = document.getElementById("newPasswordInput");
+    const icon = document.getElementById("newEyeIcon");
+
+    if (input.type === "password") {
+      input.type = "text";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    } else {
+      input.type = "password";
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    }
+  }
+</script>
+@endsection

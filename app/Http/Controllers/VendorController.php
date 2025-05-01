@@ -16,8 +16,8 @@ class VendorController extends Controller
 {
  public function vendor_list(Request $request)
  {
-    
-   return view('admin.vendor.list');
+   $data['getrecord'] = User::get_record($request);
+   return view('admin.vendor.list',  $data);
  }
 
  public function vendor_add(Request $request)
@@ -105,16 +105,89 @@ public function vendor_password_post($token, ResetPassword $request)
 {
     $user = User::where('forgot_token', '=', $token);
 
-    if($user->count() == 0){
-      abort(403);
+    if ($user->count() == 0) {
+        abort(403);
     }
-    $user =  $user->first();
-    $user->remeber_token = Str::random(50);
+    $user = $user->first();
+    $user->remember_token = Str::random(50);
     $user->forgot_token = Str::random(50);
-    $user->password = Hash::make($request->password);
+    $user->password = Hash::make($request->password);  // Hash password before saving
     $user->status = 0;
     $user->save();
 
-    return redirect('/')->with('success','Password has been save');
+    return redirect('/')->with('success', 'Password has been updated successfully.');
+}
+
+public function vendor_edit($id, Request $request)
+{
+    $data['getrecord'] = User::get_single($id);
+    $data['getVendorType'] = VendorTypeModel::get_record($request);
+    $data['getCategory'] = CategoryModel::get_record($request);
+    return view('admin.vendor.edit', $data);
+}
+
+public function vendor_update($id, Request $request)
+{
+    // Validate data
+    $validatedData = $request->validate([
+        'name'             => 'required',
+        'email'            => 'required|email|unique:users,email,' . $id,
+        'status'           => 'required',
+        'category_id'      => 'required',
+        'vendor_type_id'   => 'required',
+    ]);
+
+    // Get vendor record
+    $vendor = User::get_single($id);
+    $vendor->name = trim($request->name);
+    $vendor->last_name = trim($request->last_name);
+    $vendor->email = trim($request->email);
+    $vendor->mobile = trim($request->mobile);
+
+    // Handle profile image upload
+    if ($request->hasFile('profile')) {
+        if (!empty($vendor->profile) && file_exists('upload/profile/' . $vendor->profile)) {
+            unlink('upload/profile/' . $vendor->profile);
+        }
+    
+        $file = $request->file('profile');
+        $filename = Str::random(30) . '.' . $file->getClientOriginalExtension();
+        $file->move('upload/profile/', $filename);
+        $vendor->profile = $filename;
+    }
+
+    // Common fields
+    $vendor->category_id = $request->category_id;
+    $vendor->vendor_type_id = $request->vendor_type_id;
+
+    // Vendor type logic
+    if ($request->vendor_type_id == 1) {
+        $vendor->company_name = trim($request->company_name);
+        $vendor->employee_id = null;
+    } elseif ($request->vendor_type_id == 2) {
+        $vendor->company_name = null;
+        $vendor->employee_id = null;
+    } elseif ($request->vendor_type_id == 3) {
+        $vendor->employee_id = trim($request->employee_id);
+        $vendor->company_name = null;
+    }
+
+    $vendor->status = trim($request->status);
+    $vendor->always_assign = trim($request->always_assign);
+
+   
+    $vendor->save();
+
+    return redirect('admin/vendor/list')->with('success', 'Record successfully updated.');
+}
+
+public function vendor_delete($id, Request $request)
+{
+   $user = User::get_single($id);
+  $user->is_delete = 1;
+  $user->save();
+
+  return redirect('admin/vendor/list')->with('success', 'Record successfully delete.');
+
 }
 }

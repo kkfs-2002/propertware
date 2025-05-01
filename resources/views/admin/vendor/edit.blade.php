@@ -3,7 +3,7 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1 class="ms-4 mt-2 p-2"><i class="fas fa-user-plus"></i> Add Vendor</h1>
+        <h1 class="ms-4 mt-2 p-2"><i class="fas fa-user-plus"></i> Edit Vendor</h1>
         <nav>
             <ol class="breadcrumb ms-4 p-2">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
@@ -17,9 +17,9 @@
             <div class="col-lg-10 offset-lg-1">
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4">
-                        <h5 class="card-title mb-4">Vendor Registration Form</h5>
+                        <h5 class="card-title mb-4">Update Vendor</h5>
 
-                        <form action="{{ url('admin/vendor/add') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('admin/vendor/edit/'.$getrecord->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             @php
@@ -31,36 +31,41 @@
                                 {{-- First Name --}}
                                 <div class="col-md-6">
                                     <label class="form-label">First Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="name" class="{{ $inputClass }}" value="{{ old('name') }}" required>
+                                    <input type="text" name="name" class="{{ $inputClass }}" value="{{ $getrecord->name }}" required>
                                     <span style="{{ $errorStyle }}">{{ $errors->first('name') }}</span>
                                 </div>
 
                                 {{-- Last Name --}}
                                 <div class="col-md-6">
                                     <label class="form-label">Last Name</label>
-                                    <input type="text" name="last_name" class="{{ $inputClass }}" value="{{ old('last_name') }}">
+                                    <input type="text" name="last_name" class="{{ $inputClass }}" value="{{ $getrecord->last_name }}">
                                     <span style="{{ $errorStyle }}">{{ $errors->first('last_name') }}</span>
                                 </div>
 
                                 {{-- Email --}}
                                 <div class="col-md-6">
                                     <label class="form-label">Email <span class="text-danger">*</span></label>
-                                    <input type="email" name="email" class="{{ $inputClass }}" value="{{ old('email') }}" required>
+                                    <input type="email" name="email" class="{{ $inputClass }}" value="{{$getrecord->email }}" required>
                                     <span style="{{ $errorStyle }}">{{ $errors->first('email') }}</span>
                                 </div>
 
                                 {{-- Mobile --}}
                                 <div class="col-md-6">
                                     <label class="form-label">Mobile</label>
-                                    <input type="text" name="mobile" class="{{ $inputClass }}" value="{{ old('mobile') }}">
+                                    <input type="text" name="mobile" class="{{ $inputClass }}" value="{{ $getrecord->mobile }}">
                                     <span style="{{ $errorStyle }}">{{ $errors->first('mobile') }}</span>
                                 </div>
 
                                 {{-- Profile Image --}}
                                 <div class="col-md-6">
                                     <label class="form-label">Profile Image</label>
-                                    <input type="file" name="Profile" class="{{ $inputClass }}">
+                                    <input type="file" name="profile" class="{{ $inputClass }}">
                                     <span style="{{ $errorStyle }}">{{ $errors->first('Profile') }}</span>
+                                    @if($getrecord->profile)
+                                                    <img src="{{ url('upload/profile/'.$getrecord->Profile) }}" class="rounded-circle border" style="height: 50px; width: 50px;" alt="Profile">
+                                                @else
+                                                    <span class="text-muted">No Image</span>
+                                                @endif
                                 </div>
 
                                 {{-- Vendor Type --}}
@@ -69,21 +74,21 @@
                                     <select name="vendor_type_id" class="{{ $inputClass }}" required  id="SelectCompanyHideShow">
                                         <option value=""> Select Vendor Type </option>
                                         @foreach($getVendorType as $value1)
-                                            <option value="{{ $value1->id }}">{{ $value1->name }}</option>
+                                            <option {{ ($value1->id == $getrecord->vendor_type_id) ? 'selected' : '' }}value="{{ $value1->id }}">{{ $value1->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 {{-- Company Name --}}
-                                <div class="col-md-6" id="showDiv" style="display: none;">
+                                <div class="col-md-6" id="showDiv" style="@if($getrecord->vendor_type_id == 2 || $getrecord->vendor_type_id ==3)display: none;@endif">
                                 <label class="form-label">Company Name</label>
-                                <input type="text" name="company_name" class="{{ $inputClass }}" value="{{ old('company_name') }}">
+                                <input type="text" name="company_name" class="{{ $inputClass }}" value="{{ $getrecord->company_name }}">
                                 <span style="{{ $errorStyle }}">{{ $errors->first('company_name') }}</span>
                                    </div>
                                    
                                 {{-- Employee ID --}}
-                                <div class="col-md-6" id="showDivclothingvendors" style="display: none;">
+                                <div class="col-md-6" id="showDivclothingvendors" style="@if($getrecord->vendor_type_id == 2 || $getrecord->vendor_type_id ==1)display: none;@endif">
                                     <label class="form-label">Employee ID</label>
-                                    <input type="text" name="employee_id" class="{{ $inputClass }}" value="{{ old('employee_id') }}">
+                                    <input type="text" name="employee_id" class="{{ $inputClass }}" value="{{ $getrecord->employee_id }}">
                                     <span style="{{ $errorStyle }}">{{ $errors->first('employee_id') }}</span>
                                 </div>
 
@@ -93,7 +98,7 @@
                                     <select name="category_id" class="{{ $inputClass }}" required>
                                         <option value=""> Select Category </option>
                                         @foreach($getCategory as $value2)
-                                            <option value="{{ $value2->id }}">{{ $value2->name }}</option>
+                                            <option  {{ ($value2->id == $getrecord->category_id) ? 'selected' : ''}} value="{{ $value2->id }}">{{ $value2->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -103,8 +108,8 @@
                                     <label class="form-label">Status <span class="text-danger">*</span></label>
                                     <select name="status" class="{{ $inputClass }}" required>
                                         <option value=""> Select Status </option>
-                                        <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Active</option>
-                                        <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Inactive</option>
+                                        <option value="0" {{ ($getrecord->status) == '0' ? 'selected' : '' }}>Active</option>
+                                        <option value="1" {{ ($getrecord->status) == '1' ? 'selected' : '' }}>Inactive</option>
                                     </select>
                                 </div>
 
@@ -113,8 +118,8 @@
                                     <label class="form-label">Always Assign <span class="text-danger">*</span></label>
                                     <select name="always_assign" class="{{ $inputClass }}" required>
                                         <option value=""> Select Option </option>
-                                        <option value="0" {{ old('always_assign') == '0' ? 'selected' : '' }}>No</option>
-                                        <option value="1" {{ old('always_assign') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ ($getrecord->always_assign) == '0' ? 'selected' : '' }}>No</option>
+                                        <option value="1" {{ ($getrecord->always_assign) == '1' ? 'selected' : '' }}>Yes</option>
                                     </select>
                                 </div>
                             </div>
@@ -122,7 +127,7 @@
                             {{-- Submit Button --}}
                             <div class="text-end mt-4">
                                 <button type="submit" class="btn btn-primary px-4">
-                                    <i class="fas fa-save me-2"></i>Submit
+                                    <i class="fas fa-save me-2"></i>Update
                                 </button>
                             </div>
                         </form>

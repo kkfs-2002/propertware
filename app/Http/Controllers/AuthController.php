@@ -118,6 +118,28 @@ public function forgotpassword_post(Request $request)
         return back()->withErrors(['email' => 'Failed to send reset link. Please try again later.']);
     }
 }
+public function resetPassword(Request $request)
+{
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email|exists:users,email',
+        'password' => 'required|min:8|confirmed'
+    ]);
+
+    $user = User::where('email', $request->email)->first();
+
+    if (!$user) {
+        return redirect()->back()->with('error', 'Invalid email address.');
+    }
+
+    $user->password = Hash::make($request->password);
+    $user->setRememberToken(Str::random(60));
+    $user->save();
+
+    return redirect('/')->with('success', 'Password has been updated successfully.');
+}
+
+
 }     
 
 ?>

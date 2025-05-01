@@ -24,7 +24,7 @@ Route::get('register', [AuthController::class, 'register']);
 Route::post('register', [AuthController::class, 'register_post']);
 Route::get('vendor/password/{token}', [VendorController::class, 'vendor_password']);
 Route::post('vendor/password/{token}', [VendorController::class, 'vendor_password_post']);
-Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
+Route::post('reset-password', [AuthController::class, 'resetPassword']);
 
 Route::get('forgotpassword', [AuthController::class, 'forgotpassword']);
 Route::post('forgotpassword', [AuthController::class, 'forgotpassword_post']);
@@ -100,7 +100,9 @@ Route::get ('admin/Vendor_type/delete/{id}', [VendorTypeController::class, 'Vend
 Route::get ('admin/vendor/list', [VendorController::class, 'vendor_list' ]);
 Route::get ('admin/vendor/add', [VendorController::class, 'vendor_add' ]);
 Route::post('admin/vendor/add',  [VendorController::class, 'vendor_store' ]);
-
+Route::get ('admin/vendor/edit/{id}', [VendorController::class, 'vendor_edit']);
+Route::post('admin/vendor/edit/{id}', [VendorController::class, 'vendor_update']); 
+Route::get('admin/vendor/delete/{id}',  [VendorController::class, 'vendor_delete']);
 });
 
 

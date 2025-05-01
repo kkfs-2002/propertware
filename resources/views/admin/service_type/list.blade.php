@@ -3,71 +3,70 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1 class="ms-4 mt-2 p-2" > Service Type</h1>
+        <h1 class="ms-4 mt-2 p-2"><i class="fas fa-concierge-bell me-2"></i>Service Types</h1>
         <nav>
             <ol class="breadcrumb ms-4 p-2">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
                 <li class="breadcrumb-item active">Service Type</li>
-                 </ol>
-                 </nav>
-                  </div>
+            </ol>
+        </nav>
+    </div>
 
-                  <section class="section">
-                    <div class="row">
-                        <div class="col-lg-12">
-                        @include('_message')
-                            <div class="card">
-                            <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="{{ url('admin/service_type/add') }}" class="btn btn-primary">Add New Service Type</a>
-                          </h5>
-                          <table class="table">
-                          <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Service Type Name</th>
-                                    <th>Action</th>
-                            </thead>
-                            <tbody>
-                           
-                                @forelse($getrecord as $value)
-                                <tr>
-                                    <td>{{  $value->id }}</td>
-                                    <td>{{  $value->name }}</td>
-                               
-                                    <td>
-                                        <a href="{{ url('admin/service_type/edit/'.$value->id ) }}" class="btn btn-success">
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </a>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                @include('_message')
 
-                                        <a onclick=" return confirm('Are you sure you want to delete?')" href="{{ url('admin/service_type/delete/'.$value->id) }}" class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true" title="Delete"></i>
-                                        </a>
-
-                                        
-                                </td>
-                                @empty
-                                <tr>
-                                    <td colspan="100%">Record not found.</td>
-                                </tr>
-
-                                @endforelse
-                                </tr>
-                          </table>
-                          {{ $getrecord->links() }}
-                              
-                            </tbody>
-                              
-                          </table>
-                        
-                         </div>
-                         </div>
-                         </div>
+                <div class="card border-0 shadow-lg rounded-3">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0">Service Type List</h5>
+                            <a href="{{ url('admin/service_type/add') }}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-plus-circle me-1"></i> Add New
+                            </a>
                         </div>
 
-                  </section>
-      
-    <div class="body-wrapper-inner">
-        <div class="container-fluid">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover align-middle text-center">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#ID</th>
+                                        <th>Service Type Name</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($getrecord as $value)
+                                    <tr>
+                                        <td>{{ $value->id }}</td>
+                                        <td>{{ $value->name }}</td>
+                                        <td>
+                                            <a href="{{ url('admin/service_type/edit/'.$value->id) }}" class="btn btn-outline-success btn-sm me-1" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url('admin/service_type/delete/'.$value->id) }}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-outline-danger btn-sm" title="Delete">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="3" class="text-muted text-center">No service types found.</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
 
-        @endsection
+                        {{-- Pagination --}}
+                        <div class="d-flex justify-content-center mt-4">
+                            {{ $getrecord->links() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@endsection
