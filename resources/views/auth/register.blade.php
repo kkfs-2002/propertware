@@ -30,21 +30,21 @@
 
                 <!-- First Name -->
                 <div class="row mb-3">
-  <!-- First Name -->
-  <div class="col-md-6">
-    <label class="form-label">First Name</label>
-    <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" required>
-    @error('name')
-      <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
-  </div>
+                 <!-- First Name -->
+                   <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" required>
+                 @error('name')
+              <div class="invalid-feedback">{{ $message }}</div>
+               @enderror
+              </div>
 
-  <!-- Last Name -->
-  <div class="col-md-6">
-    <label class="form-label">Last Name</label>
-    <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control">
-  </div>
-</div>
+               <!-- Last Name -->
+               <div class="col-md-6">
+              <label class="form-label">Last Name</label>
+               <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control">
+              </div>
+             </div>
                 <!-- Email -->
                 <div class="mb-3">
                   <label class="form-label">Email address</label>
@@ -56,14 +56,14 @@
 
                 <!-- Address -->
                 <div class="row mb-3">
-  <!-- Address -->
-  <div class="col-md-6 mb-3 mb-md-0">
-    <label class="form-label">Address</label>
-    <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" required>
-    @error('address')
-      <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
-  </div>
+                     <!-- Address -->
+                <div class="col-md-6 mb-3 mb-md-0">
+              <label class="form-label">Address</label>
+              <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" required>
+               @error('address')
+               <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+              </div>
 
   <!-- User Type -->
   <div class="col-md-6">

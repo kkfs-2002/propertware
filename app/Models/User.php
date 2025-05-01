@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Request;
 
 class User extends Authenticatable
 {
@@ -51,6 +52,37 @@ class User extends Authenticatable
                  ->where('users.is_admin', '=', 2)
                  ->where('users.is_delete', '=', 0);
 
+                 //search start
+
+                  if(!empty(Request::get('id')))
+                  {
+                    $return =  $return->where('users.id', '=', Request::get('id'));
+                  }
+
+                  if(!empty(Request::get('name')))
+                  {
+                    $return =  $return->where('users.name', 'like', '%'. Request::get('name'). '%');
+                  }
+
+                  
+                  if(!empty(Request::get('last_name')))
+                  {
+                    $return =  $return->where('users.last_name', 'like', '%'. Request::get('last_name'). '%');
+                  }
+
+                  if(!empty(Request::get('email')))
+                  {
+                    $return =  $return->where('users.email', 'like', '%'. Request::get('email'). '%');
+                  }
+
+
+                  if(!empty(Request::get('mobile') ))
+                  {
+                    $return =  $return->where('users.mobile', 'like', '%'. Request::get('mobile'). '%');
+                  }
+
+
+                  //search end
                  $return =  $return->paginate(20);
                  return $return;
     }
