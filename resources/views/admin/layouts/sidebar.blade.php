@@ -63,7 +63,7 @@
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" target="_blank" href="" aria-expanded="false">
+          <a class="sidebar-link @if(Request::segment(2) == 'user')  @else collapsed @endif"   target="_blank" href="{{ url('admin/user/list') }}" aria-expanded="false">
             <div class="d-flex align-items-center gap-2">
               <span class="d-flex">
                 <i class="ti ti-users"></i>

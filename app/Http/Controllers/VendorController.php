@@ -50,18 +50,15 @@ class VendorController extends Controller
          $user->employee_id     = trim($request->employee_id ?? '');
          $user->mobile          = trim($request->mobile  ?? '');
 
-         try {
-          if ($request->hasFile('Profile')) {
-              $file = $request->file('Profile');
-              $randomStr = Str::random(30);
-              $filename = $randomStr . '.' . $file->getClientOriginalExtension();
-              $file->move(public_path('upload/Profile'), $filename);
-              $user->Profile = $filename;
-          }
-      } catch (\Exception $e) {
-          dd("Upload failed: " . $e->getMessage());
-      }
-
+         if(!empty($request->file('profile')))
+         {
+             $file      =$request->file('profile');
+             $randomStr =Str::random(30);
+             $filename  =$randomStr . '.' .$file->getClientOriginalExtension();
+             $file->move('upload/profile/', $filename);
+             $user->profile = $filename;
+     
+         }
 
          $user->status          = trim($request->status);
          $user->always_assign   = trim($request->always_assign ?? 0);
@@ -144,17 +141,17 @@ public function vendor_update($id, Request $request)
     $vendor->email = trim($request->email);
     $vendor->mobile = trim($request->mobile);
 
-    // Handle profile image upload
-    if ($request->hasFile('profile')) {
-        if (!empty($vendor->profile) && file_exists('upload/profile/' . $vendor->profile)) {
-            unlink('upload/profile/' . $vendor->profile);
+    if ($request->hasFile('Profile')) {
+        if (!empty($vendor->Profile) && file_exists('upload/Profile/' . $vendor->profile)) {
+            unlink('upload/Profile/' . $vendor->Profile);
         }
     
-        $file = $request->file('profile');
+        $file = $request->file('Profile');
         $filename = Str::random(30) . '.' . $file->getClientOriginalExtension();
-        $file->move('upload/profile/', $filename);
+        $file->move(public_path('upload/Profile'), $filename);
         $vendor->profile = $filename;
     }
+
 
     // Common fields
     $vendor->category_id = $request->category_id;

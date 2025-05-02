@@ -57,11 +57,12 @@
                                 </div>
 
                                 {{-- Profile Image --}}
-                                <div class="col-md-6">
-                                    <label class="form-label">Profile Image</label>
-                                    <input type="file" name="Profile" class="{{ $inputClass }}">
-                                    <span style="{{ $errorStyle }}">{{ $errors->first('Profile') }}</span>
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label">Profile Image</label>
+                                <input type="file" name="profile" class="form-control">
+                                <span style="{{ $errorStyle ?? 'color: red;' }}">{{ $errors->first('profile') }}</span>
+                            </div>
+
 
                                 {{-- Vendor Type --}}
                                 <div class="col-md-6">

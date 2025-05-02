@@ -11,6 +11,7 @@ use App\Http\Controllers\ServiceTypeController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\VendorTypeController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,6 +104,11 @@ Route::post('admin/vendor/add',  [VendorController::class, 'vendor_store' ]);
 Route::get ('admin/vendor/edit/{id}', [VendorController::class, 'vendor_edit']);
 Route::post('admin/vendor/edit/{id}', [VendorController::class, 'vendor_update']); 
 Route::get('admin/vendor/delete/{id}',  [VendorController::class, 'vendor_delete']);
+
+
+Route::get ('admin/user/list', [UserController::class, 'user_list' ]);
+Route::get('admin/user/add', [UserController::class, 'user_add' ]);
+Route::post('admin/user/add', [UserController::class, 'user_store' ]);
 });
 
 
