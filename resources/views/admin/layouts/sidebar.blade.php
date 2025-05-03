@@ -52,7 +52,7 @@
         </li>
         
         <li class="sidebar-item">
-          <a class="sidebar-link  @if(Request::segment(2) == 'vendor') active @else collapsed @endif"  target="_blank" href="{{ url('admin/vendor/list') }}" aria-expanded="false">
+          <a class="sidebar-link  @if(Request::segment(2) == 'vendor') active @else collapsed @endif" href="{{ url('admin/vendor/list') }}" aria-expanded="false">
             <div class="d-flex align-items-center gap-2">
               <span class="d-flex">
                 <i class="ti ti-list"></i>
@@ -63,7 +63,7 @@
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link @if(Request::segment(2) == 'user')  @else collapsed @endif"   target="_blank" href="{{ url('admin/user/list') }}" aria-expanded="false">
+          <a class="sidebar-link @if(Request::segment(2) == 'user')  @else collapsed @endif"   href="{{ url('admin/user/list') }}" aria-expanded="false">
             <div class="d-flex align-items-center gap-2">
               <span class="d-flex">
                 <i class="ti ti-users"></i>
@@ -74,7 +74,7 @@
         </li>
         
         <li class="sidebar-item">
-          <a class="sidebar-link @if(Request::segment(2) == 'service_type') active @endif" target="_blank" href="{{ url('admin/service_type/list') }}" aria-expanded="false">
+          <a class="sidebar-link @if(Request::segment(2) == 'service_type') active @endif" href="{{ url('admin/service_type/list') }}" aria-expanded="false">
             <div class="d-flex align-items-center gap-2">
               <span class="d-flex">
                 <i class="ti ti-briefcase"></i>
@@ -85,7 +85,7 @@
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link  @if(Request::segment(2) == 'Vendor_type') active @endif" target="_blank" href="{{ url('admin/Vendor_type/list') }}" aria-expanded="false">
+          <a class="sidebar-link  @if(Request::segment(2) == 'Vendor_type') active @endif"  href="{{ url('admin/Vendor_type/list') }}" aria-expanded="false">
             <div class="d-flex align-items-center gap-2">
               <span class="d-flex">
                 <i class="ti ti-building-store"></i>
@@ -138,7 +138,7 @@
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" href="">
+          <a class="sidebar-link @if(Request::segment(2) == 'profile') active @else collapsed @endif" href="{{ url('admin/profile/list') }}">
             <div class="d-flex align-items-center gap-2">
               <span class="d-flex">
                 <i class="fas fa-user-cog"></i>

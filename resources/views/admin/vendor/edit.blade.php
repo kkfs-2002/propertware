@@ -60,12 +60,12 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Profile Image</label>
                                     <input type="file" name="profile" class="{{ $inputClass ?? 'default-class' }}">
+
+                                    @if(!empty($getrecord->profile))
+                                    <img src="{{ $getrecord->getImage() }}"  style="height: 50px; width: 50px;">
+                                    @endif
                                    <span style="{{ $errorStyle ?? 'color: red;' }}">{{ $errors->first('profile') }}</span>
-                                    @if($getrecord->profile)
-                                    <img src="{{ url('upload/profile/'.$getrecord->profile) }}" class="rounded-circle border" style="height: 50px; width: 50px;" alt="Profile">
-                                                @else
-                                                    <span class="text-muted">No Image</span>
-                                                @endif
+                                   
                                 </div>
 
                                 {{-- Vendor Type --}}

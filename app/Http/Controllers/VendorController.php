@@ -141,17 +141,20 @@ public function vendor_update($id, Request $request)
     $vendor->email = trim($request->email);
     $vendor->mobile = trim($request->mobile);
 
-    if ($request->hasFile('Profile')) {
-        if (!empty($vendor->Profile) && file_exists('upload/Profile/' . $vendor->profile)) {
-            unlink('upload/Profile/' . $vendor->Profile);
-        }
-    
-        $file = $request->file('Profile');
-        $filename = Str::random(30) . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('upload/Profile'), $filename);
-        $vendor->profile = $filename;
-    }
+    if(!empty($request->file('profile')))
+    {
+         if(!empty($insert_r->profile) && file_exists('upload/profile/'.$insert_r->profile))
+         {
+            unlink('upload/profile/'.$insert_r->profile);
+         }
 
+        $file      =$request->file('profile');
+        $randomStr =Str::random(30);
+        $filename  =$randomStr . '.' .$file->getClientOriginalExtension();
+        $file->move('upload/profile/', $filename);
+        $vendor->profile = $filename;
+
+    }
 
     // Common fields
     $vendor->category_id = $request->category_id;
@@ -184,7 +187,7 @@ public function vendor_delete($id, Request $request)
   $user->is_delete = 1;
   $user->save();
 
-  return redirect('admin/vendor/list')->with('success', 'Record successfully delete.');
+  return redirect('admin/vendor/list')->with('error', 'Record successfully delete.');
 
 }
 }

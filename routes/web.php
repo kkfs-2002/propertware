@@ -12,6 +12,7 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\VendorTypeController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,12 +61,6 @@ Route::get('admin/amc/edit_free_service/{id}', [AMCController::class, 'amc_edit_
 Route::post('admin/amc/edit_free_service/{id}', [AMCController::class, 'amc_update_free_service']);
 Route::get('admin/amc/delete_free_service/{id}',  [AMCController::class, 'amc_delete_free_service']);
 
-
-
-
-
-
-
 Route::get('admin/category/list', [CategoryController::class, 'Category_list']);
 Route::get('admin/Category/add', [CategoryController::class, 'Category_add']);
 Route::post('admin/category/add', [CategoryController::class, 'Category_insert']);
@@ -93,22 +88,32 @@ Route::get('admin/sub_category/delete/{id}', [SubCategoryController::class, 'sub
 Route::get('admin/Vendor_type/list', [VendorTypeController::class, 'Vendor_type_list']);
 Route::get('admin/Vendor_type/add', [VendorTypeController::class, 'Vendor_type_add']);
 Route::post('admin/Vendor_type/add', [VendorTypeController::class, 'Vendor_type_store']);
-Route::get ('admin/Vendor_type/edit/{id}', [VendorTypeController::class, 'Vendor_type_edit']);
+Route::get('admin/Vendor_type/edit/{id}', [VendorTypeController::class, 'Vendor_type_edit']);
 Route::post('admin/Vendor_type/edit/{id}', [VendorTypeController::class, 'Vendor_type_update']); 
-Route::get ('admin/Vendor_type/delete/{id}', [VendorTypeController::class, 'Vendor_type_delete']);
+Route::get('admin/Vendor_type/delete/{id}', [VendorTypeController::class, 'Vendor_type_delete']);
 
 
-Route::get ('admin/vendor/list', [VendorController::class, 'vendor_list' ]);
-Route::get ('admin/vendor/add', [VendorController::class, 'vendor_add' ]);
+Route::get('admin/vendor/list', [VendorController::class, 'vendor_list' ]);
+Route::get('admin/vendor/add', [VendorController::class, 'vendor_add' ]);
 Route::post('admin/vendor/add',  [VendorController::class, 'vendor_store' ]);
-Route::get ('admin/vendor/edit/{id}', [VendorController::class, 'vendor_edit']);
+Route::get('admin/vendor/edit/{id}', [VendorController::class, 'vendor_edit']);
 Route::post('admin/vendor/edit/{id}', [VendorController::class, 'vendor_update']); 
 Route::get('admin/vendor/delete/{id}',  [VendorController::class, 'vendor_delete']);
 
 
-Route::get ('admin/user/list', [UserController::class, 'user_list' ]);
-Route::get('admin/user/add', [UserController::class, 'user_add' ]);
-Route::post('admin/user/add', [UserController::class, 'user_store' ]);
+Route::get('admin/user/list', [UserController::class, 'user_list']);
+Route::get('admin/user/add', [UserController::class, 'user_add']);
+Route::post('admin/user/add', [UserController::class, 'user_store']);
+Route::get('admin/user/edit/{id}', [UserController::class, 'user_edit']);
+Route::post('admin/user/edit/{id}', [UserController::class, 'user_update']);
+Route::get('admin/user/delete/{id}', [UserController::class, 'user_delete']);
+
+Route::get('admin/profile/list', [ProfileController::class, 'profile_list']);
+Route::get('admin/profile/add', [ProfileController::class, 'profile_add']);
+Route::post('admin/profile/add', [ProfileController::class, 'profile_store']);
+Route::get('admin/profile/edit/{id}', [ProfileController::class, 'profile_edit']);
+Route::post('admin/profile/edit/{id}', [ProfileController::class, 'profile_update']);
+Route::get('admin/profile/delete/{id}', [ProfileController::class, 'profile_delete']);
 });
 
 

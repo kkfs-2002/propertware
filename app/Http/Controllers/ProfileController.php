@@ -5,25 +5,25 @@ use Illuminate\Http\Request;
 use App\Models\AMCModel;
 use App\Models\User;
 use Mail;
-use App\Mail\UserRegisterMail;
+use App\Mail\ProfileRegisterMail;
 use Str;
 use File;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
- public function user_list(Request $request)
+ public function profile_list(Request $request)
  {
      $data['getrecode'] = User::get_record_user($request);
-    return view('admin.user.list', $data);
+    return view('admin.profile.list', $data);
  }
 
- public function user_add (Request $request)
+ public function profile_add (Request $request)
  {
     $data['getAMC'] = AMCModel::get_record_delete();
-    return view('admin.user.add',$data);
+    return view('admin.profile.add',$data);
  }
 
- public function user_store(Request $request)
+ public function profile_store(Request $request)
  {
     //dd($request->all());
     $user = request()->validate([
@@ -71,24 +71,15 @@ class UserController extends Controller
     $user->forgot_token = Str::random(50);
     $user->save();
 
-    $this->send_user_verification_mail($user);
-
-    return redirect('admin/user/list')->with('success', 'User successfully register.');
- }
-
- public function send_user_verification_mail($user)
- {
-    Mail::to( $user->email)->send(new UserRegisterMail($user));
- }
-
- public function user_edit($id, Request $request)
+}
+ public function profile_edit($id, Request $request)
  {
    $data['getrecord'] = User::get_single($id);
    $data['getAMC'] = AMCModel::get_record_delete();
-   return view('admin.user.edit', $data);
+   return view('admin.profile.edit', $data);
  }
 
- public function user_update(Request $request, $id)
+ public function profile_update(Request $request, $id)
  {
     $insert_r = $request->validate([
        'name'    => 'required',
@@ -118,16 +109,16 @@ class UserController extends Controller
     $insert_r->address = trim($request->address);
     $insert_r->save();
 
-    return redirect('admin/user/list')->with('success', 'User successfully Update.');
+    return redirect('admin/profile/list')->with('success', 'User successfully Update.');
  }
 
- public function user_delete($id)
+ public function profile_delete($id)
  {
    $user = User::get_single($id);
   $user->is_delete = 1;
   $user->save();
 
-  return redirect('admin/user/list')->with('error', 'Record successfully delete.');
+  return redirect('admin/profile/list')->with('error', 'Record successfully delete.');
 
 }
 }

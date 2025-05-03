@@ -98,10 +98,8 @@
                                             <td>{{ $value->email }}</td>
                                             <td>{{ $value->mobile }}</td>
                                             <td>
-                                                @if(!empty($value->profile))
-                                                @if(file_exists('upload/profile/'.$value->profile))
-                                                    <img src="{{ url('upload/profile/'.$value->profile) }}"  style="height: 50px; width: 50px;">
-                                                @endif   
+                                            @if(!empty($value->profile))
+                                                    <img src="{{ $value-> getImage() }}"  style="height: 50px; width: 50px;">
                                                 @endif
                                             </td>
                                             <td>{{ $value->vendor_type_name ?? '-' }}</td>

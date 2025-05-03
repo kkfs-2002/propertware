@@ -36,21 +36,7 @@
   </a>
 
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
-    <li>
-      <a href="{{ url('/admin/profile') }}" class="dropdown-item">
-        <i class="ti ti-user me-2"></i> My Profile
-      </a>
-    </li>
-    <li>
-      <a href="{{ url('/admin/account') }}" class="dropdown-item">
-        <i class="ti ti-mail me-2"></i> My Account
-      </a>
-    </li>
-    <li>
-      <a href="{{ url('/admin/task') }}" class="dropdown-item">
-        <i class="ti ti-list-check me-2"></i> My Task
-      </a>
-    </li>
+    
     <li><hr class="dropdown-divider"></li>
     <li>
       <a href="{{ url('logout') }}" class="dropdown-item text-danger">

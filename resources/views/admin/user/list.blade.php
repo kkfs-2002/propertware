@@ -98,7 +98,13 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                Edit and Delete
+                                            <a href="{{ url('admin/user/edit/'.$value->id) }}" class="btn btn-success btn-sm">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </a>
+
+                                                <a onclick="return confirm('Are you sure you want to delete?')" href="{{ url('admin/user/delete/'.$value->id) }}" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash" aria-hidden="true" title="Delete"></i>
+                                                </a>
                                             </td>
                                  </tr>
                                    @empty
