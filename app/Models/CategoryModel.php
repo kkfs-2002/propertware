@@ -23,4 +23,9 @@ class CategoryModel extends Model
     {
         return self::find($id);
     }
+
+    static public function get_record_delete()
+    {
+        return self::where('is_delete', 0)->get();
+    }
 }

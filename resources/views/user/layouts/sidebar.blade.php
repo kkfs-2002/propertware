@@ -19,17 +19,16 @@
               <!-- <span class="hide-menu">Home</span> -->
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="http://127.0.0.1:8000/admin/dashboard" aria-expanded="false">
+              <a class="sidebar-link @if(Request::segment(2) == 'dashboard') active @else collapsed @endif" href=" {{url('user/dashboard') }} " aria-expanded="false">
                 <i class="ti ti-atom"></i>
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
-          
-            <!-- Dashboard -->
+    
           
 
             <li class="sidebar-item">
-  <a class="sidebar-link justify-content-between" href="edit-profile.html">
+  <a class="sidebar-link @if(Request::segment(2) == 'book_service') active @else collapsed @endif" href="{{url('user/book_service/add')}}">
     <div class="d-flex align-items-center gap-2">
       <span class="d-flex">
       <i class="ti ti-clipboard-list"></i>

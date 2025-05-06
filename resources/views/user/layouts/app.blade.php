@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Propertyware</title>
-  <link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/logo2.png') }}" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('images/logos/logo2-.png') }}" />
   <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
@@ -41,6 +41,13 @@
 
   <!-- solar icons -->
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+
+</script>
+
+@yield('script')
 </body>
 
 </html>

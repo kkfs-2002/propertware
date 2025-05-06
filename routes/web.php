@@ -13,6 +13,7 @@ use App\Http\Controllers\VendorTypeController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookServiceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,6 +121,10 @@ Route::get('admin/profile/delete/{id}', [ProfileController::class, 'profile_dele
 
 Route::group(['middleware' => 'user'], function () {
     Route::get('user/dashboard', [DashboardController::class, 'user_dashboard']);
+
+
+   Route::get('user/book_service/add', [BookServiceController::class, 'book_service_add']);
+   Route::post('user/book_service/sub_category',  [BookServiceController::class, 'sub_category_dropdown']);
 });
 
 Route::group(['middleware' => 'vendor'], function () {
