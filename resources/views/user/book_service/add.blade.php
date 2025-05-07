@@ -124,6 +124,35 @@
                                 </div>
                             </div>
 
+                            {{-------------image start-----------}}
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Attachment Add<span style="color: red;">*</span></label>
+                                <div class="col-sm-10">
+                                   <table class="table">
+                                       <tr>
+                                        <th>Select Image</th>
+                                        <th>Action</th>
+                                       </tr>
+                                       <tr>
+                                        <td>
+                                            <input type="file" name="option[100]attachment_image" class="form-control">
+                                        </td>
+                                        <td>
+                                            <a href="#" class="item_remove btn btn-danger">Remove</a>
+                                        </td>
+                                       </tr>
+                                       <tr id="item_below_row100">
+                                           <td colspan="100%">
+                                             <button type="button" id="100" class="btn btn-primary add_row">Add</button>
+                                           </td>
+                                       </tr>
+                                   </table>
+                                </div>
+                            </div>
+
+                            {{-------------image end-----------}}
+
 
 
                             <div class="row mb-3">
@@ -176,5 +205,31 @@
           });
       })
     });
+
+         //Add image
+       
+ 
+         var item_row = 101;
+
+$("body").delegate(".add_row", "click", function(e) {
+    e.preventDefault();
+    var id = $(this).attr('id');
+
+    var html = '<tr>' +
+        '<td><input class="form-control" required name="option[' + item_row + '][attachment_image]" type="file"></td>' +
+        '<td><a href="#" class="item_remove btn btn-danger">Remove</a></td>' +
+        '</tr>';
+
+    $("#item_below_row" + id).before(html);
+
+    item_row++;
+
+    $('body').delegate(".item_remove", "click", function(e){
+        e.preventDefault();
+        $(this).parent().parent().remove();
+    });
+});
+
+         //end image
     </script>
 @endsection

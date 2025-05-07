@@ -6,8 +6,11 @@ use App\Models\ServiceTypeModel;
 use App\Models\CategoryModel;
 use App\Models\SubCategoryModel;
 use App\Models\BookServiceModel;
+use App\Models\BookServiceImageModel;
 use App\Models\AMCModel;
 use Auth;
+use Str;
+use File;
 
 
 class BookServiceController extends Controller
