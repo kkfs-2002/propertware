@@ -30,4 +30,38 @@ public function sub_category_dropdown(Request $request)
     //dd($data['get_sub_category']);
     return response()->json($data);
 }
+
+public function book_service_store(Request $request)
+{
+    //dd($request->all());
+
+    $insert_r                          = new BookServiceModel;
+    $insert_r->user_id                 = Auth::user()->id;
+    $insert_r->service_type_id         = trim($request->service_type_id);
+    $insert_r->category_id             = trim($request->category_id);
+    $insert_r->sub_category_id         = trim($request->sub_category_id);
+    $insert_r->amc_free_service_id     = trim($request->amc_free_service_id);
+    $insert_r->description             = trim($request->description);
+    $insert_r->special_instructions    = trim($request->special_instructions);
+    $insert_r->pet                     = trim($request->pet);
+    $insert_r->available_date          = trim($request->available_date);
+    $insert_r->save();
+
+    if(!empty($request->option)){
+        foreach($request->option as $value) {
+            if(!empty($value['attachment_image'])){
+                $option_ind = new BookServiceImageModel;
+                $option_ind->book_service_id =  $insert_r->id;
+                $file      = $value['attachment_image'];
+                $randomStr   = Str::random(30);
+                $filename    = $randomStr . '.' .$file->
+                       getClientOriginalExtension();
+                $file->move('upload/service/', $filename);
+                $option_ind->attachment_image = $filename;
+                $option_ind->save();
+            }
+        }
+    }
+     return redirect('user/book_service/add')->with('success', 'Record Successfully create');
+}
 }

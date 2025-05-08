@@ -124,7 +124,8 @@ Route::group(['middleware' => 'user'], function () {
 
 
    Route::get('user/book_service/add', [BookServiceController::class, 'book_service_add']);
-   Route::post('user/book_service/sub_category',  [BookServiceController::class, 'sub_category_dropdown']);
+   Route::post('user/book_service/sub_category', [BookServiceController::class, 'sub_category_dropdown']);
+   Route::post('user/book_service/add', [BookServiceController::class, 'book_service_store']);
 });
 
 Route::group(['middleware' => 'vendor'], function () {
