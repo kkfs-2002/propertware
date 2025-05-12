@@ -14,6 +14,8 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookServiceController;
+use App\Http\Controllers\MaintenanceAgreementController;
+use App\Http\Controllers\_ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -126,6 +128,23 @@ Route::group(['middleware' => 'user'], function () {
    Route::get('user/book_service/add', [BookServiceController::class, 'book_service_add']);
    Route::post('user/book_service/sub_category', [BookServiceController::class, 'sub_category_dropdown']);
    Route::post('user/book_service/add', [BookServiceController::class, 'book_service_store']);
+   Route::get('user/service_history/list',  [BookServiceController::class, 'service_history_list']);
+   Route::get('user//edit{id}', [BookServiceController::class, 'service_history_edit']);
+   Route::get('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_edit']);
+   Route::post('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_update']);
+   Route::get('user/book_service/delete/{id}', [BookServiceController::class, 'book_service_delete']);
+
+  Route::get('user/maintenance_agreement/list', [MaintenanceAgreementController::class, 'maintenance_agreement_list']);
+  Route::get('user/maintenance_agreement/add', [MaintenanceAgreementController::class, 'maintenance_agreement_add']);
+  Route::post('user/maintenance_agreement/store', [MaintenanceAgreementController::class, 'maintenance_agreement_store']);
+  Route::get('user/maintenance_agreement/edit/{id}', [MaintenanceAgreementController::class, 'maintenance_agreement_edit']);
+Route::post('user/maintenance_agreement/edit/{id}', [MaintenanceAgreementController::class, 'maintenance_agreement_update']);
+Route::get('user/maintenance_agreement/delete/{id}', [MaintenanceAgreementController::class, 'maintenance_agreement_delete']);
+
+
+
+
+
 });
 
 Route::group(['middleware' => 'vendor'], function () {

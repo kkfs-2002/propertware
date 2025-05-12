@@ -3,9 +3,9 @@
 @section('content')
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1 class="ms-4 mt-2 p-2">Book Service</h1>
+        <h1>Book Service</h1>
         <nav>
-            <ol class="breadcrumb ms-4 p-2">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
                 <li class="breadcrumb-item active">Book Service</li>
             </ol>
@@ -19,53 +19,57 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Add Book Service</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title">New Service Request</h5>
+                            <a href="{{ url('user/book_service/list') }}" class="btn btn-sm btn-outline-secondary">
+                                <i class="bi bi-list-ul me-1"></i> View Requests
+                            </a>
+                        </div>
 
-                        <form action="{{ url('user/book_service/add') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('user/book_service/add') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                             @csrf
 
-                            {{-- Service Type --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Service Type<span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="service_type_id" required id="SelectServiceTypeHideShow">
+                            <div class="row g-3">
+                                <!-- Service Type -->
+                                <div class="col-md-6">
+                                    <label for="SelectServiceTypeHideShow" class="form-label">Service Type<span class="text-danger">*</span></label>
+                                    <select class="form-select" name="service_type_id" required id="SelectServiceTypeHideShow">
                                         <option value="">Select Service Type</option>
                                         @foreach($getServiceType as $value)
                                             <option {{ old('service_type_id') == $value->id ? 'selected' : '' }} value="{{ $value->id }}">{{ $value->name }}</option>
                                         @endforeach
                                     </select>
-                                    <span style="color:red">{{ $errors->first('service_type_id') }}</span>
+                                    <div class="invalid-feedback">Please select a service type</div>
+                                    @error('service_type_id')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
-                            </div>
 
-                            {{-- Category --}}
-                            <div class="row mb-3" id="hideDivCategory">
-                                <label class="col-sm-2 col-form-label">Category<span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="category_id" id="category">
+                                <!-- Category (initially shown) -->
+                                <div class="col-md-6" id="hideDivCategory">
+                                    <label for="category" class="form-label">Category<span class="text-danger">*</span></label>
+                                    <select class="form-select" name="category_id" id="category">
                                         <option value="">Select Category</option>
                                         @foreach($getcategory as $value)
                                             <option {{ old('category_id') == $value->id ? 'selected' : '' }} value="{{ $value->id }}">{{ $value->name }}</option>
                                         @endforeach
                                     </select>
-                                    <span style="color:red">{{ $errors->first('category_id') }}</span>
+                                    <div class="invalid-feedback">Please select a category</div>
+                                    @error('category_id')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
-                            </div>
 
-                            {{-- Sub Category --}}
-                            <div class="row mb-3" id="hideDivSubCategory">
-                                <label class="col-sm-2 col-form-label">Sub Category<span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="sub_category_id" id="subcategory"></select>
-                                    <span style="color:red">{{ $errors->first('sub_category_id') }}</span>
+                                <!-- Sub Category (initially shown) -->
+                                <div class="col-md-6" id="hideDivSubCategory">
+                                    <label for="subcategory" class="form-label">Sub Category<span class="text-danger">*</span></label>
+                                    <select class="form-select" name="sub_category_id" id="subcategory">
+                                        <option value="">Select Sub Category</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select a sub category</div>
+                                    @error('sub_category_id')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
-                            </div>
 
-                            {{-- AMC Free Service --}}
-                            <div class="row mb-3" id="showDivAMCFreeService" style="display: none;">
-                                <label class="col-sm-2 col-form-label">AMC Free Service<span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="amc_free_service_id">
+                                <!-- AMC Free Service (initially hidden) -->
+                                <div class="col-md-6" id="showDivAMCFreeService" style="display: none;">
+                                    <label class="form-label">AMC Free Service<span class="text-danger">*</span></label>
+                                    <select class="form-select" name="amc_free_service_id">
                                         <option value="">Select AMC Free Service</option>
                                         @if(isset($getAMC->option) && is_iterable($getAMC->option))
                                             @foreach($getAMC->option as $value)
@@ -75,80 +79,84 @@
                                             <option value="">No AMC Free Services Found</option>
                                         @endif
                                     </select>
-                                    <span style="color:red">{{ $errors->first('amc_free_service_id') }}</span>
+                                    <div class="invalid-feedback">Please select an AMC service</div>
+                                    @error('amc_free_service_id')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
-                            </div>
 
-                            {{-- Description --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Description<span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <textarea name="description" class="form-control" required>{{ old('description') }}</textarea>
-                                    <span style="color:red">{{ $errors->first('description') }}</span>
+                                <!-- Description -->
+                                <div class="col-12">
+                                    <label for="description" class="form-label">Description<span class="text-danger">*</span></label>
+                                    <textarea name="description" class="form-control" rows="3" required>{{ old('description') }}</textarea>
+                                    <div class="invalid-feedback">Please provide a description</div>
+                                    @error('description')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
-                            </div>
 
-                            {{-- Special Instructions --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Special Instructions<span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <textarea name="special_instructions" class="form-control" required>{{ old('special_instructions') }}</textarea>
-                                    <span style="color:red">{{ $errors->first('special_instructions') }}</span>
+                                <!-- Special Instructions -->
+                                <div class="col-12">
+                                    <label for="special_instructions" class="form-label">Special Instructions<span class="text-danger">*</span></label>
+                                    <textarea name="special_instructions" class="form-control" rows="3" required>{{ old('special_instructions') }}</textarea>
+                                    <div class="invalid-feedback">Please provide special instructions</div>
+                                    @error('special_instructions')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
-                            </div>
 
-                            {{-- Pet --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Do You have a Pet? <span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="pet">
+                                <!-- Pet -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Do You have a Pet?<span class="text-danger">*</span></label>
+                                    <select class="form-select" name="pet" required>
                                         <option value="2" {{ old('pet') == '2' ? 'selected' : '' }}>No</option>
                                         <option value="1" {{ old('pet') == '1' ? 'selected' : '' }}>Yes</option>
                                     </select>
-                                    <span style="color:red">{{ $errors->first('pet') }}</span>
+                                    <div class="invalid-feedback">Please select an option</div>
+                                    @error('pet')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
-                            </div>
 
-                            {{-- Available Date --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Available Date<span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
+                                <!-- Available Date -->
+                                <div class="col-md-6">
+                                    <label for="available_date" class="form-label">Available Date<span class="text-danger">*</span></label>
                                     <input type="date" name="available_date" class="form-control" required value="{{ old('available_date') }}">
-                                    <span style="color:red">{{ $errors->first('available_date') }}</span>
+                                    <div class="invalid-feedback">Please select a date</div>
+                                    @error('available_date')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
-                            </div>
 
-                            {{-- Attachments --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Attachment Add<span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <table class="table">
-                                        <tr>
-                                            <th>Select Image</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="file" name="option[100][attachment_image]" class="form-control"></td>
-                                            <td><a href="#" class="item_remove btn btn-danger">Remove</a></td>
-                                        </tr>
-                                        <tr id="item_below_row100">
-                                            <td colspan="2">
-                                                <button type="button" id="100" class="btn btn-primary add_row">Add</button>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                <!-- Attachments -->
+                                <div class="col-12">
+                                    <label class="form-label">Attachments</label>
+                                    <div class="border rounded p-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless mb-0">
+                                                <tbody id="attachment-container">
+                                                    <tr>
+                                                        <td width="80%">
+                                                            <input type="file" name="option[100][attachment_image]" class="form-control">
+                                                        </td>
+                                                        <td class="text-end">
+                                                            <button type="button" class="btn btn-sm btn-outline-danger item_remove">
+                                                                <i class="bi bi-trash"></i> Remove
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="item_below_row100">
+                                                        <td colspan="2" class="pt-3">
+                                                            <button type="button" id="100" class="btn btn-sm btn-outline-primary add_row">
+                                                                <i class="bi bi-plus-circle"></i> Add Another File
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    @error('option.*.attachment_image')<div class="text-danger small">{{ $message }}</div>@enderror
                                 </div>
-                            </div>
 
-                            {{-- Submit --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <!-- Submit Button -->
+                                <div class="col-12 text-end mt-4">
+                                    <button type="submit" class="btn btn-primary px-4">
+                                        <i class="bi bi-send-fill me-1"></i> Submit 
+                                    </button>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -160,6 +168,21 @@
 @section('script')
 <script>
     $(document).ready(function () {
+        // Form validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
 
         // Initial trigger
         $('#SelectServiceTypeHideShow').trigger('change');
@@ -180,6 +203,7 @@
         // Load subcategories via AJAX
         $('#category').on('change', function () {
             var cat_id = $(this).val();
+            $('#subcategory').html('<option value="">Loading...</option>');
 
             $.ajax({
                 url: "{{ url('user/book_service/sub_category') }}",
@@ -194,6 +218,9 @@
                     $.each(result.get_sub_category, function (key, value) {
                         $("#subcategory").append('<option value="' + value.id + '">' + value.name + '</option>');
                     });
+                },
+                error: function() {
+                    $('#subcategory').html('<option value="">Error loading subcategories</option>');
                 }
             });
         });
@@ -205,8 +232,14 @@
             const id = $(this).attr('id');
             const html = `
                 <tr>
-                    <td><input class="form-control" required name="option[${item_row}][attachment_image]" type="file"></td>
-                    <td><a href="#" class="item_remove btn btn-danger">Remove</a></td>
+                    <td>
+                        <input type="file" name="option[${item_row}][attachment_image]" class="form-control" required>
+                    </td>
+                    <td class="text-end">
+                        <button type="button" class="btn btn-sm btn-outline-danger item_remove">
+                            <i class="bi bi-trash"></i> Remove
+                        </button>
+                    </td>
                 </tr>`;
             $("#item_below_row" + id).before(html);
             item_row++;

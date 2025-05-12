@@ -62,6 +62,83 @@ public function book_service_store(Request $request)
             }
         }
     }
-     return redirect('user/book_service/add')->with('success', 'Record Successfully create');
+     return redirect('user/service_history/list')->with('success', 'Record Successfully create');
 }
+
+public function service_history_list(Request $request)
+{
+    $data['getrecord'] = BookServiceModel::getBookService(Auth::user()->id, $request);
+    return view('user.book_service.list',  $data);
+}
+
+public function book_service_edit($id, Request $request)
+{
+    $data['getRecord'] = BookServiceModel::find($id); 
+    $data['getServiceType'] = ServiceTypeModel::get(); 
+    $data['getCategory'] = CategoryModel::get();       
+    $data['getSubCategory'] = SubCategoryModel::where('category_id', $data['getRecord']->category_id)->get(); 
+    $data['getAmcFreeService'] = AMCModel::get();
+
+    $data['getImages'] = BookServiceImageModel::where('book_service_id', $id)->get(); 
+
+    return view('user.book_service.edit', $data);
+}
+
+
+public function book_service_update($id, Request $request)
+{
+    $update = BookServiceModel::findOrFail($id);
+    $update->service_type_id = trim($request->service_type_id);
+    $update->category_id = trim($request->category_id);
+    $update->sub_category_id = trim($request->sub_category_id);
+    $update->amc_free_service_id = trim($request->amc_free_service_id);
+    $update->description = trim($request->description);
+    $update->special_instructions = trim($request->special_instructions);
+    $update->pet = trim($request->pet);
+    $update->available_date = trim($request->available_date);
+    $update->save();
+
+    if (!empty($request->option)) {
+        foreach ($request->option as $value) {
+            if (!empty($value['attachment_image'])) {
+                $img = new BookServiceImageModel;
+                $img->book_service_id = $update->id;
+                $file = $value['attachment_image'];
+                $randomStr = Str::random(30);
+                $filename = $randomStr . '.' . $file->getClientOriginalExtension();
+                $file->move('upload/service/', $filename);
+                $img->attachment_image = $filename;
+                $img->save();
+            }
+        }
+    }
+
+    return redirect('user/service_history/list')->with('success', 'Record successfully updated');
+}
+
+public function book_service_delete($id)
+{
+    $record = BookServiceModel::where('id', $id)->where('user_id', Auth::id())->first();
+
+    if (!$record) {
+        return redirect()->back()->with('error', 'Record not found or unauthorized access.');
+    }
+
+    // Delete related images
+    $images = BookServiceImageModel::where('book_service_id', $record->id)->get();
+    foreach ($images as $img) {
+        $filePath = public_path('upload/service/' . $img->attachment_image);
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
+        $img->delete();
+    }
+
+    // Delete the service record
+    $record->delete();
+
+    return redirect('user/service_history/list')->with('success', 'Service record deleted successfully.');
+}
+
+
 }
