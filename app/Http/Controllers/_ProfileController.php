@@ -9,18 +9,18 @@ use App\Mail\ProfileRegisterMail;
 use Str;
 use File;
 
-class ProfileController extends Controller
+class _ProfileController extends Controller
 {
  public function _profile_list(Request $request)
  {
      $data['getrecode'] = User::get_record_user($request);
-    return view('admin.profile.list', $data);
+    return view('user._profile.list', $data);
  }
 
- public function _profile_add (Request $request)
+ public function profile_add (Request $request)
  {
     $data['getAMC'] = AMCModel::get_record_delete();
-    return view('admin.profile.add',$data);
+    return view('user._profile.add',$data);
  }
 
  public function _profile_store(Request $request)
@@ -76,7 +76,7 @@ class ProfileController extends Controller
  {
    $data['getrecord'] = User::get_single($id);
    $data['getAMC'] = AMCModel::get_record_delete();
-   return view('admin.profile.edit', $data);
+   return view('user._profile.edit', $data);
  }
 
  public function _profile_update(Request $request, $id)
@@ -109,7 +109,7 @@ class ProfileController extends Controller
     $insert_r->address = trim($request->address);
     $insert_r->save();
 
-    return redirect('admin/profile/list')->with('success', 'User successfully Update.');
+    return redirect('user/_profile/list')->with('success', 'User successfully Update.');
  }
 
  public function _profile_delete($id)
@@ -118,7 +118,7 @@ class ProfileController extends Controller
   $user->is_delete = 1;
   $user->save();
 
-  return redirect('admin/profile/list')->with('error', 'Record successfully delete.');
+  return redirect('user/_profile/list')->with('error', 'Record successfully delete.');
 
 }
 }

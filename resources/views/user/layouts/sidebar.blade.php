@@ -50,7 +50,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-             <a class="sidebar-link @if(Request::segment(2) == 'edit_profile') active @else collapsed @endif" href="{{ url('user/edit_profile/list') }}">
+             <a class="sidebar-link @if(Request::segment(2) == '_profile') active @else collapsed @endif" href="{{ url('user/_profile/list') }}">
     <div class="d-flex align-items-center gap-2">
       <span class="d-flex">
         <i class="fas fa-user-edit"></i>

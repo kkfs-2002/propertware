@@ -16,6 +16,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookServiceController;
 use App\Http\Controllers\MaintenanceAgreementController;
 use App\Http\Controllers\_ProfileController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AvailabilityController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -121,7 +123,7 @@ Route::get('admin/profile/delete/{id}', [ProfileController::class, 'profile_dele
 
 
 
-Route::group(['middleware' => 'user'], function () {
+    Route::group(['middleware' => 'user'], function () {
     Route::get('user/dashboard', [DashboardController::class, 'user_dashboard']);
 
 
@@ -142,13 +144,34 @@ Route::post('user/maintenance_agreement/edit/{id}', [MaintenanceAgreementControl
 Route::get('user/maintenance_agreement/delete/{id}', [MaintenanceAgreementController::class, 'maintenance_agreement_delete']);
 
 
-
+Route::get('user/_profile/list', [_ProfileController::class, '_profile_list']);
+Route::get('user/_profile/add', [_ProfileController::class, '_profile_add']);
+Route::post('user/_profile/add', [_ProfileController::class, '_profile_store']);
+Route::get('user/_profile/edit/{id}', [_ProfileController::class, '_profile_edit']);
+Route::post('user/_profile/edit/{id}', [_ProfileController::class, '_profile_update']);
+Route::get('user/_profile/delete/{id}', [_ProfileController::class, '_profile_delete']);
 
 
 });
 
 Route::group(['middleware' => 'vendor'], function () {
     Route::get('vendor/dashboard', [DashboardController::class, 'vendor_dashboard']);
+
+    Route::get('vendor/appointments/list', [AppointmentController::class, 'appointment_list']);
+    Route::get('vendor/appointments/add', [AppointmentController::class, 'appointment_add']);
+    Route::post('vendor/appointments/store', [AppointmentController::class, 'appointment_store']);
+    Route::get('vendor/appointments/edit/{id}', [AppointmentController::class, 'appointment_edit']);
+    Route::post('vendor/appointments/update/{id}', [AppointmentController::class, 'appointment_update']);
+    Route::get('vendor/appointments/delete/{id}', [AppointmentController::class, 'appointment_delete']);
+
+    Route::get('vendor/availability/list', [AvailabilityController::class, 'availability_list']);
+    Route::get('vendor/availability/add', [AvailabilityController::class, 'availability_add']);
+    Route::post('vendor/availability/store', [AvailabilityController::class, 'availability_store']);
+    Route::get('vendor/availability/edit/{id}', [AvailabilityController::class, 'availability_edit']);
+    Route::post('vendor/availability/update/{id}', [AvailabilityController::class, 'availability_update']);
+    Route::get('vendor/availability/delete/{id}', [AvailabilityController::class, 'availability_delete']);
+
+
 });
 
 Route::get('logout', [AuthController::class, 'logout']);

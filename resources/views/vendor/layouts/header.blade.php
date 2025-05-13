@@ -35,27 +35,17 @@
                   <img src="{{ asset('images/profile/img.png') }}" alt="" width="50" height="50" class="rounded-circle">
                   <h6 >Vendor</h6>
                 </a>
-
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up show" aria-labelledby="drop2" data-bs-popper="static">
-                  <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-mail fs-6"></i>
-                      <p class="mb-0 fs-3">My Account</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-list-check fs-6"></i>
-                      <p class="mb-0 fs-3">My Task</p>
-                    </a>
-                    <a href= "{{ url ('logout')}}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
-
-                  </div>
-                </div>
-              </li>
-            </ul>
+ <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+    
+    <li><hr class="dropdown-divider"></li>
+    <li>
+      <a href="{{ url('logout') }}" class="dropdown-item text-danger">
+        <i class="ti ti-logout me-2"></i> Logout
+      </a>
+    </li>
+  </ul>
+</li>
+</ul>
           </div>
         </nav>
       </header>

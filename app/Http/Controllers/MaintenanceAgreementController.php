@@ -82,13 +82,6 @@ class MaintenanceAgreementController extends Controller
 
     return redirect('user/maintenance_agreement/list')->with('success', 'Agreement updated successfully.');
 }
-public function maintenance_agreement_delete($id, Request $request)
-{
-    $delete = MaintenanceAgreementModel::get_single($id);
-    $delete->is_delete = 1;
-    $delete->save();
-
-    return redirect('user/maintenance_agreement/list')->with('error', 'Record successfully deleted.');
-}
 
 }
+
