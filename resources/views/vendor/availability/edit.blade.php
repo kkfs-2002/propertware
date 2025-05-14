@@ -3,12 +3,12 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1 class="ms-4 mt-2 p-2">Edit Appointment</h1>
+        <h1 class="ms-4 mt-2 p-2">Edit Availability</h1>
         <nav>
             <ol class="breadcrumb ms-4 p-2">
                 <li class="breadcrumb-item"><a href="{{ url('vendor/dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ url('vendor/appointments/list') }}">Appointments</a></li>
-                <li class="breadcrumb-item active">Edit Appointment</li>
+                <li class="breadcrumb-item"><a href="{{ url('vendor/availability/list') }}">Availability</a></li>
+                <li class="breadcrumb-item active">Edit</li>
             </ol>
         </nav>
     </div>
@@ -18,108 +18,79 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Edit Appointment Details</h5>
-                        
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        <h5 class="card-title">Update Availability</h5>
 
-                        @if(session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
-                        <form action="{{ url('vendor/appointments/update/'.$getrecord->id) }}" method="post" class="mt-3">
+                        <form action="{{ url('vendor/availability/update/'.$getrecord->id) }}" method="post">
                             @csrf
-                            @method('PUT')
 
+                            {{-- Available Date --}}
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Title <span class="text-danger">*</span></label>
+                                <label class="col-sm-2 col-form-label">Available Date <span style="color:red;">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" 
-                                           value="{{ old('title', $getrecord->title) }}" required>
-                                    @error('title')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <input type="date" name="available_date" class="form-control" required 
+                                           value="{{ old('available_date', $getrecord->available_date) }}">
+                                    <span style="color:red">{{ $errors->first('available_date') }}</span>
                                 </div>
                             </div>
 
+                            {{-- Day (Auto filled based on date) --}}
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Client Name</label>
+                                <label class="col-sm-2 col-form-label">Day</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" 
-                                           value="{{ $getrecord->client->name ?? 'N/A' }}" readonly>
+                                    <input type="text" name="day" class="form-control" readonly 
+                                           value="{{ old('day', $getrecord->day) }}">
                                 </div>
                             </div>
 
+                            {{-- Start Time --}}
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Appointment Date <span class="text-danger">*</span></label>
+                                <label class="col-sm-2 col-form-label">Start Time <span style="color:red;">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="date" name="appointment_date" 
-                                           class="form-control @error('appointment_date') is-invalid @enderror" 
-                                           value="{{ old('appointment_date', $getrecord->appointment_date) }}" 
-                                           min="{{ date('Y-m-d') }}" required>
-                                    @error('appointment_date')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <input type="time" name="start_time" class="form-control" required 
+                                           value="{{ old('start_time', $getrecord->start_time) }}">
+                                    <span style="color:red">{{ $errors->first('start_time') }}</span>
                                 </div>
                             </div>
 
+                            {{-- End Time --}}
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Appointment Time <span class="text-danger">*</span></label>
+                                <label class="col-sm-2 col-form-label">End Time <span style="color:red;">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="time" name="appointment_time" 
-                                           class="form-control @error('appointment_time') is-invalid @enderror" 
-                                           value="{{ old('appointment_time', $getrecord->appointment_time) }}" required>
-                                    @error('appointment_time')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <input type="time" name="end_time" class="form-control" required 
+                                           value="{{ old('end_time', $getrecord->end_time) }}">
+                                    <span style="color:red">{{ $errors->first('end_time') }}</span>
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Duration (minutes)</label>
-                                <div class="col-sm-10">
-                                    <input type="number" name="duration" class="form-control" 
-                                           value="{{ old('duration', $getrecord->duration ?? 30) }}" min="15" max="240">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Notes</label>
-                                <div class="col-sm-10">
-                                    <textarea name="notes" class="form-control" rows="3">{{ old('notes', $getrecord->notes) }}</textarea>
-                                </div>
-                            </div>
-
+                            {{-- Status --}}
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" name="status">
-                                        <option value="1" {{ old('status', $getrecord->status) == 1 ? 'selected' : '' }}>Confirmed</option>
-                                        <option value="2" {{ old('status', $getrecord->status) == 2 ? 'selected' : '' }}>Completed</option>
-                                        <option value="0" {{ old('status', $getrecord->status) == 0 ? 'selected' : '' }}>Cancelled</option>
+                                    <select name="status" class="form-control">
+                                        <option value="1" {{ $getrecord->status == 1 ? 'selected' : '' }}>Active</option>
+                                        <option value="0" {{ $getrecord->status == 0 ? 'selected' : '' }}>Inactive</option>
                                     </select>
                                 </div>
                             </div>
 
+                            {{-- Booked --}}
                             <div class="row mb-3">
-                                <div class="col-sm-10 offset-sm-2">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="bi bi-check-circle me-1"></i> Update Appointment
-                                    </button>
-                                    <a href="{{ url('vendor/appointments/list') }}" class="btn btn-outline-secondary">
-                                        <i class="bi bi-x-circle me-1"></i> Cancel
-                                    </a>
+                                <label class="col-sm-2 col-form-label">Booked</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" value="{{ $getrecord->is_booked ? 'Yes' : 'No' }}" disabled>
+                                    <input type="hidden" name="is_booked" value="{{ $getrecord->is_booked }}">
                                 </div>
                             </div>
+
+                            {{-- Submit --}}
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <a href="{{ url('vendor/availability/list') }}" class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </div>
+
                         </form>
 
                     </div>
@@ -128,5 +99,19 @@
         </div>
     </section>
 </div>
+
+{{-- Auto-update Day based on Date --}}
+<script>
+    document.querySelector('input[name="available_date"]').addEventListener('change', function () {
+        let dayInput = document.querySelector('input[name="day"]');
+        let selectedDate = new Date(this.value);
+        const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        if (!isNaN(selectedDate.getTime())) {
+            dayInput.value = weekdays[selectedDate.getDay()];
+        } else {
+            dayInput.value = '';
+        }
+    });
+</script>
 
 @endsection

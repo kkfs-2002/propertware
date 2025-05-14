@@ -166,7 +166,7 @@ Route::group(['middleware' => 'vendor'], function () {
 
     Route::get('vendor/availability/list', [AvailabilityController::class, 'availability_list']);
     Route::get('vendor/availability/add', [AvailabilityController::class, 'availability_add']);
-    Route::post('vendor/availability/store', [AvailabilityController::class, 'availability_store']);
+    Route::post('vendor/availability/add', [AvailabilityController::class, 'availability_store']);
     Route::get('vendor/availability/edit/{id}', [AvailabilityController::class, 'availability_edit']);
     Route::post('vendor/availability/update/{id}', [AvailabilityController::class, 'availability_update']);
     Route::get('vendor/availability/delete/{id}', [AvailabilityController::class, 'availability_delete']);

@@ -23,99 +23,68 @@
                                 <i class="bi bi-plus-circle"></i> Add New Availability Slot
                             </a>
                         </h5>
-                        
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
 
-                        <form method="post" action="{{ url('vendor/availability/save') }}" id="availabilityForm">
-                            @csrf
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead class="table-light">
+                        <div class="table-responsive">
+                            <table class="table table-hover datatable">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Day</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Status</th>
+                                        <th>Booked</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($getrecord as $value)
                                         <tr>
-                                            <th>Day</th>
-                                            <th>Start Time</th>
-                                            <th>End Time</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse($getrecord as $index => $value)
-                                            <tr>
-                                                <td>
-                                                    <select name="availability[{{$index}}][day]" class="form-control" required>
-                                                        <option value="">Select Day</option>
-                                                        @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day)
-                                                           <option value="{{ $day }}" {{ $value->day == $day ? 'selected' : '' }}>
-
-                                                                {{ $day }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                    <input type="hidden" name="availability[{{$index}}][id]" value="{{ $value->id }}">
-                                                </td>
-                                                <td>
-                                                    <input type="time" name="availability[{{$index}}][start_time]" 
-                                                           class="form-control @error('availability.'.$index.'.start_time') is-invalid @enderror" 
-                                                           value="{{ old('availability.'.$index.'.start_time', $value->start_time) }}" 
-                                                           required>
-                                                    @error('availability.'.$index.'.start_time')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </td>
-                                                <td>
-                                                    <input type="time" name="availability[{{$index}}][end_time]" 
-                                                           class="form-control @error('availability.'.$index.'.end_time') is-invalid @enderror" 
-                                                           value="{{ old('availability.'.$index.'.end_time', $value->end_time) }}" 
-                                                           required>
-                                                    @error('availability.'.$index.'.end_time')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </td>
-                                                <td>
-                                                    <select name="availability[{{$index}}][status]" class="form-control">
-                                                        <option value="1" {{ old('availability.'.$index.'.status', $value->status) == 1 ? 'selected' : '' }}>Active</option>
-                                                        <option value="0" {{ old('availability.'.$index.'.status', $value->status) == 0 ? 'selected' : '' }}>Inactive</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ url('vendor/availability/delete/' . $value->id) }}" 
-                                                       onclick="return confirm('Are you sure you want to delete this availability slot?')" 
-                                                       class="btn btn-sm btn-danger" title="Delete">
-                                                        <i class="bi bi-trash"></i>
+                                            <td>{{ date('d M Y', strtotime($value->available_date)) }}</td>
+                                            <td>{{ $value->day }}</td>
+                                            <td>{{ date('h:i A', strtotime($value->start_time)) }}</td>
+                                            <td>{{ date('h:i A', strtotime($value->end_time)) }}</td>
+                                            <td>
+                                                @if($value->status == 1)
+                                                    <span class="badge bg-success">Active</span>
+                                                @else
+                                                    <span class="badge bg-danger">Inactive</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($value->is_booked == 1)
+                                                    <span class="badge bg-warning">Booked</span>
+                                                @else
+                                                    <span class="badge bg-secondary">Available</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a href="{{ url('vendor/availability/edit/' . $value->id) }}" 
+                                                       class="btn btn-outline-success btn-sm me-2">
+                                                       <i class="bi bi-pencil"></i> Edit
                                                     </a>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="5" class="text-center text-muted py-4">
-                                                    No availability slots found. 
-                                                </td>
-                                            </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                            @if(count($getrecord) > 0)
-                            <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-save"></i> Save Changes
-                                </button>
-                                <a href="{{ url('vendor/availability') }}" class="btn btn-secondary">
-                                    <i class="bi bi-x-circle"></i> Cancel
-                                </a>
-                            </div>
-                            @endif
-                        </form>
+                                                  
+                                                    <a href="{{ url('vendor/availability/delete/' . $value->id) }}" 
+                                                       onclick="return confirm('Are you sure?')" 
+                                                       class="btn btn-outline-danger btn-sm">
+                                                       <i class="bi bi-trash"></i> Delete
+                                                    </a>
+                                                   
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center text-muted py-4">
+                                                No availability slots found. 
+                                                <a href="{{ url('vendor/availability/add') }}">Add your first slot</a>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
