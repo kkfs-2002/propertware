@@ -68,4 +68,21 @@ class Kernel extends HttpKernel
         'user' => \App\Http\Middleware\UserMiddleware::class,
         'vendor' => \App\Http\Middleware\VendorMiddleware::class,
     ];
+
+    
+
+protected function schedule(Schedule $schedule)
+{
+    $schedule->call(function() {
+        $syncs = BookingSync::whereIn('sync_frequency', ['hourly', 'daily'])->get();
+        
+        foreach ($syncs as $sync) {
+            if ($sync->sync_frequency === 'hourly' || 
+                ($sync->sync_frequency === 'daily' && now()->hour === 0)) {
+                // Dispatch sync job
+                ProcessBookingSync::dispatch($sync);
+            }
+        }
+    })->hourly();
+}
 }

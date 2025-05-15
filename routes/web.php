@@ -18,6 +18,8 @@ use App\Http\Controllers\MaintenanceAgreementController;
 use App\Http\Controllers\_ProfileController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AvailabilityController;
+use App\Http\Controllers\BookingSyncController;
+use App\Http\Controllers\NotificationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -156,7 +158,8 @@ Route::get('user/_profile/delete/{id}', [_ProfileController::class, '_profile_de
 
 Route::group(['middleware' => 'vendor'], function () {
     Route::get('vendor/dashboard', [DashboardController::class, 'vendor_dashboard']);
-
+    
+    
     Route::get('vendor/appointments/list', [AppointmentController::class, 'appointment_list']);
     Route::get('vendor/appointments/add', [AppointmentController::class, 'appointment_add']);
     Route::post('vendor/appointments/store', [AppointmentController::class, 'appointment_store']);
@@ -170,6 +173,19 @@ Route::group(['middleware' => 'vendor'], function () {
     Route::get('vendor/availability/edit/{id}', [AvailabilityController::class, 'availability_edit']);
     Route::post('vendor/availability/update/{id}', [AvailabilityController::class, 'availability_update']);
     Route::get('vendor/availability/delete/{id}', [AvailabilityController::class, 'availability_delete']);
+
+       Route::get('vendor/booking_sync/list', [BookingSyncController::class, 'booking_sync_list']);
+    Route::get('vendor/booking_sync/create', [BookingSyncController::class, 'booking_sync_create']);
+    Route::post('vendor/booking_sync/store', [BookingSyncController::class, 'booking_sync_store']);
+    Route::get('vendor/booking_sync/edit/{id}', [BookingSyncController::class, 'booking_sync_edit']);
+    Route::delete('vendor/booking_sync/delete/{bookingSync}', [BookingSyncController::class, 'booking_sync_delete']);
+    Route::get('vendor/booking_sync/credentials_form', [BookingSyncController::class, 'credentials_form']);
+
+    Route::get('vendor/notifications/list', [NotificationController::class, 'notifications_list']);
+    Route::get('vendor/notifications/create', [NotificationController::class, 'notifications_create']);
+    Route::post('vendor/notifications/store', [NotificationController::class, 'notifications_store']);
+    Route::delete('vendor/notifications/delete/{id}', [NotificationController::class, 'notifications_delete']) ->name('vendor/notifications/delete');
+   
 
 
 });

@@ -17,40 +17,62 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Add New Appointment</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">Schedule New Appointment</h5>
+                            <a href="{{ url('vendor/appointments/list') }}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Back to List
+                            </a>
+                        </div>
                         
-                        <form action="{{ url('vendor/appointments/store') }}" method="post">
+                        <form action="{{ url('vendor/appointments/store') }}" method="post" class="mt-4">
                             @csrf
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Title <span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="title" class="form-control" required value="{{ old('title') }}">
-                                    <span style="color:red">{{ $errors->first('title') }}</span>
+                            <div class="row mb-4">
+                                <label class="col-sm-3 col-form-label fw-bold">Appointment Title <span class="text-danger">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="title" class="form-control form-control-lg rounded-3" required value="{{ old('title') }}" placeholder="Enter appointment title">
+                                    @error('title')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Appointment Date <span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="date" name="appointment_date" class="form-control" required value="{{ old('appointment_date') }}">
-                                    <span style="color:red">{{ $errors->first('appointment_date') }}</span>
+                            <div class="row mb-4">
+                                <label class="col-sm-3 col-form-label fw-bold">Date <span class="text-danger">*</span></label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-calendar-date"></i></span>
+                                        <input type="date" name="appointment_date" class="form-control form-control-lg rounded-end" required value="{{ old('appointment_date') }}">
+                                    </div>
+                                    @error('appointment_date')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Appointment Time <span style="color: red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="time" name="appointment_time" class="form-control" required value="{{ old('appointment_time') }}">
-                                    <span style="color:red">{{ $errors->first('appointment_time') }}</span>
+                            <div class="row mb-4">
+                                <label class="col-sm-3 col-form-label fw-bold">Time <span class="text-danger">*</span></label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-clock"></i></span>
+                                        <input type="time" name="appointment_time" class="form-control form-control-lg rounded-end" required value="{{ old('appointment_time') }}">
+                                    </div>
+                                    @error('appointment_time')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a href="{{ url('vendor/appointments/list') }}" class="btn btn-secondary">Cancel</a>
+                            <div class="row mt-5">
+                                <div class="col-sm-9 offset-sm-3">
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <button type="reset" class="btn btn-outline-secondary px-4">
+                                            <i class="bi bi-eraser"></i> Reset
+                                        </button>
+                                        <button type="submit" class="btn btn-primary px-4">
+                                            <i class="bi bi-check-circle"></i> Schedule Appointment
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

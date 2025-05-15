@@ -3,12 +3,12 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1 class="ms-4 mt-2 p-2">Edit Availability</h1>
+        <h1>Edit Availability Slot</h1>
         <nav>
-            <ol class="breadcrumb ms-4 p-2">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('vendor/dashboard') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ url('vendor/availability/list') }}">Availability</a></li>
-                <li class="breadcrumb-item active">Edit</li>
+                <li class="breadcrumb-item active">Edit Slot</li>
             </ol>
         </nav>
     </div>
@@ -18,79 +18,118 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Update Availability</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title mb-0">Update Availability Slot</h5>
+                            <a href="{{ url('vendor/availability/list') }}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Back to List
+                            </a>
+                        </div>
 
-                        <form action="{{ url('vendor/availability/update/'.$getrecord->id) }}" method="post">
+                        <form action="{{ url('vendor/availability/update/'.$getrecord->id) }}" method="post" class="mt-3">
                             @csrf
 
-                            {{-- Available Date --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Available Date <span style="color:red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="date" name="available_date" class="form-control" required 
-                                           value="{{ old('available_date', $getrecord->available_date) }}">
-                                    <span style="color:red">{{ $errors->first('available_date') }}</span>
+                            <!-- Date Field -->
+                            <div class="row mb-4">
+                                <label class="col-sm-3 col-form-label fw-bold">Available Date <span class="text-danger">*</span></label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-calendar-date"></i></span>
+                                        <input type="date" name="available_date" class="form-control form-control-lg" required 
+                                               value="{{ old('available_date', $getrecord->available_date) }}">
+                                    </div>
+                                    @error('available_date')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
-                            {{-- Day (Auto filled based on date) --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Day</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="day" class="form-control" readonly 
-                                           value="{{ old('day', $getrecord->day) }}">
+                            <!-- Day Field (Auto-filled) -->
+                            <div class="row mb-4">
+                                <label class="col-sm-3 col-form-label fw-bold">Day</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-calendar-week"></i></span>
+                                        <input type="text" name="day" class="form-control form-control-lg" readonly 
+                                               value="{{ old('day', $getrecord->day) }}">
+                                    </div>
                                 </div>
                             </div>
 
-                            {{-- Start Time --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Start Time <span style="color:red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="time" name="start_time" class="form-control" required 
-                                           value="{{ old('start_time', $getrecord->start_time) }}">
-                                    <span style="color:red">{{ $errors->first('start_time') }}</span>
+                            <!-- Time Slot Fields -->
+                            <div class="row mb-4">
+                                <label class="col-sm-3 col-form-label fw-bold">Time Slot <span class="text-danger">*</span></label>
+                                <div class="col-sm-9">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light"><i class="bi bi-clock"></i></span>
+                                                <input type="time" name="start_time" class="form-control form-control-lg" required 
+                                                       value="{{ old('start_time', $getrecord->start_time) }}">
+                                            </div>
+                                            @error('start_time')
+                                                <div class="text-danger small mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-light"><i class="bi bi-clock"></i></span>
+                                                <input type="time" name="end_time" class="form-control form-control-lg" required 
+                                                       value="{{ old('end_time', $getrecord->end_time) }}">
+                                            </div>
+                                            @error('end_time')
+                                                <div class="text-danger small mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12">
+                                            <small class="text-muted">End time must be after start time</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            {{-- End Time --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">End Time <span style="color:red;">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="time" name="end_time" class="form-control" required 
-                                           value="{{ old('end_time', $getrecord->end_time) }}">
-                                    <span style="color:red">{{ $errors->first('end_time') }}</span>
+                            <!-- Status Field -->
+                            <div class="row mb-4">
+                                <label class="col-sm-3 col-form-label fw-bold">Slot Status</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-toggle-on"></i></span>
+                                        <select name="status" class="form-select form-select-lg">
+                                            <option value="1" {{ $getrecord->status == 1 ? 'selected' : '' }}>Active</option>
+                                            <option value="0" {{ $getrecord->status == 0 ? 'selected' : '' }}>Inactive</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
-                            {{-- Status --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Status</label>
-                                <div class="col-sm-10">
-                                    <select name="status" class="form-control">
-                                        <option value="1" {{ $getrecord->status == 1 ? 'selected' : '' }}>Active</option>
-                                        <option value="0" {{ $getrecord->status == 0 ? 'selected' : '' }}>Inactive</option>
-                                    </select>
+                            <!-- Booking Status Field -->
+                            <div class="row mb-4">
+                                <label class="col-sm-3 col-form-label fw-bold">Booking Status</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-bookmark-check"></i></span>
+                                        <input type="text" class="form-control form-control-lg" 
+                                               value="{{ $getrecord->is_booked ? 'Booked' : 'Available' }}" disabled>
+                                        <input type="hidden" name="is_booked" value="{{ $getrecord->is_booked }}">
+                                    </div>
                                 </div>
                             </div>
 
-                            {{-- Booked --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Booked</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="{{ $getrecord->is_booked ? 'Yes' : 'No' }}" disabled>
-                                    <input type="hidden" name="is_booked" value="{{ $getrecord->is_booked }}">
+                            <!-- Action Buttons -->
+                            <div class="row mt-5">
+                                <div class="col-sm-9 offset-sm-3">
+                                    <div class="d-flex justify-content-start gap-3">
+                                        <button type="submit" class="btn btn-primary px-4">
+                                            <i class="bi bi-check-circle"></i> Update Slot
+                                        </button>
+                                        <button type="reset" class="btn btn-outline-secondary px-4">
+                                            <i class="bi bi-arrow-counterclockwise"></i> Reset
+                                        </button>
+                                        <a href="{{ url('vendor/availability/list') }}" class="btn btn-outline-danger px-4">
+                                            <i class="bi bi-x-circle"></i> Cancel
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-
-                            {{-- Submit --}}
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                    <a href="{{ url('vendor/availability/list') }}" class="btn btn-secondary">Cancel</a>
-                                </div>
-                            </div>
-
                         </form>
 
                     </div>
@@ -100,18 +139,36 @@
     </section>
 </div>
 
-{{-- Auto-update Day based on Date --}}
+<!-- Auto-update Day based on Date -->
 <script>
-    document.querySelector('input[name="available_date"]').addEventListener('change', function () {
-        let dayInput = document.querySelector('input[name="day"]');
-        let selectedDate = new Date(this.value);
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.querySelector('input[name="available_date"]');
+    const dayInput = document.querySelector('input[name="day"]');
+    
+    dateInput.addEventListener('change', function() {
+        const selectedDate = new Date(this.value);
         const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        
         if (!isNaN(selectedDate.getTime())) {
             dayInput.value = weekdays[selectedDate.getDay()];
         } else {
             dayInput.value = '';
         }
     });
+
+    // Client-side validation for time slots
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+        const startTime = document.querySelector('input[name="start_time"]').value;
+        const endTime = document.querySelector('input[name="end_time"]').value;
+        
+        if (startTime >= endTime) {
+            e.preventDefault();
+            alert('End time must be after start time!');
+            return false;
+        }
+    });
+});
 </script>
 
 @endsection
