@@ -79,7 +79,7 @@
     </li>
 
     <li class="sidebar-item">
-      <a href="{{ url('vendor/service_slots/list') }}" class="sidebar-link @if(Request::segment(2) == 'service_slots') active @else collapsed @endif">
+      <a href="{{ url('vendor/time_slots/list') }}" class="sidebar-link @if(Request::segment(2) == 'time_slots') active @else collapsed @endif">
         <div class="d-flex align-items-center gap-2 ps-4">
           <i class="ti ti-circle"></i>
           <span class="hide-menu">Service-Specific Time Slots</span>

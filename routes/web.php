@@ -20,6 +20,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\BookingSyncController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\TimeSlotController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -185,6 +186,11 @@ Route::group(['middleware' => 'vendor'], function () {
     Route::get('vendor/notifications/create', [NotificationController::class, 'notifications_create']);
     Route::post('vendor/notifications/store', [NotificationController::class, 'notifications_store']);
     Route::delete('vendor/notifications/delete/{id}', [NotificationController::class, 'notifications_delete']) ->name('vendor/notifications/delete');
+
+    Route::get('vendor/time_slots/list', [TimeSlotController::class, 'time_slots_list']);
+    Route::get('vendor/time_slots/create', [TimeSlotController::class, 'time_slots_create']);
+    Route::post('vendor/time_slots/store', [TimeSlotController::class, 'time_slots_store']);
+    Route::delete('vendor/time_slots/delete/{id}', [TimeSlotController::class, 'time_slots_delete']);
    
 
 
