@@ -87,32 +87,45 @@
       </a>
     </li>
 
-    <li class="sidebar-item">
-      <a href="{{ url('vendor/integrations/list') }}" class="sidebar-link @if(Request::segment(2) == 'integrations') active @else collapsed @endif">
-        <div class="d-flex align-items-center gap-2 ps-4">
-          <i class="ti ti-circle"></i>
-          <span class="hide-menu">Integration with Other Tools</span>
-        </div>
-      </a>
-    </li>
+    
   </ul>
 </li>
 
  
   <li class="sidebar-item">
-    <a class="sidebar-link justify-content-between" href="my-assignment.html">
-      <div class="d-flex align-items-center gap-2">
-        <span class="d-flex">
-          <i class="fas fa-book"></i>
-        </span>
-        <span class="hide-menu">My Assignment</span>
-      </div>
-    </a>
-  </li>
+  <a class="sidebar-link has-arrow collapsed 
+    @if(Request::segment(2) == 'assignments' || Request::segment(2) == 'upload_proof' || Request::segment(2) == 'job_status') active @endif" 
+     href="#assignmentMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="assignmentMenu">
+    <div class="d-flex align-items-center gap-2">
+      <span class="d-flex">
+        <i class="ti ti-clipboard-check"></i>
+      </span>
+      <span class="hide-menu">My Assignments</span>
+    </div>
+  </a>
+
+  <ul class="collapse" id="assignmentMenu">
+    <li class="sidebar-item">
+      <a href="{{ url('vendor/assignments/list') }}" class="sidebar-link 
+        @if(Request::segment(2) == 'assignments') active @else collapsed @endif">
+        <div class="d-flex align-items-center gap-2 ps-4">
+          <i class="ti ti-circle"></i>
+          <span class="hide-menu">View Assignments</span>
+        </div>
+      </a>
+    </li>
+
+    
+
+    
+
+  </ul>
+</li>
+
 
 
   <li class="sidebar-item">
-    <a class="sidebar-link justify-content-between" href="edit-profile.html">
+    <a class="sidebar-link justify-content-between" href="edit-profile">
       <div class="d-flex align-items-center gap-2">
         <span class="d-flex">
           <i class="fas fa-user-cog"></i>

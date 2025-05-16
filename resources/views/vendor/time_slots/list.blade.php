@@ -48,7 +48,7 @@
                                                 <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure to delete this time slot?')) document.getElementById('delete-slot-{{ $slot->id }}').submit();" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
-                                                <form id="delete-slot-{{ $slot->id }}" action="{{ url('vendor/time_slots/' . $slot->id) }}" method="POST" style="display: none;">
+                                                <form id="delete-slot-{{ $slot->id }}" action="{{ url('vendor/time_slots/delete/' . $slot->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>

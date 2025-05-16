@@ -21,6 +21,8 @@ use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\BookingSyncController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TimeSlotController;
+use App\Http\Controllers\AssignmentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -191,8 +193,18 @@ Route::group(['middleware' => 'vendor'], function () {
     Route::get('vendor/time_slots/create', [TimeSlotController::class, 'time_slots_create']);
     Route::post('vendor/time_slots/store', [TimeSlotController::class, 'time_slots_store']);
     Route::delete('vendor/time_slots/delete/{id}', [TimeSlotController::class, 'time_slots_delete']);
-   
 
+       
+    Route::get('vendor/assignments/list', [AssignmentController::class, 'assignments_list']);
+    Route::get('vendor/assignments/create', [AssignmentController::class, 'assignments_create']);
+    Route::post('vendor/assignments/store', [AssignmentController::class, 'assignments_store']);
+    Route::get('vendor/assignments/show/{id}', [AssignmentController::class, 'assignments_show']);
+    Route::get('vendor/assignments/edit/{id}', [AssignmentController::class, 'assignments_edit']);
+    Route::put('vendor/assignments/update/{id}', [AssignmentController::class, 'assignments_update'])->name('vendor.assignments.update');
+    Route::delete('vendor/assignments/delete/{id}', [AssignmentController::class, 'assignments_delete'])->name('vendor.assignments.delete');
+
+   
+   
 
 });
 

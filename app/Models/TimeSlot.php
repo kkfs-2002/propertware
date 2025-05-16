@@ -15,22 +15,21 @@ class TimeSlot extends Model
         'day_of_week', 
         'start_time', 
         'end_time',
-        'status' 
+        'status'
+    ];
+
+    protected $casts = [
+        'start_time' => 'datetime:H:i',
+        'end_time' => 'datetime:H:i',
     ];
 
     public function service()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(ServiceTypeModel::class, 'service_id');
     }
 
-    // Add this if you need to format time accessors
-    public function getStartTimeAttribute($value)
+    public function vendor()
     {
-        return \Carbon\Carbon::parse($value)->format('H:i');
-    }
-
-    public function getEndTimeAttribute($value)
-    {
-        return \Carbon\Carbon::parse($value)->format('H:i');
+        return $this->belongsTo(User::class, 'vendor_id');
     }
 }

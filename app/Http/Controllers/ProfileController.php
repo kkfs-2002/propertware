@@ -11,19 +11,19 @@ use File;
 
 class ProfileController extends Controller
 {
- public function _profile_list(Request $request)
+ public function profile_list(Request $request)
  {
      $data['getrecode'] = User::get_record_user($request);
     return view('admin.profile.list', $data);
  }
 
- public function _profile_add (Request $request)
+ public function profile_add (Request $request)
  {
     $data['getAMC'] = AMCModel::get_record_delete();
     return view('admin.profile.add',$data);
  }
 
- public function _profile_store(Request $request)
+ public function profile_store(Request $request)
  {
     //dd($request->all());
     $user = request()->validate([
@@ -72,14 +72,14 @@ class ProfileController extends Controller
     $user->save();
 
 }
- public function _profile_edit($id, Request $request)
+ public function profile_edit($id, Request $request)
  {
    $data['getrecord'] = User::get_single($id);
    $data['getAMC'] = AMCModel::get_record_delete();
    return view('admin.profile.edit', $data);
  }
 
- public function _profile_update(Request $request, $id)
+ public function profile_update(Request $request, $id)
  {
     $insert_r = $request->validate([
        'name'    => 'required',
@@ -112,7 +112,7 @@ class ProfileController extends Controller
     return redirect('admin/profile/list')->with('success', 'User successfully Update.');
  }
 
- public function _profile_delete($id)
+ public function profile_delete($id)
  {
    $user = User::get_single($id);
   $user->is_delete = 1;
