@@ -190,4 +190,12 @@ public function vendor_delete($id, Request $request)
   return redirect('admin/vendor/list')->with('error', 'Record successfully delete.');
 
 }
+
+// Add this method to your VendorController.php
+public function download_vendor_pdf(Request $request)
+{
+    $vendors = User::get_record($request);
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.vendor.report', compact('vendors'));
+    return $pdf->download('vendor-report-'.date('Y-m-d').'.pdf');
+}
 }

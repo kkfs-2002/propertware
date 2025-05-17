@@ -74,12 +74,28 @@
                                     </div>
                                     
                                     <h5 class="details-title mt-4">AMC Information</h5>
-                                    <div class="security-status">
-                                        <div class="security-item">
-                                            <i class="bi bi-building security-icon"></i>
-                                            <div>
-                                                <p class="security-label">AMC Details</p>
-                                                <p class="security-value">Information about AMC</p>
+                                    <div class="amc-details-container">
+                                        <div class="amc-detail-item">
+                                            <i class="bi bi-building amc-icon"></i>
+                                            <div class="amc-content">
+                                                <h6 class="amc-title">Annual Maintenance Contract</h6>
+                                                <p class="amc-description">
+                                                    This section provides comprehensive details about your AMC agreement, 
+                                                    including coverage period, services included, and maintenance schedules. 
+                                                    Our AMC ensures your systems run smoothly with regular check-ups and 
+                                                    priority support.
+                                                </p>
+                                                <div class="amc-meta">
+                                                    <span class="amc-meta-item">
+                                                        <i class="bi bi-calendar-check"></i> Valid until: Dec 2025
+                                                    </span>
+                                                    <span class="amc-meta-item">
+                                                        <i class="bi bi-shield-check"></i> Premium Plan
+                                                    </span>
+                                                    <span class="amc-meta-item">
+                                                        <i class="bi bi-gear"></i> Full System Coverage
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -238,38 +254,56 @@
         display: block;
     }
     
-    .security-status {
-        margin-top: 1.5rem;
+    /* AMC Section Styles */
+    .amc-details-container {
+        background-color: #f8fafc;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 1rem;
     }
     
-    .security-item {
+    .amc-detail-item {
         display: flex;
-        align-items: center;
-        padding: 1rem;
-        background-color: #f8fafc;
-        border-radius: 8px;
+        gap: 1.5rem;
+    }
+    
+    .amc-icon {
+        font-size: 1.75rem;
+        color: #4e73df;
+        margin-top: 0.25rem;
+    }
+    
+    .amc-content {
+        flex: 1;
+    }
+    
+    .amc-title {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.75rem;
+    }
+    
+    .amc-description {
+        color: #6c757d;
+        line-height: 1.6;
         margin-bottom: 1rem;
     }
     
-    .security-icon {
-        font-size: 1.25rem;
-        margin-right: 1rem;
+    .amc-meta {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .amc-meta-item {
+        font-size: 0.85rem;
         color: #4e73df;
-    }
-    
-    .security-label {
-        font-size: 0.75rem;
-        color: #6c757d;
-        margin-bottom: 0.25rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    
-    .security-value {
-        font-weight: 500;
-        color: #2c3e50;
-        margin-bottom: 0;
-        font-size: 0.9rem;
+        background-color: #e8f0fe;
+        padding: 0.35rem 0.75rem;
+        border-radius: 50px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
     }
     
     @media (max-width: 992px) {
@@ -280,6 +314,17 @@
         
         .details-grid {
             grid-template-columns: 1fr;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .amc-detail-item {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .amc-meta {
+            gap: 0.75rem;
         }
     }
 </style>

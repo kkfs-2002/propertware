@@ -41,36 +41,21 @@ public function service_type_edit(Request $request, $id)
 
 public function service_type_edit_update($id, Request $request)
 {
+    \Log::info("Update request received for ID: $id", $request->all());
     
-    \Log::info("Requested ID: " . $id);
-
-   
     $validated = $request->validate([
-        'name' => 'required|unique:service_types,name,' . $id, 
+        'name' => 'required|unique:service_types,name,' . $id,
     ]);
 
-
-    $save = ServiceTypeModel::find($id); 
-
-   
-    \Log::info("Found record: " . json_encode($save)); 
-
-  
-    if (!$save) {
+    $serviceType = ServiceTypeModel::find($id);
+    
+    if (!$serviceType) {
         return redirect('admin/service_type/list')->with('error', 'Service Type not found!');
     }
 
+    $serviceType->name = trim($request->name);
+    $serviceType->save();
 
-    $name = $request->name;
-    if (!empty($name)) {
-        $save->name = trim($name); 
-        return redirect()->back()->with('error', 'Service type name cannot be empty.');
-    }
-
-   
-    $save->save(); 
-
-   
     return redirect('admin/service_type/list')->with('success', 'Record successfully updated.');
 }
 public function service_type_delete($id, Request $request)

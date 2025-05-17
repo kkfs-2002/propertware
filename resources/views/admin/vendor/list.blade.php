@@ -64,9 +64,17 @@
                 <div class="card border-0 shadow-sm rounded-3 mt-3">
                     <div class="card-header d-flex justify-content-between align-items-center bg-light">
                         <h5 class="mb-0">Vendor Management</h5>
-                        <a href="{{ url('admin/vendor/add') }}" class="btn btn-sm btn-primary">
-                            <i class="bi bi-plus-circle me-1"></i> Add New Vendor
-                        </a>
+                        <div>
+                        
+                            <a href="{{ url('admin/vendor/add') }}" class="btn btn-sm btn-primary">
+                                <i class="bi bi-plus-circle me-1"></i> Add New Vendor
+                            </a>
+
+                            <a href="{{ url('admin/vendor/download-pdf') }}" class="btn btn-sm btn-danger">
+                                <i class="bi bi-file-earmark-pdf me-1"></i> Download PDF
+                            </a>
+
+                        </div>
                     </div>
 
                     <div class="card-body p-3">

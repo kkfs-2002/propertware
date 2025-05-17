@@ -125,7 +125,7 @@
 
 
   <li class="sidebar-item">
-    <a class="sidebar-link justify-content-between" href="edit-profile">
+    <a class="sidebar-link justify-content-between" href="{{ url('vendor/vprofile/list') }}">
       <div class="d-flex align-items-center gap-2">
         <span class="d-flex">
           <i class="fas fa-user-cog"></i>

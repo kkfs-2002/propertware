@@ -83,5 +83,22 @@ class MaintenanceAgreementController extends Controller
     return redirect('user/maintenance_agreement/list')->with('success', 'Agreement updated successfully.');
 }
 
+public function maintenance_agreement_delete($id, Request $request)
+{
+    // Find the agreement record
+    $agreement = MaintenanceAgreementModel::find($id);
+    
+    // If record doesn't exist
+    if (!$agreement) {
+        return redirect('user/maintenance_agreement/list')->with('error', 'The maintenance agreement could not be found!');
+    }
+
+    // Perform the deletion (soft delete)
+    $agreement->delete();  // Using Laravel's soft delete if enabled
+    // OR for hard delete: $agreement->forceDelete();
+
+    // Redirect with success message
+    return redirect('user/maintenance_agreement/list')->with('success', 'Maintenance agreement #'.$agreement->agreement_number.' has been permanently deleted!');
+}
 }
 

@@ -68,6 +68,11 @@
                         <a href="{{ url('admin/user/add') }}" class="btn btn-sm btn-primary">
                             <i class="bi bi-plus-circle me-1"></i> Add New User
                         </a>
+
+                       <a href="{{ url('admin/user/download-pdf') }}?{{ http_build_query(request()->query()) }}" 
+                           class="btn btn-sm btn-danger me-2">
+                         <i class="bi bi-file-pdf me-1"></i> Download PDF
+                           </a>
                     </div>
 
                     <div class="card-body p-3">

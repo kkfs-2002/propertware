@@ -22,6 +22,7 @@ use App\Http\Controllers\BookingSyncController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TimeSlotController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\VendorProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +84,8 @@ Route::get('admin/service_type/list', [ServiceTypeController::class, 'service_ty
 Route::get('admin/service_type/add', [ServiceTypeController::class, 'service_type_add']);
 Route::post('admin/service_type/add',  [ServiceTypeController::class, 'service_type_add_post']);
 Route::get('admin/service_type/edit/{id}', [ServiceTypeController::class, 'service_type_edit']);
-Route::post('admin/service_type/edit/{id}', [ServiceTypeController::class, 'service_type_edit_update']);
+Route::get('admin/service_type/edit/{id}', [ServiceTypeController::class, 'service_type_edit'])->name('admin.service_type.edit');
+Route::put('admin/service_type/edit_update/{id}', [ServiceTypeController::class, 'service_type_edit_update']);
 Route::get('admin/service_type/delete/{id}', [ServiceTypeController::class, 'service_type_delete']);
 
 
@@ -109,6 +111,7 @@ Route::post('admin/vendor/add',  [VendorController::class, 'vendor_store' ]);
 Route::get('admin/vendor/edit/{id}', [VendorController::class, 'vendor_edit']);
 Route::post('admin/vendor/edit/{id}', [VendorController::class, 'vendor_update']); 
 Route::get('admin/vendor/delete/{id}',  [VendorController::class, 'vendor_delete']);
+Route::get('admin/vendor/download-pdf', [VendorController::class, 'download_vendor_pdf']);
 
 
 Route::get('admin/user/list', [UserController::class, 'user_list']);
@@ -117,6 +120,7 @@ Route::post('admin/user/add', [UserController::class, 'user_store']);
 Route::get('admin/user/edit/{id}', [UserController::class, 'user_edit']);
 Route::post('admin/user/edit/{id}', [UserController::class, 'user_update']);
 Route::get('admin/user/delete/{id}', [UserController::class, 'user_delete']);
+Route::get('admin/user/download-pdf', [UserController::class, 'user_downloadPDF']);
 
 Route::get('admin/profile/list', [ProfileController::class, 'profile_list']);
 Route::get('admin/profile/add', [ProfileController::class, 'profile_add']);
@@ -202,6 +206,13 @@ Route::group(['middleware' => 'vendor'], function () {
     Route::get('vendor/assignments/edit/{id}', [AssignmentController::class, 'assignments_edit']);
     Route::put('vendor/assignments/update/{id}', [AssignmentController::class, 'assignments_update'])->name('vendor.assignments.update');
     Route::delete('vendor/assignments/delete/{id}', [AssignmentController::class, 'assignments_delete'])->name('vendor.assignments.delete');
+
+Route::get('vendor/vprofile/list', [VendorProfileController::class, 'vprofile_list']);
+Route::get('vendor/vprofile/add', [VendorProfileController::class, 'vprofile_add']);
+Route::post('vendor/vprofile/add', [VendorProfileController::class, 'vprofile_store']);
+Route::get('vendor/vprofile/edit/{id}', [VendorProfileController::class, 'vprofile_edit']);
+Route::post('vendor/vprofile/edit/{id}', [VendorProfileController::class, 'vprofile_update']);
+Route::get('vendor/vprofile/delete/{id}', [VendorProfileController::class, 'vprofile_delete']);
 
    
    
