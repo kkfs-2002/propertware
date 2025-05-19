@@ -6,9 +6,9 @@
     <div class="pagetitle">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <h1 class="mb-2">Create New Reminder</h1>
+                <h1 class="mb-2 ms-4 mt-2">Create New Reminder</h1>
                 <nav>
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb ms-4">
                         <li class="breadcrumb-item"><a href="{{ url('vendor/dashboard') }}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="{{ url('vendor/notifications') }}">Reminders</a></li>
                         <li class="breadcrumb-item active">Create</li>

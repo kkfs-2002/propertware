@@ -23,7 +23,7 @@
           <div class="card w-85 p-5  bg-white">
             <div class="card-body">
               <a href="" class="text-nowrap logo-img text-center d-block  w-100">
-                <img src="{{ asset('images/logos/logo2.png') }}" alt="Company Logo" width="180">
+                <img src="{{ asset('images/logos/logo2-.png') }}" alt="Company Logo" width="180">
               </a>
               <p class="text-center ">Innovative Solutions for Smart Property Management.</p>
                 @include('_message')

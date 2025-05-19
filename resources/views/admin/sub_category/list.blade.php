@@ -18,9 +18,10 @@
                         @include('_message')
                             <div class="card">
                             <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="{{ url('admin/sub_category/add') }}" class="btn btn-primary">Add New Sub Category</a>
-                          </h5>
+                             <h5 class="card-title">
+                             <!-- Small size button -->
+                         <a href="{{ url('admin/sub_category/add') }}" class="btn btn-primary btn-sm">Add New Category</a>
+                         </div>
                           <table class="table">
                           <thead>
                                 <tr>

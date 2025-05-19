@@ -35,7 +35,7 @@
                             <p class="text-muted mb-0 mt-1">Fill in the details below to add a new service type</p>
                         </div>
                         
-                        <div class="card-body p-4 p-lg-5">
+                        <div class="card-body p-5 p-lg-5">
                             <form action="{{ url('admin/service_type/add') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 

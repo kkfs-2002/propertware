@@ -3,9 +3,9 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1>Create Booking Sync Configuration</h1>
+        <h1 class="ms-4 mt-2">Create Booking Sync Configuration</h1>
         <nav>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb ms-4">
                 <li class="breadcrumb-item"><a href="{{ url('vendor.dashboard') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ url('vendor/booking_sync/list') }}">Booking Sync</a></li>
                 <li class="breadcrumb-item active">Create Configuration</li>

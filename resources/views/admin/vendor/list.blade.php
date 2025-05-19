@@ -125,7 +125,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <a href="{{ url('admin//edit/'.$value->id) }}" class="btn btn-success btn-sm">
+                                                <a href="{{ url('admin/vendor/edit/'.$value->id) }}" class="btn btn-success btn-sm">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
                                                 <a onclick="return confirm('Are you sure you want to delete?')" href="{{ url('admin/vendor/delete/'.$value->id) }}" class="btn btn-danger btn-sm">

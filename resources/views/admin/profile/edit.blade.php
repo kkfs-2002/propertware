@@ -152,16 +152,19 @@
                                 </div>
 
                                 <!-- Form Actions -->
-                                <div class="col-12 mt-5">
-                                    <div class="d-flex justify-content-between">
-                                   
-                                        <button type="submit" class="btn btn-primary px-4">
-                                            <i class="fas fa-save me-2"></i>Update Profile
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+  <div class="col-12 mt-5">
+    <div class="d-flex">
+        <!-- Back Button -->
+        <a href="{{ url('admin/profile/list') }}" class="btn btn-outline-secondary rounded-end-0 pe-4">
+            <i class="bi bi-arrow-left me-2"></i>Back to List
+        </a>
+        
+        <!-- Update Button -->
+        <button type="submit" class="btn btn-primary rounded-start-0 ps-4">
+            <i class="bi bi-save me-2"></i>Update
+        </button>
+    </div>
+</div>
                         <!-- End Profile Edit Form -->
                     </div>
                 </div>

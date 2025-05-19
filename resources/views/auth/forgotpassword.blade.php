@@ -16,7 +16,7 @@
           <div class="card w-100 p-4" style="border-radius: 0; max-width: 500px;">
             <div class="card-body">
               <a href="{{ url('/') }}" class="text-nowrap logo-img text-center d-block w-100 mb-4">
-                <img src="{{ asset('images/logos/logo2.png') }}" alt="Company Logo" width="180">
+                <img src="{{ asset('images/logos/logo2-.png') }}" alt="Company Logo" width="180">
               </a>
               <p class="text-center text-muted">Reset your password below.</p>
 

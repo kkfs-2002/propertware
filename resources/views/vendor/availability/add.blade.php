@@ -3,9 +3,9 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1>Add Availability Slot</h1>
+        <h1 class="ms-4 mt-2">Add Availability Slot</h1>
         <nav>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb ms-4">
                 <li class="breadcrumb-item"><a href="{{ url('vendor/dashboard') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ url('vendor/availability/list') }}">Availability</a></li>
                 <li class="breadcrumb-item active">Add Slot</li>

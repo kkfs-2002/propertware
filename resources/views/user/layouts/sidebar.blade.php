@@ -5,7 +5,7 @@
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
           <a href="./index.html" class="text-nowrap logo-img">
-          <img src="{{ asset('images/logos/logo2.png') }}" alt="Company Logo" width="200">
+          <img src="{{ asset('images/logos/logo2_.png') }}" alt="Company Logo" width="200">
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-6"></i>
@@ -49,6 +49,7 @@
              </div>
             </a>
           </li>
+
           <li class="sidebar-item">
              <a class="sidebar-link @if(Request::segment(2) == '_profile') active @else collapsed @endif" href="{{ url('user/_profile/list') }}">
     <div class="d-flex align-items-center gap-2">

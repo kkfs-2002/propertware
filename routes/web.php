@@ -71,10 +71,11 @@ Route::post('admin/amc/add_free_service/{id}', [AMCController::class, 'amc_store
 Route::get('admin/amc/edit_free_service/{id}', [AMCController::class, 'amc_edit_free_service']);
 Route::post('admin/amc/edit_free_service/{id}', [AMCController::class, 'amc_update_free_service']);
 Route::get('admin/amc/delete_free_service/{id}',  [AMCController::class, 'amc_delete_free_service']);
+Route::get('admin/amc/report', [AmcController::class, 'amc_report']);
 
 Route::get('admin/category/list', [CategoryController::class, 'Category_list']);
 Route::get('admin/Category/add', [CategoryController::class, 'Category_add']);
-Route::post('admin/category/add', [CategoryController::class, 'Category_insert']);
+Route::post('admin/category/add', [CategoryController::class, 'Category_store']);
 Route::get('admin/category/edit/{id}', [CategoryController::class, 'Category_edit']);
 Route::post('admin/category/edit/{id}', [CategoryController::class, 'Category_update']);
 Route::get('admin/category/delete/{id}', [CategoryController::class, 'Category_delete']);
@@ -101,7 +102,7 @@ Route::get('admin/Vendor_type/list', [VendorTypeController::class, 'Vendor_type_
 Route::get('admin/Vendor_type/add', [VendorTypeController::class, 'Vendor_type_add']);
 Route::post('admin/Vendor_type/add', [VendorTypeController::class, 'Vendor_type_store']);
 Route::get('admin/Vendor_type/edit/{id}', [VendorTypeController::class, 'Vendor_type_edit']);
-Route::post('admin/Vendor_type/edit/{id}', [VendorTypeController::class, 'Vendor_type_update']); 
+Route::put('admin/Vendor_type/edit/{id}', [VendorTypeController::class, 'Vendor_type_update']); 
 Route::get('admin/Vendor_type/delete/{id}', [VendorTypeController::class, 'Vendor_type_delete']);
 
 
@@ -144,6 +145,7 @@ Route::get('admin/profile/delete/{id}', [ProfileController::class, 'profile_dele
    Route::get('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_edit']);
    Route::post('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_update']);
    Route::get('user/book_service/delete/{id}', [BookServiceController::class, 'book_service_delete']);
+   
 
   Route::get('user/maintenance_agreement/list', [MaintenanceAgreementController::class, 'maintenance_agreement_list']);
   Route::get('user/maintenance_agreement/add', [MaintenanceAgreementController::class, 'maintenance_agreement_add']);

@@ -3,9 +3,9 @@
 @section('content')
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1>Edit Book A Service </h1>
+        <h1 class="ms-4 mt-2">Edit Book A Service </h1>
         <nav>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb ms-4 ">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ url('user/book_service/list') }}">Book A Service </a></li>
                 
@@ -157,6 +157,9 @@
                                     <button type="submit" class="btn btn-primary px-4">
                                         <i class="bi bi-check-circle me-1"></i> Update Request
                                     </button>
+                                    <a href="{{ url('user/service_history/list') }}" class="btn btn-outline-secondary px-4 py-2 ms-3">
+                                        <i class="bi bi-arrow-left me-2"></i> Back to List
+                                    </a>
                                 </div>
                             </div>
                         </form>

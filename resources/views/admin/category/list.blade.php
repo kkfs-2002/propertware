@@ -19,8 +19,10 @@
                             <div class="card">
                             <div class="card-body">
                             <h5 class="card-title">
-                                <a href="{{ url('admin/Category/add') }}" class="btn btn-primary">Add New Category</a>
-                          </h5>
+                             <!-- Small size button -->
+                         <a href="{{ url('admin/Category/add') }}" class="btn btn-primary btn-sm">Add New Category</a>
+                         </div>
+                         
                           <table class="table">
                           <thead>
                                 <tr>
@@ -32,7 +34,7 @@
                               
                                 </tr>
                             </tbody>
-                                getrecord
+                                
                                 @forelse($getrecord as $value)
                                 <tr>
                                     <td>{{  $value->id }}</td>

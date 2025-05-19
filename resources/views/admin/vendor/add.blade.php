@@ -125,7 +125,14 @@
                                 <button type="submit" class="btn btn-primary px-4">
                                     <i class="fas fa-save me-2"></i>Submit
                                 </button>
+
+                                  <a href="{{ url('admin/vendor/list') }}" class="btn btn-outline-gray-700">
+                                   <i class="bi bi-arrow-left me-2"></i>Back to List
+                               </a>
                             </div>
+
+                            
+                                                   
                         </form>
 
                     </div>

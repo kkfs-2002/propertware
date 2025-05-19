@@ -8,6 +8,7 @@ use App\Models\SubCategoryModel;
 use App\Models\BookServiceModel;
 use App\Models\BookServiceImageModel;
 use App\Models\AMCModel;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Auth;
 use Str;
 use File;

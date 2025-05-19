@@ -4,9 +4,9 @@
 
 <div class="body-wrapper">
     <div class="pagetitle">
-        <h1>Profile Management</h1>
+        <h1 class="ms-4 mt-2">Profile Management</h1>
         <nav>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb ms-4">
                 <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
                 <li class="breadcrumb-item active">User Profile</li>
             </ol>
@@ -22,7 +22,7 @@
                     <div class="card-body p-0">
                         <!-- Profile Header -->
                         <div class="profile-cover">
-                            <div class="cover-photo" style="background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);"></div>
+                            <div class="cover-photo" style="background: linear-gradient(135deg, #20c997 0%, #087990 100%);"></div>
                             <div class="profile-header-content">
                                 <div class="profile-avatar-container">
                                     @if(!empty($getrecode[0]->profile))
@@ -119,7 +119,7 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="amc-status text-center">
-                                                        <div class="amc-icon bg-primary-light text-primary mx-auto mb-3">
+                                                        <div class="amc-icon bg-teal-light text-teal mx-auto mb-3">
                                                             <i class="bi bi-shield-check fs-4"></i>
                                                         </div>
                                                         <h6 class="fw-semibold">Active Maintenance Contract</h6>
@@ -147,7 +147,7 @@
                                         <div class="card-body">
                                             <div class="activity-timeline">
                                                 <div class="activity-item">
-                                                    <div class="activity-icon bg-primary-light text-primary">
+                                                    <div class="activity-icon bg-teal-light text-teal">
                                                         <i class="bi bi-file-earmark-text"></i>
                                                     </div>
                                                     <div class="activity-content">
@@ -277,7 +277,7 @@
     }
     
     .btn-edit {
-        background: #4e73df;
+        background: #20c997;
         color: white;
         border-radius: 50px;
         padding: 0.5rem 1.5rem;
@@ -304,9 +304,9 @@
     }
     
     .nav-tabs .nav-link.active {
-        color: #4e73df;
+        color: #20c997;
         background: transparent;
-        border-bottom: 3px solid #4e73df;
+        border-bottom: 3px solid #20c997;
     }
     
     /* AMC Status */
@@ -319,8 +319,11 @@
         justify-content: center;
     }
     
-    .bg-primary-light {
-        background-color: rgba(78, 115, 223, 0.1);
+    .bg-teal-light {
+        background-color: rgba(32, 201, 151, 0.1);
+    }
+    .text-teal {
+        color: #20c997;
     }
     
     /* Quick Actions */

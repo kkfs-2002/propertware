@@ -10,6 +10,7 @@ use App\Models\AmcFreeServiceModel;
 use Hash;
 use Str;
 use Auth;
+use PDF;
 
 class AMCController extends Controller
 {
@@ -201,4 +202,14 @@ class AMCController extends Controller
 
         return redirect()->back()->with('error', 'Record Successfully deleted');
     }
+
+    public function amc_report()
+{
+    $data['getrecord'] = AMCModel::orderBy('id', 'desc')->get(); // Adjust with your model
+    $data['header'] = 'Annual Maintenance Contract Report';
+    $data['date'] = date('Y-m-d');
+    
+    $pdf = PDF::loadView('admin.amc.report', $data);
+    return $pdf->download('AMC_Report_'.date('Y-m-d').'.pdf');
+}
 }

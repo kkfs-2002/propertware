@@ -167,6 +167,10 @@
                                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
                                     <i class="bi bi-save-fill me-2"></i>Save Changes
                                 </button>
+
+                                 <a href="{{ url('user/_profile/list') }}" class="btn btn-outline-secondary px-4 py-2 ms-3">
+                                        <i class="bi bi-arrow-left me-2"></i> Back to List
+                                    </a>
                             </div>
                         </form>
                         <!-- End Profile Edit Form -->

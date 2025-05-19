@@ -104,7 +104,9 @@
                                     <button type="submit" class="btn btn-primary px-4">
                                         <i class="fas fa-save me-2"></i> Submit
                                     </button>
-                                    
+                                    <a href="{{ url('user/maintenance_agreement/list') }}" class="btn btn-outline-secondary px-4 py-2 ms-3">
+                                        <i class="bi bi-arrow-left me-2"></i> Back to List
+                                    </a>
                                 </div>
                             </div>
                         </form>

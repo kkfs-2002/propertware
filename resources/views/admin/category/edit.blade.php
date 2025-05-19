@@ -39,6 +39,10 @@
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
                                     <button type="submit" class="btn btn-primary">Update</button>
+
+                                     <a href="{{ url('admin/category/list') }}" class="btn btn-outline-gray-700">
+                                   <i class="bi bi-arrow-left me-2"></i>Back to List
+                               </a>
                                 </div>
                             </div>
 

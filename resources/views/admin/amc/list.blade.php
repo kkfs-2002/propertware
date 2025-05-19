@@ -17,13 +17,21 @@
             <div class="col-lg-12">
                 @include('_message')
 
-                <div class="card shadow-sm border-0 rounded-3">
+                <div class="card shadow-sm border-0 rounded-3 mt-3">
                     <div class="card-header bg-light d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">AMC List</h5>
+
+                         <div class="d-flex gap-1"> 
+                        <a href="{{ url('admin/amc/report') }}" class="btn btn-sm btn-secondary me-2">
+            <i class="bi bi-file-earmark-pdf"></i> Download PDF
+        </a>
+                          
                         <a href="{{ url('admin/amc/add') }}" class="btn btn-sm btn-primary">
                             <i class="bi bi-plus-circle me-1"></i> Add New AMC
                         </a>
                     </div>
+                    </div>
+</div>
 
                     <div class="card-body">
                         <div class="table-responsive">

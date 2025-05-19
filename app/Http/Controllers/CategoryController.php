@@ -19,7 +19,7 @@ public function Category_add(Request $request)
 {
     return view('admin.category.add');
 }
-public function Category_insert(Request $request)
+public function Category_store(Request $request)
 {
     //dd($request->all());
 

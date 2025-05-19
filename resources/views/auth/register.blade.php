@@ -20,7 +20,7 @@
           <div class="w-100 p-4 ">
             <div class="card p-4">
               <div class="text-center mb-4">
-                <img src="{{ asset('images/logos/logo2.png') }}" alt="Logo" width="150">
+                <img src="{{ asset('images/logos/logo2-.png') }}" alt="Logo" width="150">
                 <h4 class="mt-3 mb-2">Create Your Account</h4>
                 <p class="text-muted">Enter your personal details to get started</p>
               </div>
