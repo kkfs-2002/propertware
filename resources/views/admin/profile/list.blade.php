@@ -2,337 +2,230 @@
 @section('content')
 
 <div class="body-wrapper">
-    <div class="pagetitle">
-        <h1 class="ms-4 mt-3">Admin Profile</h1>
-        <nav>
-            <ol class="breadcrumb ms-4">
-                <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Profile Management</li>
-            </ol>
-        </nav>
-    </div>
+    <div class="container-fluid">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="m-0">Profile Management</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Admin Profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
-    <section class="section">
-        <div class="row justify-content-center">
-            <div class="col-xl-8">
-                @include('_message')
-
-                <div class="card elite-profile-card">
-                    <div class="card-body p-5">
-                        <div class="profile-header d-flex justify-content-between align-items-end mb-5">
-                            <div>
-                                <h2 class="profile-name mb-1">{{ $getrecode[0]->name }} {{ $getrecode[0]->last_name }}</h2>
-                                <p class="profile-title text-muted">System Administrator</p>
-                            </div>
-                            <a href="{{ url('admin/profile/edit/'.$getrecode[0]->id) }}" class="btn btn-outline-dark rounded-pill px-4">
-    <i class="bi bi-pencil-fill me-2"></i>Edit Profile
-</a>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <div class="profile-avatar-container mb-4">
-                                    @if(!empty($getrecode[0]->profile))
-                                        <img src="{{ $getrecode[0]->getImage() }}" class="profile-avatar" alt="Profile Image">
-                                    @else
-                                        <div class="profile-avatar-placeholder">
-                                            <i class="bi bi-person-fill"></i>
-                                        </div>
-                                    @endif
-                                </div>
-                                
-                                <div class="profile-meta-card">
-                                    <div class="meta-item">
-                                        <i class="bi bi-envelope-fill meta-icon"></i>
-                                        <div>
-                                            <p class="meta-label">Email</p>
-                                            <p class="meta-value">{{ $getrecode[0]->email }}</p>
-                                        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card profile-card">
+                    <div class="card-body p-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="profile-avatar-wrapper mb-3">
+                                @if(!empty($getrecode[0]->profile))
+                                    <img src="{{ $getrecode[0]->getImage() }}" class="profile-avatar" alt="Profile Image">
+                                @else
+                                    <div class="avatar-placeholder bg-gradient-primary">
+                                        {{ substr($getrecode[0]->name, 0, 1) }}{{ substr($getrecode[0]->last_name, 0, 1) }}
                                     </div>
-                                    <div class="meta-item">
-                                        <i class="bi bi-phone-fill meta-icon"></i>
-                                        <div>
-                                            <p class="meta-label">Phone</p>
-                                            <p class="meta-value">{{ $getrecode[0]->mobile }}</p>
-                                        </div>
-                                    </div>
+                                @endif
+                                <div class="edit-overlay">
+                                    <a href="{{ url('admin/profile/edit/'.$getrecode[0]->id) }}" class="btn btn-sm btn-light rounded-circle">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
                                 </div>
                             </div>
                             
-                            <div class="col-lg-7">
-                                <div class="profile-details-card">
-                                    <h5 class="details-title">Personal Information</h5>
-                                    <div class="details-grid">
-                                        <div class="detail-col">
-                                            <span class="detail-label">First Name</span>
-                                            <span class="detail-value">{{ $getrecode[0]->name }}</span>
-                                        </div>
-                                        <div class="detail-col">
-                                            <span class="detail-label">Last Name</span>
-                                            <span class="detail-value">{{ $getrecode[0]->last_name }}</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <h5 class="details-title mt-4">AMC Information</h5>
-                                    <div class="amc-details-container">
-                                        <div class="amc-detail-item">
-                                            <i class="bi bi-building amc-icon"></i>
-                                            <div class="amc-content">
-                                                <h6 class="amc-title">Annual Maintenance Contract</h6>
-                                                <p class="amc-description">
-                                                    This section provides comprehensive details about your AMC agreement, 
-                                                    including coverage period, services included, and maintenance schedules. 
-                                                    Our AMC ensures your systems run smoothly with regular check-ups and 
-                                                    priority support.
-                                                </p>
-                                                <div class="amc-meta">
-                                                    <span class="amc-meta-item">
-                                                        <i class="bi bi-calendar-check"></i> Valid until: Dec 2025
-                                                    </span>
-                                                    <span class="amc-meta-item">
-                                                        <i class="bi bi-shield-check"></i> Premium Plan
-                                                    </span>
-                                                    <span class="amc-meta-item">
-                                                        <i class="bi bi-gear"></i> Full System Coverage
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <h4 class="mb-1">{{ $getrecode[0]->name }} {{ $getrecode[0]->last_name }}</h4>
+                            <span class="text-muted mb-3">System Administrator</span>
+                            
+                            <div class="d-flex gap-2 mb-4">
+                                <a href="mailto:{{ $getrecode[0]->email }}" class="btn btn-outline-primary btn-sm rounded-pill">
+                                    <i class="bi bi-envelope me-1"></i> Email
+                                </a>
+                                <a href="{{ url('admin/profile/edit/'.$getrecode[0]->id) }}" class="btn btn-primary btn-sm rounded-pill">
+                                    <i class="bi bi-pencil me-1"></i> Edit
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-details">
+                            <div class="detail-item">
+                                <div class="detail-content">
+                                    <small class="text-muted">Email</small>
+                                    <p class="mb-0">{{ $getrecode[0]->email }}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-content">
+                                    <small class="text-muted">Phone</small>
+                                    <p class="mb-0">{{ $getrecode[0]->mobile }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0">Personal Information</h5>
+                            <a href="{{ url('admin/profile/edit/'.$getrecode[0]->id) }}" class="btn btn-sm btn-outline-secondary">
+                                <i class="bi bi-pencil me-1"></i> Edit
+                            </a>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info-card mb-4">
+                                    <label class="info-label">First Name</label>
+                                    <p class="info-value">{{ $getrecode[0]->name }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-card mb-4">
+                                    <label class="info-label">Last Name</label>
+                                    <p class="info-value">{{ $getrecode[0]->last_name }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-card mb-4">
+                                    <label class="info-label">Email Address</label>
+                                    <p class="info-value">{{ $getrecode[0]->email }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-card mb-4">
+                                    <label class="info-label">Phone Number</label>
+                                    <p class="info-value">{{ $getrecode[0]->mobile }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Custom Text Section -->
+                        <div class="custom-text-section mt-4 p-3 bg-light rounded">
+                            <h6 class="mb-3">Account Security</h6>
+                            <p class="mb-2">Two-Factor Authentication: <strong>Enabled</strong></p>
+                            <p class="mb-0">Password last changed: <strong>3 months ago</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 </div>
+
 <style>
-    .elite-profile-card {
+    :root {
+        --primary-color: #6366f1;
+        --primary-light: #e0e7ff;
+        --secondary-color: #64748b;
+        --light-color: #f8fafc;
+        --dark-color: #1e293b;
+        --border-color: #e2e8f0;
+    }
+    
+    .profile-card {
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         border: none;
-        border-radius: 16px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-        background-color:rgb(182, 219, 243); /* Soft Galapena white-purple */
     }
     
-    .profile-header {
-        padding: 2rem 2rem 1.5rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        background-color:rgb(135, 172, 195); /* Galapena purple */
-        color: white;
-    }
-    
-    .profile-name {
-        font-weight: 600;
-        color: white;
-        font-size: 1.75rem;
-        letter-spacing: -0.5px;
-    }
-    
-    .profile-title {
-        font-size: 0.9rem;
-        letter-spacing: 0.5px;
-        color: rgba(255, 255, 255, 0.9);
-    }
-    
-    .profile-avatar-container {
+    .profile-avatar-wrapper {
         position: relative;
-        width: 100%;
-        max-width: 220px;
-        margin: 0 auto;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
     }
     
     .profile-avatar {
         width: 100%;
-        height: auto;
-        border-radius: 12px;
-        aspect-ratio: 1/1;
+        height: 100%;
         object-fit: cover;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
         border: 4px solid white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
-    .profile-avatar-placeholder {
+    .avatar-placeholder {
         width: 100%;
-        aspect-ratio: 1/1;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #F0EEFF 0%, #E2DEFF 100%); /* Galapena gradient */
+        height: 100%;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #8A7CFF;
-        font-size: 4rem;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        color: white;
+        font-size: 2.5rem;
+        font-weight: bold;
         border: 4px solid white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
-    .profile-meta-card {
-        background-color: #E2DEFF; /* Light Galapena purple */
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-top: 2rem;
-        border: 1px solid rgba(138, 124, 255, 0.2); /* Galapena border */
-    }
-    
-    .meta-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1.25rem;
-    }
-    
-    .meta-item:last-child {
-        margin-bottom: 0;
-    }
-    
-    .meta-icon {
-        font-size: 1.25rem;
-        color: #7A6BEE; /* Medium Galapena */
-        margin-right: 1rem;
-        width: 24px;
-        text-align: center;
-    }
-    
-    .meta-label {
-        font-size: 0.75rem;
-        color: #7A6BEE;
-        margin-bottom: 0.25rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    
-    .meta-value {
-        font-weight: 500;
-        color: #5A4BD6; /* Dark Galapena */
-        margin-bottom: 0;
-    }
-    
-    .profile-details-card {
-        background-color: white;
-        border-radius: 12px;
-        height: 100%;
-        padding-left: 1.5rem;
-        border: 1px solid rgba(138, 124, 255, 0.2); /* Galapena border */
-    }
-    
-    .details-title {
-        font-weight: 600;
-        color: #8A7CFF; /* Galapena primary */
-        margin-bottom: 1.5rem;
-        position: relative;
-        padding-bottom: 0.75rem;
-    }
-    
-    .details-title:after {
-        content: '';
+    .edit-overlay {
         position: absolute;
-        left: 0;
         bottom: 0;
-        width: 40px;
-        height: 3px;
-        background-color: #8A7CFF; /* Galapena primary */
-        border-radius: 3px;
-    }
-    
-    .details-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-    }
-    
-    .detail-col {
-        margin-bottom: 0.5rem;
-    }
-    
-    .detail-label {
-        display: block;
-        font-size: 0.75rem;
-        color: #8A7CFF; /* Galapena primary */
-        margin-bottom: 0.25rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    
-    .detail-value {
-        font-weight: 500;
-        color: #5A4BD6; /* Dark Galapena */
-        display: block;
-    }
-    
-    /* AMC Section Styles */
-    .amc-details-container {
-        background-color: #E2DEFF; /* Light Galapena purple */
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-top: 1rem;
-        border: 1px solid rgba(138, 124, 255, 0.2); /* Galapena border */
-    }
-    
-    .amc-detail-item {
+        right: 0;
+        background: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
         display: flex;
-        gap: 1.5rem;
-    }
-    
-    .amc-icon {
-        font-size: 1.75rem;
-        color: #8A7CFF; /* Galapena primary */
-        margin-top: 0.25rem;
-    }
-    
-    .amc-content {
-        flex: 1;
-    }
-    
-    .amc-title {
-        font-weight: 600;
-        color: #8A7CFF; /* Galapena primary */
-        margin-bottom: 0.75rem;
-    }
-    
-    .amc-description {
-        color: #5A4BD6; /* Dark Galapena */
-        line-height: 1.6;
-        margin-bottom: 1rem;
-    }
-    
-    .amc-meta {
-        display: flex;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-    }
-    
-    .amc-meta-item {
-        font-size: 0.85rem;
-        color: #8A7CFF; /* Galapena primary */
-        background-color: rgba(138, 124, 255, 0.1); /* Very light Galapena */
-        padding: 0.35rem 0.75rem;
-        border-radius: 50px;
-        display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        border: 1px solid rgba(138, 124, 255, 0.2); /* Galapena border */
+        justify-content: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     
-    @media (max-width: 992px) {
-        .profile-details-card {
-            padding-left: 0;
-            padding-top: 2rem;
-        }
-        
-        .details-grid {
-            grid-template-columns: 1fr;
-        }
+    .profile-details {
+        margin-top: 1.5rem;
+    }
+    
+    .detail-item {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .detail-item:last-child {
+        border-bottom: none;
+    }
+    
+    .info-card {
+        background-color: var(--light-color);
+        padding: 12px 16px;
+        border-radius: 8px;
+    }
+    
+    .info-label {
+        font-size: 0.75rem;
+        color: var(--secondary-color);
+        margin-bottom: 4px;
+    }
+    
+    .info-value {
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+    
+    .custom-text-section {
+        background-color: #f9fafb;
+        border-left: 3px solid var(--primary-color);
+    }
+    
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     }
     
     @media (max-width: 768px) {
-        .amc-detail-item {
-            flex-direction: column;
-            gap: 1rem;
+        .profile-avatar-wrapper {
+            width: 100px;
+            height: 100px;
         }
         
-        .amc-meta {
-            gap: 0.75rem;
+        .avatar-placeholder {
+            font-size: 2rem;
         }
     }
 </style>

@@ -1,524 +1,500 @@
-
 @extends('vendor.layouts.app')
-@Section('content')
 
-<div class="body-wrapper">
-    <!--  App Topstrip -->
-    <!-- <div class="app-topstrip bg-dark py-6 px-3 w-100 d-lg-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center justify-content-center gap-5 mb-2 mb-lg-0">
-        <a class="d-flex justify-content-center" href="https://adminmart.com/" target="_blank">
-            <img src="{{ asset('images/logos/logo4.png') }}" alt="Company Logo" width="60">
-            
-        </a>
+@section('content')
+<div class="body-wrapper bg-light">
+    <div class="body-wrapper-inner py-4">
+        <div class="container-fluid px-4">
+            <!-- Summary Cards Row -->
+            <div class="row g-3 mb-4">
+                <!-- Total Properties Card -->
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card border-0 rounded-3 shadow-sm h-100 overflow-hidden bg-primary bg-opacity-10">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-15 p-3 rounded-3 me-3">
+                                   <i class="ti ti-home text-white fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1 fs-7">Total Properties</h6>
+                                    <h4 class="mb-0 fw-bold">142</h4>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2 border-top border-primary border-opacity-10">
+                                <span class="badge bg-primary bg-opacity-10 text-primary fs-7">
+                                    <i class="ti ti-arrow-up-right fs-5 me-1"></i>12.5%
+                                </span>
+                                <span class="text-muted fs-7 ms-1">vs last month</span>
+                            </div>
+                        </div>
+                        <div class="bg-primary bg-opacity-10" style="height: 4px;">
+                            <div class="bg-primary" style="width: 65%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
 
-       <div class="d-none d-xl-flex align-items-center gap-3">
-          <a href="https://adminmart.com/support/"
-            class="btn btn-outline-primary d-flex align-items-center gap-1 border-0 text-white px-6">
-            <i class="ti ti-lifebuoy fs-5"></i>
-            Support
-          </a>
-          <a href="https://adminmart.com/"
-            class="btn btn-outline-primary d-flex align-items-center gap-1 border-0 text-white px-6">
-            <i class="ti ti-gift fs-5"></i>
-            Templates
-          </a>
-          <a href="https://adminmart.com/hire-us/"
-            class="btn btn-outline-primary d-flex align-items-center gap-1 border-0 text-white px-6">
-            <i class="ti ti-briefcase fs-5"></i>
-            Hire Us
-          </a>
-        </div> 
-      </div>
+                <!-- Total Revenue Card -->
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card border-0 rounded-3 shadow-sm h-100 overflow-hidden bg-success bg-opacity-10">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-success bg-opacity-15 p-3 rounded-3 me-3">
+                                    <i class="ti ti-currency-rupee text-white fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1 fs-7">Total Revenue</h6>
+                                    <h4 class="mb-0 fw-bold">₹8.42M</h4>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2 border-top border-success border-opacity-10">
+                                <span class="badge bg-success bg-opacity-10 text-success fs-7">
+                                    <i class="ti ti-arrow-up-right fs-5 me-1"></i>18.3%
+                                </span>
+                                <span class="text-muted fs-7 ms-1">vs last month</span>
+                            </div>
+                        </div>
+                        <div class="bg-success bg-opacity-10" style="height: 4px;">
+                            <div class="bg-success" style="width: 80%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
 
-      <div class="d-lg-flex align-items-center gap-2">
-        <h3 class="text-white mb-2 mb-lg-0 fs-5 text-center">Check Modernize Premium Version</h3>
-        <div class="d-flex align-items-center justify-content-center gap-2">
-          <div class="dropdown d-flex">
-            <a class="btn btn-outline-primary d-flex align-items-center gap-1" href="javascript:void(0)" id="drop3"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="ti ti-device-laptop fs-5"></i>
-              Live Preview
-              <i class="ti ti-chevron-down fs-5"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop3">
-              <div class="message-body">
-                <a target="_blank" href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  Bootstrap Preview
-                </a>
-                <a target="_blank" href="https://adminmart.com/product/modernize-angular-material-dashboard/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  Angular Preview
-                </a>
-                <a target="_blank" href="https://adminmart.com/product/modernize-vuetify-vue-admin-dashboard/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  VueJs Preview
-                </a>
-                <a target="_blank" href="https://adminmart.com/product/modernize-next-js-admin-dashboard/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  NextJs Preview
-                </a>
-                <a target="_blank" href="https://adminmart.com/product/modernize-react-mui-dashboard-theme/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  React Preview
-                </a>
-                <a target="_blank"
-                  href="https://adminmart.com/product/modernize-tailwind-nextjs-dashboard-template/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  Tailwind Preview
-                </a>
-              </div>
+                <!-- New Leads Card -->
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card border-0 rounded-3 shadow-sm h-100 overflow-hidden bg-info bg-opacity-10">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-info bg-opacity-15 p-3 rounded-3 me-3">
+                                    <i class="ti ti-users text-white fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1 fs-7">New Leads</h6>
+                                    <h4 class="mb-0 fw-bold">56</h4>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2 border-top border-info border-opacity-10">
+                                <span class="badge bg-info bg-opacity-10 text-info fs-7">
+                                    <i class="ti ti-arrow-up-right fs-5 me-1"></i>7.2%
+                                </span>
+                                <span class="text-muted fs-7 ms-1">vs last month</span>
+                            </div>
+                        </div>
+                        <div class="bg-info bg-opacity-10" style="height: 4px;">
+                            <div class="bg-info" style="width: 45%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Occupancy Rate Card -->
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card border-0 rounded-3 shadow-sm h-100 overflow-hidden bg-warning bg-opacity-10">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-warning bg-opacity-15 p-3 rounded-3 me-3">
+                                    <i class="ti ti-chart-pie text-white fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1 fs-7">Occupancy Rate</h6>
+                                    <h4 class="mb-0 fw-bold">82%</h4>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-2 border-top border-warning border-opacity-10">
+                                <span class="badge bg-warning bg-opacity-10 text-warning fs-7">
+                                    <i class="ti ti-arrow-up-right fs-5 me-1"></i>3.1%
+                                </span>
+                                <span class="text-muted fs-7 ms-1">vs last month</span>
+                            </div>
+                        </div>
+                        <div class="bg-warning bg-opacity-10" style="height: 4px;">
+                            <div class="bg-warning" style="width: 82%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="dropdown d-flex">
-            <a class="btn btn-primary d-flex align-items-center gap-1 " href="javascript:void(0)" id="drop4"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="ti ti-shopping-cart fs-5"></i>
-              Buy Now
-              <i class="ti ti-chevron-down fs-5"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop4">
-              <div class="message-body">
-                <a target="_blank" href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  Bootstrap Preview
-                </a>
-                <a target="_blank" href="https://adminmart.com/product/modernize-angular-material-dashboard/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  Angular Preview
-                </a>
-                <a target="_blank" href="https://adminmart.com/product/modernize-vuetify-vue-admin-dashboard/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  VueJs Preview
-                </a>
-                <a target="_blank" href="https://adminmart.com/product/modernize-next-js-admin-dashboard/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  NextJs Preview
-                </a>
-                <a target="_blank" href="https://adminmart.com/product/modernize-react-mui-dashboard-theme/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  React Preview
-                </a>
-                <a target="_blank"
-                  href="https://adminmart.com/product/modernize-tailwind-nextjs-dashboard-template/?ref=56"
-                  class="dropdown-item d-flex align-items-center gap-1">
-                  <i class="ti ti-external-link fs-5"></i>
-                  Tailwind Preview
-                </a>
-              </div>
+
+            <!-- Chart Row -->
+            <div class="row g-3 mb-4">
+                <div class="col-lg-8">
+                    <div class="card border-0 rounded-3 shadow-sm h-100">
+                        <div class="card-header bg-primary bg-opacity-10 py-3 border-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="fw-bold mb-0 text-primary">Monthly Property Sales</h5>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="chartDropdown" data-bs-toggle="dropdown">
+                                        This Year
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                        <li><a class="dropdown-item" href="#">Last Year</a></li>
+                                        <li><a class="dropdown-item" href="#">All Time</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container" style="position: relative; height: 300px;">
+                                <canvas id="salesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card border-0 rounded-3 shadow-sm h-100">
+                        <div class="card-header bg-success bg-opacity-10 py-3 border-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="fw-bold mb-0 text-success">Property Types</h5>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="pieChartDropdown" data-bs-toggle="dropdown">
+                                        This Year
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                        <li><a class="dropdown-item" href="#">Last Year</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container" style="position: relative; height: 200px;">
+                                <canvas id="propertyTypeChart"></canvas>
+                            </div>
+                            <div class="mt-4">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-primary me-2 rounded" style="width: 12px; height: 12px;"></span>
+                                    <span class="text-muted fs-7">Apartments</span>
+                                    <span class="ms-auto fw-bold fs-7">42%</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-success me-2 rounded" style="width: 12px; height: 12px;"></span>
+                                    <span class="text-muted fs-7">Villas</span>
+                                    <span class="ms-auto fw-bold fs-7">28%</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-info me-2 rounded" style="width: 12px; height: 12px;"></span>
+                                    <span class="text-muted fs-7">Townhouses</span>
+                                    <span class="ms-auto fw-bold fs-7">18%</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="badge bg-warning me-2 rounded" style="width: 12px; height: 12px;"></span>
+                                    <span class="text-muted fs-7">Plots</span>
+                                    <span class="ms-auto fw-bold fs-7">12%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <!-- Featured Properties -->
+            <div class="row g-3">
+                <div class="col-12">
+                    <div class="bg-dark bg-opacity-10 p-3 rounded-3 mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="fw-bold mb-0 text-dark">Featured Properties</h5>
+                            <!-- <a href="#" class="btn btn-sm btn-primary bg-opacity-75">View All <i class="ti ti-chevron-right ms-1"></i></a> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Property Card 1 -->
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card h-100 border-0 rounded-3 shadow-sm overflow-hidden property-card">
+                        <div class="position-relative">
+                            <!-- <a href="/property-details/skyline-echo"> -->
+                                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Skyline Echo" style="height: 180px; object-fit: cover;">
+                            <!-- </a> -->
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-primary">Featured</span>
+                            </div>
+                            <button class="btn btn-sm btn-light rounded-circle p-2 position-absolute top-0 end-0 m-3">
+                                <i class="ti ti-heart text-primary fs-4"></i>
+                            </button>
+                        </div>
+                        <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0 fs-6">Skyline Echo</h5>
+                                <span class="text-primary fw-bold">₹450,000</span>
+                            </div>
+                            <p class="text-muted fs-7 mb-3">
+                                <i class="ti ti-map-pin text-primary fs-7 me-1"></i>
+                                Downtown, Bangalore
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                <div>
+                                    <i class="ti ti-bed text-primary fs-7 me-1"></i>
+                                    <span class="fs-7">3 Beds</span>
+                                </div>
+                                <div>
+                                    <i class="ti ti-bath text-primary fs-7 me-1"></i>
+                                    <span class="fs-7">2 Baths</span>
+                                </div>
+                                <div>
+                                    <i class="ti ti-ruler-2 text-primary fs-7 me-1"></i>
+                                    <span class="fs-7">1200 sq.ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Card 2 -->
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card h-100 border-0 rounded-3 shadow-sm overflow-hidden property-card">
+                        <div class="position-relative">
+                            <!-- <a href="/property-details/prestige-pointe"> -->
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Prestige Pointe" style="height: 180px; object-fit: cover;">
+                            <!-- </a> -->
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-success">New</span>
+                            </div>
+                            <button class="btn btn-sm btn-light rounded-circle p-2 position-absolute top-0 end-0 m-3">
+                                <i class="ti ti-heart text-success fs-4"></i>
+                            </button>
+                        </div>
+                        <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0 fs-6">Prestige Pointe</h5>
+                                <span class="text-success fw-bold">₹680,000</span>
+                            </div>
+                            <p class="text-muted fs-7 mb-3">
+                                <i class="ti ti-map-pin text-success fs-7 me-1"></i>
+                                Whitefield, Bangalore
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                <div>
+                                    <i class="ti ti-bed text-success fs-7 me-1"></i>
+                                    <span class="fs-7">4 Beds</span>
+                                </div>
+                                <div>
+                                    <i class="ti ti-bath text-success fs-7 me-1"></i>
+                                    <span class="fs-7">3 Baths</span>
+                                </div>
+                                <div>
+                                    <i class="ti ti-ruler-2 text-success fs-7 me-1"></i>
+                                    <span class="fs-7">1800 sq.ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Card 3 -->
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card h-100 border-0 rounded-3 shadow-sm overflow-hidden property-card">
+                        <div class="position-relative">
+                            <!-- <a href="/property-details/nova-hills"> -->
+                                <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Nova Hills" style="height: 180px; object-fit: cover;">
+                            <!-- </a> -->
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-info">Popular</span>
+                            </div>
+                            <button class="btn btn-sm btn-light rounded-circle p-2 position-absolute top-0 end-0 m-3">
+                                <i class="ti ti-heart text-info fs-4"></i>
+                            </button>
+                        </div>
+                        <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0 fs-6">Nova Hills</h5>
+                                <span class="text-info fw-bold">₹320,000</span>
+                            </div>
+                            <p class="text-muted fs-7 mb-3">
+                                <i class="ti ti-map-pin text-info fs-7 me-1"></i>
+                                Koramangala, Bangalore
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                <div>
+                                    <i class="ti ti-bed text-info fs-7 me-1"></i>
+                                    <span class="fs-7">2 Beds</span>
+                                </div>
+                                <div>
+                                    <i class="ti ti-bath text-info fs-7 me-1"></i>
+                                    <span class="fs-7">2 Baths</span>
+                                </div>
+                                <div>
+                                    <i class="ti ti-ruler-2 text-info fs-7 me-1"></i>
+                                    <span class="fs-7">950 sq.ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Card 4 -->
+                <div class="col-sm-6 col-xl-3">
+                    <div class="card h-100 border-0 rounded-3 shadow-sm overflow-hidden property-card">
+                        <div class="position-relative">
+                            <!-- <a href="/property-details/urban-elegance"> -->
+                                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Urban Elegance" style="height: 180px; object-fit: cover;">
+                            <!-- </a> -->
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-warning">Deal</span>
+                            </div>
+                            <button class="btn btn-sm btn-light rounded-circle p-2 position-absolute top-0 end-0 m-3">
+                                <i class="ti ti-heart text-warning fs-4"></i>
+                            </button>
+                        </div>
+                        <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0 fs-6">Urban Elegance</h5>
+                                <span class="text-warning fw-bold">₹525,000</span>
+                            </div>
+                            <p class="text-muted fs-7 mb-3">
+                                <i class="ti ti-map-pin text-warning fs-7 me-1"></i>
+                                Indiranagar, Bangalore
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                <div>
+                                    <i class="ti ti-bed text-warning fs-7 me-1"></i>
+                                    <span class="fs-7">3 Beds</span>
+                                </div>
+                                <div>
+                                    <i class="ti ti-bath text-warning fs-7 me-1"></i>
+                                    <span class="fs-7">2.5 Baths</span>
+                                </div>
+                                <div>
+                                    <i class="ti ti-ruler-2 text-warning fs-7 me-1"></i>
+                                    <span class="fs-7">1400 sq.ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
+</div>
+@endsection
 
-    </div> -->
-    <div class="body-wrapper-inner">
-        <div class="container-fluid">
-          <!--  Row 1 -->
-          <div class="row">
-            <div class="col-lg-8 d-flex align-items-strech">
-              <div class="card w-100">
-                <div class="card-body">
-                  <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                    <div class="mb-3 mb-sm-0">
-                      <h5 class="card-title fw-semibold">Sales Overview</h5>
-                    </div>
-                    <div>
-                      <select class="form-select">
-                        <option value="1">March 2025</option>
-                        <option value="2">April 2025</option>
-                        <option value="3">May 2025</option>
-                        <option value="4">June 2025</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div id="chart"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="row">
-                <div class="col-lg-12">
-                  <!-- Yearly Breakup -->
-                  <div class="card overflow-hidden">
-                    <div class="card-body p-4">
-                      <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
-                      <div class="row align-items-center">
-                        <div class="col-7">
-                          <h4 class="fw-semibold mb-3">$36,358</h4>
-                          <div class="d-flex align-items-center mb-3">
-                            <span
-                              class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                              <i class="ti ti-arrow-up-left text-success"></i>
-                            </span>
-                            <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                            <p class="fs-3 mb-0">last year</p>
-                          </div>
-                          <div class="d-flex align-items-center">
-                            <div class="me-4">
-                              <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                              <span class="fs-2">2025</span>
-                            </div>
-                            <div>
-                              <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                              <span class="fs-2">2024</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-5">
-                          <div class="d-flex justify-content-center">
-                            <div id="breakup"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <!-- Monthly Earnings -->
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="row alig n-items-start">
-                        <div class="col-8">
-                          <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
-                          <h4 class="fw-semibold mb-3">$6,820</h4>
-                          <div class="d-flex align-items-center pb-1">
-                            <span
-                              class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                              <i class="ti ti-arrow-down-right text-danger"></i>
-                            </span>
-                            <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                            <p class="fs-3 mb-0">last year</p>
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="d-flex justify-content-end">
-                            <div
-                              class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
-                              <i class="ti ti-currency-dollar fs-6"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div id="earning"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 d-flex align-items-stretch">
-              <div class="card w-100">
-                <div class="card-body p-4">
-                  <div class="mb-4">
-                    <h5 class="card-title fw-semibold">Recent Transactions</h5>
-                  </div>
-                  <ul class="timeline-widget mb-0 position-relative mb-n5">
-                    <li class="timeline-item d-flex position-relative overflow-hidden">
-                      <div class="timeline-time text-dark flex-shrink-0 text-end">09:30</div>
-                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                        <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
-                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                      </div>
-                      <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John Doe of $385.90</div>
-                    </li>
-                    <li class="timeline-item d-flex position-relative overflow-hidden">
-                      <div class="timeline-time text-dark flex-shrink-0 text-end">10:00 am</div>
-                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                        <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
-                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                      </div>
-                      <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                          href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
-                      </div>
-                    </li>
-                    <li class="timeline-item d-flex position-relative overflow-hidden">
-                      <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                        <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
-                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                      </div>
-                      <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made of $64.95 to Michael</div>
-                    </li>
-                    <li class="timeline-item d-flex position-relative overflow-hidden">
-                      <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                        <span class="timeline-badge border-2 border border-warning flex-shrink-0 my-8"></span>
-                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                      </div>
-                      <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                          href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
-                      </div>
-                    </li>
-                    <li class="timeline-item d-flex position-relative overflow-hidden">
-                      <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                        <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
-                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                      </div>
-                      <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New arrival recorded
-                      </div>
-                    </li>
-                    <li class="timeline-item d-flex position-relative overflow-hidden">
-                      <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                      <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                        <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
-                      </div>
-                      <div class="timeline-desc fs-3 text-dark mt-n1">Payment Done</div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-8 d-flex align-items-stretch">
-              <div class="card w-100">
-                <div class="card-body">
-                  <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
-                    <div class="mb-3 mb-sm-0">
-                      <h4 class="card-title fw-semibold">Top Performers</h4>
-                      <p class="card-subtitle">Best Employees</p>
-                    </div>
-                    <div>
-                      <select class="form-select">
-                        <option value="1">March 2025</option>
-                        <option value="2">April 2025</option>
-                        <option value="3">May 2025</option>
-                        <option value="4">June 2025</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="table-responsive">
-                    <table class="table align-middle text-nowrap mb-0">
-                      <thead>
-                        <tr class="text-muted fw-semibold">
-                          <th scope="col" class="ps-0">Assigned</th>
-                          <th scope="col">Project</th>
-                          <th scope="col">Priority</th>
-                          <th scope="col">Budget</th>
-                        </tr>
-                      </thead>
-                      <tbody class="border-top">
-                        <tr>
-                          <td class="ps-0">
-                            <div class="d-flex align-items-center">
-                              <div class="me-2 pe-1">
-                                <img src="../assets/images/profile/user-3.jpg" class="rounded-circle" width="40"
-                                  height="40" alt="modernize-img" />
-                              </div>
-                              <div>
-                                <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                                <p class="fs-2 mb-0 text-muted">
-                                  Web Designer
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <p class="mb-0 fs-3">Elite Admin</p>
-                          </td>
-                          <td>
-                            <span class="badge fw-semibold py-1 w-85 bg-primary-subtle text-primary">Low</span>
-                          </td>
-                          <td>
-                            <p class="fs-3 text-dark mb-0">$3.9K</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="ps-0">
-                            <div class="d-flex align-items-center">
-                              <div class="me-2 pe-1">
-                                <img src="../assets/images/profile/user-5.jpg" class="rounded-circle" width="40"
-                                  height="40" alt="modernize-img" />
-                              </div>
-                              <div>
-                                <h6 class="fw-semibold mb-1">John Deo</h6>
-                                <p class="fs-2 mb-0 text-muted">
-                                  Web Developer
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <p class="mb-0 fs-3">Flexy Admin</p>
-                          </td>
-                          <td>
-                            <span class="badge fw-semibold py-1 w-85 bg-warning-subtle text-warning">Medium</span>
-                          </td>
-                          <td>
-                            <p class="fs-3 text-dark mb-0">$24.5K</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="ps-0">
-                            <div class="d-flex align-items-center">
-                              <div class="me-2 pe-1">
-                                <img src="../assets/images/profile/user-7.jpg" class="rounded-circle" width="40"
-                                  height="40" alt="modernize-img" />
-                              </div>
-                              <div>
-                                <h6 class="fw-semibold mb-1">Yuvraj Sheth</h6>
-                                <p class="fs-2 mb-0 text-muted">
-                                  Project Manager
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <p class="mb-0 fs-3">Xtreme Admin</p>
-                          </td>
-                          <td>
-                            <span class="badge fw-semibold py-1 w-85 bg-success-subtle text-success">Low</span>
-                          </td>
-                          <td>
-                            <p class="fs-3 text-dark mb-0">$4.8K</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="border-0 ps-0">
-                            <div class="d-flex align-items-center">
-                              <div class="me-2 pe-1">
-                                <img src="../assets/images/profile/user-6.jpg" class="rounded-circle" width="40"
-                                  height="40" alt="modernize-img" />
-                              </div>
-                              <div>
-                                <h6 class="fw-semibold mb-1">Micheal Doe</h6>
-                                <p class="fs-2 mb-0 text-muted">
-                                  Content Writer
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="border-0">
-                            <p class="mb-0 fs-3">Helping Hands WP Theme</p>
-                          </td>
-                          <td class="border-0">
-                            <span class="badge fw-semibold py-1 w-85 bg-danger-subtle text-danger">High</span>
-                          </td>
-                          <td class="border-0">
-                            <p class="fs-3 text-dark mb-0">$9.3K</p>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                  <a href="javascript:void(0)"><img src="../assets/images/products/s4.jpg"
-                      class="card-img-top rounded-0" alt="..."></a>
-                  <a href="javascript:void(0)"
-                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                      class="ti ti-basket fs-4"></i></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                  <h6 class="fw-semibold fs-4">Boat Headphone</h6>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <h6 class="fw-semibold fs-4 mb-0">$50 <span
-                        class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span></h6>
-                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                  <a href="javascript:void(0)"><img src="../assets/images/products/s5.jpg"
-                      class="card-img-top rounded-0" alt="..."></a>
-                  <a href="javascript:void(0)"
-                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                      class="ti ti-basket fs-4"></i></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                  <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <h6 class="fw-semibold fs-4 mb-0">$650 <span
-                        class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span></h6>
-                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                  <a href="javascript:void(0)"><img src="../assets/images/products/s7.jpg"
-                      class="card-img-top rounded-0" alt="..."></a>
-                  <a href="javascript:void(0)"
-                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                      class="ti ti-basket fs-4"></i></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                  <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <h6 class="fw-semibold fs-4 mb-0">$150 <span
-                        class="ms-2 fw-normal text-muted fs-3"><del>$200</del></span></h6>
-                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-              <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                  <a href="javascript:void(0)"><img src="../assets/images/products/s11.jpg"
-                      class="card-img-top rounded-0" alt="..."></a>
-                  <a href="javascript:void(0)"
-                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                      class="ti ti-basket fs-4"></i></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                  <h6 class="fw-semibold fs-4">Cute Soft Teddybear</h6>
-                  <div class="d-flex align-items-center justify-content-between">
-                    <h6 class="fw-semibold fs-4 mb-0">$285 <span
-                        class="ms-2 fw-normal text-muted fs-3"><del>$345</del></span></h6>
-                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                      <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+@section('scripts')
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-         
-    @endsection
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Sales Chart (Line Chart)
+    const salesCtx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(salesCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Properties Sold',
+                data: [12, 19, 15, 24, 18, 22, 17, 25, 28, 30, 26, 32],
+                backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                borderColor: 'rgba(13, 110, 253, 1)',
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: 'rgba(13, 110, 253, 1)',
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#2c3e50',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    padding: 12,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return context.parsed.y + ' properties';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    },
+                    ticks: {
+                        stepSize: 5
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    // Property Type Chart (Doughnut)
+    const propertyTypeCtx = document.getElementById('propertyTypeChart').getContext('2d');
+    const propertyTypeChart = new Chart(propertyTypeCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Apartments', 'Villas', 'Townhouses', 'Plots'],
+            datasets: [{
+                data: [42, 28, 18, 12],
+                backgroundColor: [
+                    'rgba(13, 110, 253, 0.8)',
+                    'rgba(25, 135, 84, 0.8)',
+                    'rgba(13, 202, 240, 0.8)',
+                    'rgba(255, 193, 7, 0.8)'
+                ],
+                borderColor: '#fff',
+                borderWidth: 2,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '75%',
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#2c3e50',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    padding: 10,
+                    displayColors: true,
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+
+<style>
+    .property-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .property-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #0d6efd, #6c5ce7);
+    }
+    .bg-gradient-success {
+        background: linear-gradient(135deg, #198754, #00b894);
+    }
+    .bg-gradient-info {
+        background: linear-gradient(135deg, #0dcaf0, #0984e3);
+    }
+    .bg-gradient-warning {
+        background: linear-gradient(135deg, #ffc107, #f39c12);
+    }
+</style>
+@endsection
