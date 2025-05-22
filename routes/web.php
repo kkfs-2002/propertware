@@ -15,6 +15,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookServiceController;
 use App\Http\Controllers\MaintenanceAgreementController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\_ProfileController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AvailabilityController;
@@ -153,6 +154,9 @@ Route::get('admin/profile/delete/{id}', [ProfileController::class, 'profile_dele
   Route::get('user/maintenance_agreement/edit/{id}', [MaintenanceAgreementController::class, 'maintenance_agreement_edit']);
 Route::post('user/maintenance_agreement/edit/{id}', [MaintenanceAgreementController::class, 'maintenance_agreement_update']);
 Route::get('user/maintenance_agreement/delete/{id}', [MaintenanceAgreementController::class, 'maintenance_agreement_delete']);
+
+Route::get('user/comments/index', [CommentController::class, 'comments_index']);
+Route::post('user/comments/store', [CommentController::class, 'comments_store']);
 
 
 Route::get('user/_profile/list', [_ProfileController::class, '_profile_list']);

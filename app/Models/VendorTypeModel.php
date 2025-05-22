@@ -23,4 +23,9 @@ class VendorTypeModel extends Model
     {
         return self::find($id);
     }
+
+    public function scopeActive($query)
+{
+    return $query->where('status', 1); // assuming 'status' = 1 means active
+}
 }

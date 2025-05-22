@@ -50,6 +50,20 @@
             </a>
           </li>
 
+          
+   <li class="sidebar-item">
+  <a class="sidebar-link @if(Request::segment(2) == 'comments') active @else collapsed @endif" href="{{ url('user/comments/index') }}">
+    <div class="d-flex align-items-center gap-2">
+      <span class="d-flex">
+        <i class="ti ti-message-dots"></i> 
+      </span>
+      <span class="hide-menu">Comments</span>
+    </div>
+  </a>
+</li>
+
+      
+
           <li class="sidebar-item">
              <a class="sidebar-link @if(Request::segment(2) == '_profile') active @else collapsed @endif" href="{{ url('user/_profile/list') }}">
     <div class="d-flex align-items-center gap-2">
