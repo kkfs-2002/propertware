@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookServiceController;
 use App\Http\Controllers\MaintenanceAgreementController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\_ProfileController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AvailabilityController;
@@ -157,6 +158,13 @@ Route::get('user/maintenance_agreement/delete/{id}', [MaintenanceAgreementContro
 
 Route::get('user/comments/index', [CommentController::class, 'comments_index']);
 Route::post('user/comments/store', [CommentController::class, 'comments_store']);
+Route::delete('user/comments/{comment}', [CommentController::class, 'comments_delete'])->name('comments.delete');
+
+    Route::get('user/payments/index', [PaymentController::class, 'payments_index'])->name('payment');
+    Route::post('user/payments/process', [PaymentController::class, 'payments_process'])->name('payment.process');
+    Route::get('user/payments/success', [PaymentController::class, 'payments_success'])->name('payment.success');
+    Route::get('user/payments/cancel', [PaymentController::class, 'payments_cancel'])->name('payment.cancel');
+    Route::post('user/payments/webhook', [PaymentController::class, 'payments_webhook'])->name('payment.webhook');
 
 
 Route::get('user/_profile/list', [_ProfileController::class, '_profile_list']);

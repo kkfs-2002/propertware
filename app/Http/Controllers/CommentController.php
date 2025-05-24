@@ -41,4 +41,16 @@ class CommentController extends Controller
 
         return back()->with('success', 'Comment Added Successfully!');
     }
+
+    public function comments_delete(Comment $comment)
+{
+   
+    if (Auth::id() !== $comment->user_id) {
+        abort(403, 'Unauthorized action.');
+    }
+
+    $comment->delete();
+
+    return redirect()->back()->with('success', 'Comment deleted successfully.');
+}
 }

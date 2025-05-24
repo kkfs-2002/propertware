@@ -62,6 +62,18 @@
   </a>
 </li>
 
+         
+   <li class="sidebar-item">
+  <a class="sidebar-link @if(Request::segment(2) == 'payments') active @else collapsed @endif" href="{{ url('user/payments/dashboard') }}">
+    <div class="d-flex align-items-center gap-2">
+      <span class="d-flex">
+        <i class="ti ti-message-dots"></i> 
+      </span>
+      <span class="hide-menu">Payments</span>
+    </div>
+  </a>
+</li>
+
       
 
           <li class="sidebar-item">
