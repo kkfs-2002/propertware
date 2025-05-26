@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\AmcContract;
 
 class Payment extends Model
 {
@@ -13,23 +11,15 @@ class Payment extends Model
 
     protected $fillable = [
         'user_id',
-        'contract_id',
-        'service_type',
         'amount',
-        'bank_name',
-        'account_number',
-        'slip',
+        'payment_method',
+        'transaction_id',
         'status',
-        'rejection_reason',
+        'description'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function contract()
-    {
-        return $this->belongsTo(AmcContract::class, 'contract_id');
     }
 }

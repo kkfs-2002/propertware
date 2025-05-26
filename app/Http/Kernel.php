@@ -85,4 +85,5 @@ protected function schedule(Schedule $schedule)
         }
     })->hourly();
 }
+
 }

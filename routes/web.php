@@ -12,6 +12,7 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\VendorTypeController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminPaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookServiceController;
 use App\Http\Controllers\MaintenanceAgreementController;
@@ -125,6 +126,9 @@ Route::post('admin/user/edit/{id}', [UserController::class, 'user_update']);
 Route::get('admin/user/delete/{id}', [UserController::class, 'user_delete']);
 Route::get('admin/user/download-pdf', [UserController::class, 'user_downloadPDF']);
 
+ Route::get('admin/payments/list', [AdminPaymentController::class, 'list'])->name('admin.payments.list');
+Route::put('admin/payments/update/{id}', [AdminPaymentController::class, 'update'])->name('admin.payments.update');
+
 Route::get('admin/profile/list', [ProfileController::class, 'profile_list']);
 Route::get('admin/profile/add', [ProfileController::class, 'profile_add']);
 Route::post('admin/profile/add', [ProfileController::class, 'profile_store']);
@@ -160,11 +164,10 @@ Route::get('user/comments/index', [CommentController::class, 'comments_index']);
 Route::post('user/comments/store', [CommentController::class, 'comments_store']);
 Route::delete('user/comments/{comment}', [CommentController::class, 'comments_delete'])->name('comments.delete');
 
-    Route::get('user/payments/index', [PaymentController::class, 'payments_index'])->name('payment');
-    Route::post('user/payments/process', [PaymentController::class, 'payments_process'])->name('payment.process');
-    Route::get('user/payments/success', [PaymentController::class, 'payments_success'])->name('payment.success');
-    Route::get('user/payments/cancel', [PaymentController::class, 'payments_cancel'])->name('payment.cancel');
-    Route::post('user/payments/webhook', [PaymentController::class, 'payments_webhook'])->name('payment.webhook');
+        Route::get('user/payments/list', [PaymentController::class, 'list'])->name('user.payments.list');
+        Route::get('user/payments/create', [PaymentController::class, 'create'])->name('user.payments.create');
+        Route::post('user/payments/store', [PaymentController::class, 'store'])->name('user.payments.store');
+        Route::get('user/payments/show/{payment}', [PaymentController::class, 'show'])->name('user.payments.show');
 
 
 Route::get('user/_profile/list', [_ProfileController::class, '_profile_list']);

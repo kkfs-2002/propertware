@@ -137,6 +137,19 @@
           </a>
         </li>
 
+           <li class="sidebar-item">
+  <a class="sidebar-link justify-content-between @if(Request::segment(2) == 'payments') active @else collapsed @endif" href="{{ url('admin/payments/list') }}">
+    <div class="d-flex align-items-center gap-2">
+      <span class="d-flex">
+        <i class="ti ti-credit-card"></i> 
+      </span>
+      <span class="hide-menu">User Payment show</span>
+    </div>
+  </a>
+</li>
+
+
+
         <li class="sidebar-item">
           <a class="sidebar-link @if(Request::segment(2) == 'profile') active @else collapsed @endif" href="{{ url('admin/profile/list') }}">
             <div class="d-flex align-items-center gap-2">

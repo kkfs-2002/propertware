@@ -63,11 +63,11 @@
 </li>
 
          
-   <li class="sidebar-item">
-  <a class="sidebar-link @if(Request::segment(2) == 'payments') active @else collapsed @endif" href="{{ url('user/payments/dashboard') }}">
+ <li class="sidebar-item">
+  <a class="sidebar-link @if(Request::segment(2) == 'payments') active @else collapsed @endif" href="{{ url('user/payments/list') }}">
     <div class="d-flex align-items-center gap-2">
       <span class="d-flex">
-        <i class="ti ti-message-dots"></i> 
+        <i class="ti ti-credit-card"></i> <!-- Changed icon to credit card for payments -->
       </span>
       <span class="hide-menu">Payments</span>
     </div>
