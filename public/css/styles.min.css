@@ -15857,7 +15857,7 @@ textarea.form-control-lg {
   /* background-color: #808080; */
   display: flex;
   font-size: 14px;
-  white-space: nowrap;
+  white-space: normal;
   align-items: center;
   line-height: 25px;
   position: relative;

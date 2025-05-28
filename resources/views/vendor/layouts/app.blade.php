@@ -22,6 +22,7 @@
     data-sidebar-position="fixed" data-header-position="fixed">
 
     @yield('content')
+     @yield('scripts')
      <!--  Main wrapper -->
 
   @include('vendor.layouts.footer')

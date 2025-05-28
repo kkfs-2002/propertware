@@ -32,7 +32,7 @@
               <li class="nav-item dropdown">
               <a class="nav-link " href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="{{ asset('images/profile/img.png') }}" alt="" width="50" height="50" class="rounded-circle">
+                  <img src="{{ asset('images/profile/vendor.png') }}" alt="" width="50" height="50" class="rounded-circle">
                   <h6 >Vendor</h6>
                 </a>
  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">

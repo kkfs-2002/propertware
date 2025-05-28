@@ -7,11 +7,11 @@ use App\Models\Payment;
 
 class AdminPaymentController extends Controller
 {
-    public function list()
-    {
-        $payments = Payment::with('user')->latest()->get();
-        return view('admin.payments.list', compact('payments'));
-    }
+  public function list()
+{
+    $payments = Payment::with('user')->latest()->paginate(10); // 10 items per page
+    return view('admin.payments.list', compact('payments'));
+}
 
     public function update(Request $request, $id)
     {
@@ -27,6 +27,19 @@ class AdminPaymentController extends Controller
 
         $payment->save();
 
-        return redirect()->route('admin.payments.index')->with('success', 'Payment status updated.');
+        return redirect('admin/payments/list')->with('success', 'Payment status updated.');
     }
+
+    public function updateNote(Request $request, Payment $payment)
+{
+    $request->validate([
+        'admin_message' => 'nullable|string|max:255'
+    ]);
+
+    $payment->update([
+        'admin_message' => $request->admin_message
+    ]);
+
+    return back()->with('success', 'Admin note updated successfully');
+}
 }

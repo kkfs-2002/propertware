@@ -15853,6 +15853,7 @@ textarea.form-control-lg {
 
 .sidebar-nav ul .sidebar-item .sidebar-link {
   color: #2A3547;
+    background-color: rgba(113, 106, 202, 0.2) !important;; 
   display: flex;
   font-size: 14px;
   white-space: nowrap;

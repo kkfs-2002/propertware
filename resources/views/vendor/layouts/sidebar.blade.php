@@ -29,10 +29,21 @@
          
            <!----dashboard---->
            <ul class="sidebar">
+@php
+  $calendarActive = in_array(Request::segment(2), [
+    'appointments',
+    'availability',
+    'booking_sync',
+    'notifications',
+    'service_slots',
+    'integrations'
+  ]);
+@endphp
 
-      <li class="sidebar-item">
-  <a class="sidebar-link has-arrow collapsed @if(Request::segment(2) == 'appointments' || Request::segment(2) == 'availability' || Request::segment(2) == 'booking_sync' || Request::segment(2) == 'notifications' || Request::segment(2) == 'service_slots' || Request::segment(2) == 'integrations') active @endif" 
-     href="#calendarMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="calendarMenu">
+<li class="sidebar-item">
+  <a class="sidebar-link has-arrow {{ $calendarActive ? '' : 'collapsed' }} {{ $calendarActive ? 'active' : '' }}"
+     href="#calendarMenu" data-bs-toggle="collapse" role="button"
+     aria-expanded="{{ $calendarActive ? 'true' : 'false' }}" aria-controls="calendarMenu">
     <div class="d-flex align-items-center gap-2">
       <span class="d-flex">
         <i class="ti ti-calendar"></i>
@@ -41,18 +52,18 @@
     </div>
   </a>
 
-  <ul class="collapse" id="calendarMenu">
+  <ul class="collapse {{ $calendarActive ? 'show' : '' }}" id="calendarMenu">
     <li class="sidebar-item">
-      <a href="{{ url('vendor/appointments/list') }}" class="sidebar-link @if(Request::segment(2) == 'appointments') active @else collapsed @endif">
+      <a href="{{ url('vendor/appointments/list') }}" class="sidebar-link {{ Request::segment(2) == 'appointments' ? 'active' : 'collapsed' }}">
         <div class="d-flex align-items-center gap-2 ps-4">
           <i class="ti ti-circle"></i>
-          <span class="hide-menu"> Manage Appointments</span>
+          <span class="hide-menu">Manage Appointments</span>
         </div>
       </a>
     </li>
 
     <li class="sidebar-item">
-      <a href="{{ url('vendor/availability/list') }}" class="sidebar-link @if(Request::segment(2) == 'availability') active @else collapsed @endif">
+      <a href="{{ url('vendor/availability/list') }}" class="sidebar-link {{ Request::segment(2) == 'availability' ? 'active' : 'collapsed' }}">
         <div class="d-flex align-items-center gap-2 ps-4">
           <i class="ti ti-circle"></i>
           <span class="hide-menu">Set Availability</span>
@@ -61,16 +72,16 @@
     </li>
 
     <li class="sidebar-item">
-      <a href="{{ url('vendor/booking_sync/list') }}" class="sidebar-link @if(Request::segment(2) == 'booking_sync') active @else collapsed @endif">
+      <a href="{{ url('vendor/booking_sync/list') }}" class="sidebar-link {{ Request::segment(2) == 'booking_sync' ? 'active' : 'collapsed' }}">
         <div class="d-flex align-items-center gap-2 ps-4">
           <i class="ti ti-circle"></i>
-          <span class="hide-menu">Automatic Booking </span>
+          <span class="hide-menu">Automatic Booking</span>
         </div>
       </a>
     </li>
 
     <li class="sidebar-item">
-      <a href="{{ url('vendor/notifications/list') }}" class="sidebar-link @if(Request::segment(2) == 'notifications') active @else collapsed @endif">
+      <a href="{{ url('vendor/notifications/list') }}" class="sidebar-link {{ Request::segment(2) == 'notifications' ? 'active' : 'collapsed' }}">
         <div class="d-flex align-items-center gap-2 ps-4">
           <i class="ti ti-circle"></i>
           <span class="hide-menu">Notifications & Reminders</span>
@@ -79,23 +90,26 @@
     </li>
 
     <li class="sidebar-item">
-      <a href="{{ url('vendor/time_slots/list') }}" class="sidebar-link @if(Request::segment(2) == 'time_slots') active @else collapsed @endif">
+      <a href="{{ url('vendor/time_slots/list') }}" class="sidebar-link {{ Request::segment(2) == 'time_slots' ? 'active' : 'collapsed' }}">
         <div class="d-flex align-items-center gap-2 ps-4">
           <i class="ti ti-circle"></i>
           <span class="hide-menu">Service-Specific Time Slots</span>
         </div>
       </a>
     </li>
-
-    
   </ul>
 </li>
 
+
  
-  <li class="sidebar-item">
-  <a class="sidebar-link has-arrow collapsed 
-    @if(Request::segment(2) == 'assignments' || Request::segment(2) == 'upload_proof' || Request::segment(2) == 'job_status') active @endif" 
-     href="#assignmentMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="assignmentMenu">
+  @php
+  $assignmentActive = in_array(Request::segment(2), ['assignments', 'upload_proof', 'job_status']);
+@endphp
+
+<li class="sidebar-item">
+  <a class="sidebar-link has-arrow {{ $assignmentActive ? '' : 'collapsed' }} {{ $assignmentActive ? 'active' : '' }}"
+     href="#assignmentMenu" data-bs-toggle="collapse" role="button"
+     aria-expanded="{{ $assignmentActive ? 'true' : 'false' }}" aria-controls="assignmentMenu">
     <div class="d-flex align-items-center gap-2">
       <span class="d-flex">
         <i class="ti ti-clipboard-check"></i>
@@ -104,16 +118,18 @@
     </div>
   </a>
 
-  <ul class="collapse" id="assignmentMenu">
+  <ul class="collapse {{ $assignmentActive ? 'show' : '' }}" id="assignmentMenu">
     <li class="sidebar-item">
-      <a href="{{ url('vendor/assignments/list') }}" class="sidebar-link 
-        @if(Request::segment(2) == 'assignments') active @else collapsed @endif">
+      <a href="{{ url('vendor/assignments/list') }}"
+         class="sidebar-link {{ Request::segment(2) == 'assignments' ? 'active' : 'collapsed' }}">
         <div class="d-flex align-items-center gap-2 ps-4">
           <i class="ti ti-circle"></i>
           <span class="hide-menu">View Assignments</span>
         </div>
       </a>
     </li>
+
+  
 
     
 

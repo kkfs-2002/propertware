@@ -128,6 +128,8 @@ Route::get('admin/user/download-pdf', [UserController::class, 'user_downloadPDF'
 
  Route::get('admin/payments/list', [AdminPaymentController::class, 'list'])->name('admin.payments.list');
 Route::put('admin/payments/update/{id}', [AdminPaymentController::class, 'update'])->name('admin.payments.update');
+Route::patch('/admin/payments/{payment}/update-note', [AdminPaymentController::class, 'updateNote'])
+     ->name('admin.payments.update-note');
 
 Route::get('admin/profile/list', [ProfileController::class, 'profile_list']);
 Route::get('admin/profile/add', [ProfileController::class, 'profile_add']);

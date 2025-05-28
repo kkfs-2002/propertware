@@ -22,7 +22,7 @@
               <img src="{{ asset('images/logos/logo2.png') }}" alt="Company Logo" width="180">
             </div>
 
-            <h5 class="text-center mb-2">Update Password Your Account</h5>
+            <h5 class="text-center mb-2">Update Your Password</h5>
             <p class="text-center text-muted mb-4">
               Ensure secure access to smart property management with easy password entry and confirmation.
             </p>
@@ -32,25 +32,44 @@
             <form method="POST" action="{{ route('password.update') }}">
               @csrf
 
-         <!-- New Password -->
-<div class="mb-3">
-  <label class="form-label">New Password</label>
-  <div class="position-relative">
-    <input type="password" class="form-control" name="password" id="newPasswordInput" required>
-    <span class="position-absolute top-50 end-0 translate-middle-y pe-3" style="cursor: pointer;" onclick="toggleNewPassword()">
-      <i id="newEyeIcon" class="fa fa-eye"></i>
-    </span>
-  </div>
-  @if ($errors->has('password'))
-    <small class="text-danger">{{ $errors->first('password') }}</small>
-  @endif
-</div>
+              <!-- Password Reset Token -->
+              <input type="hidden" name="token" value="{{ request()->route('token') }}">
+
+              <!-- Email (typically needed) -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" 
+                       name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                @error('email')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+
+              <!-- New Password -->
+              <div class="mb-3">
+                <label class="form-label">New Password</label>
+                <div class="position-relative">
+                  <input type="password" class="form-control @error('password') is-invalid @enderror" 
+                         name="password" id="newPasswordInput" required autocomplete="new-password">
+                  <span class="position-absolute top-50 end-0 translate-middle-y pe-3" style="cursor: pointer;" onclick="toggleNewPassword()">
+                    <i id="newEyeIcon" class="fa fa-eye"></i>
+                  </span>
+                  @error('password')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+              </div>
 
               <!-- Confirm Password -->
               <div class="mb-3">
                 <label class="form-label">Confirm Password</label>
                 <div class="position-relative">
-                  <input type="password" class="form-control" id="passwordInput" name="Confirm_password" required>
+                  <input type="password" class="form-control" id="passwordInput" 
+                         name="password_confirmation" required autocomplete="new-password">
                   <span class="position-absolute top-50 end-0 translate-middle-y pe-3" style="cursor: pointer;" onclick="togglePassword()">
                     <i id="eyeIcon" class="fa fa-eye"></i>
                   </span>
@@ -72,7 +91,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -81,6 +99,21 @@
   function toggleNewPassword() {
     const input = document.getElementById("newPasswordInput");
     const icon = document.getElementById("newEyeIcon");
+
+    if (input.type === "password") {
+      input.type = "text";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    } else {
+      input.type = "password";
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    }
+  }
+
+  function togglePassword() {
+    const input = document.getElementById("passwordInput");
+    const icon = document.getElementById("eyeIcon");
 
     if (input.type === "password") {
       input.type = "text";
