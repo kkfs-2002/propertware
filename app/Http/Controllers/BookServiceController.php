@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\ServiceTypeModel;
 use App\Models\CategoryModel;
@@ -8,32 +9,36 @@ use App\Models\SubCategoryModel;
 use App\Models\BookServiceModel;
 use App\Models\BookServiceImageModel;
 use App\Models\AMCModel;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Auth;
 use Str;
 use File;
 
-
 class BookServiceController extends Controller
 {
+    public function book_service_add(Request $request)
+    {
+        $data['getServiceType'] = ServiceTypeModel::where('is_delete', 0)->get();
+        $data['getCategory'] = CategoryModel::where('is_delete', 0)->get();
+        $data['getAMC'] = AMCModel::where('id', Auth::user()->amc_id)->first();
+        $data['getSubCategory'] = old('category_id')
+            ? SubCategoryModel::where('category_id', old('category_id'))->where('is_delete', 0)->get()
+            : collect([]);
+        return view('user.book_service.add', $data);
+    }
 
-public function book_service_add(Request $request)
-{
-    $data['getServiceType'] =  ServiceTypeModel::get_record_delete();
-    $data['getcategory'] = CategoryModel::get_record_delete();
-    $data['getAMC'] = AMCModel::where('id', '=', Auth::user()->amc_id)->first();
-    return view('user.book_service.add',  $data);
-}
+    public function sub_category_dropdown(Request $request)
+    {
+        $subCategories = SubCategoryModel::where('category_id', $request->cat_id)
+            ->where('is_delete', 0)
+            ->get(['id', 'name']);
+        return response()->json($subCategories);
+    }
 
-public function sub_category_dropdown(Request $request)
-{
-    $data['get_sub_category'] = SubCategoryModel::where('category_id',  $request->cat_id)->get(["name", "id"]);
-    //dd($data['get_sub_category']);
-    return response()->json($data);
-}
+    public function book_service_store(Request $request)
+    {
+        // Validate inputs
+    
 
-public function book_service_store(Request $request)
-{
     //dd($request->all());
 
     $insert_r                          = new BookServiceModel;
@@ -142,4 +147,5 @@ public function book_service_delete($id)
 }
 
 
-}
+
+    }

@@ -26,6 +26,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TimeSlotController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\VendorProfileController;
+use App\Http\Controllers\AdminServiceRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,14 +48,14 @@ Route::post('forgotpassword', [AuthController::class, 'forgotpassword_post']);
 Route::post('/forgotpassword', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
 
 Route::get('reset-password/{token}', function (string $token) {
-    return view('auth.reset-password', ['token' => $token]);
+    return view('auth.forgotpassword', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
 Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
 
 Route::group(['middleware' => 'admin'], function () {
-   Route::get('admin/dashboard', [DashboardController::class, 'admin_dashboard']);
+Route::get('admin/dashboard', [DashboardController::class, 'admin_dashboard']);
 
 Route::get('admin/amc/list', [AMCController::class, 'amc_list']);
 Route::get('admin/amc/add', [AMCController::class, 'amc_add']);
@@ -116,7 +117,7 @@ Route::get('admin/vendor/edit/{id}', [VendorController::class, 'vendor_edit']);
 Route::post('admin/vendor/edit/{id}', [VendorController::class, 'vendor_update']); 
 Route::get('admin/vendor/delete/{id}',  [VendorController::class, 'vendor_delete']);
 Route::get('admin/vendor/download-pdf', [VendorController::class, 'download_vendor_pdf']);
-
+Route::post('admin/vendor/select/{id}', [VendorController::class, 'select_vendor']);
 
 Route::get('admin/user/list', [UserController::class, 'user_list']);
 Route::get('admin/user/add', [UserController::class, 'user_add']);
@@ -130,6 +131,11 @@ Route::get('admin/user/download-pdf', [UserController::class, 'user_downloadPDF'
 Route::put('admin/payments/update/{id}', [AdminPaymentController::class, 'update'])->name('admin.payments.update');
 Route::patch('/admin/payments/{payment}/update-note', [AdminPaymentController::class, 'updateNote'])
      ->name('admin.payments.update-note');
+
+       Route::get('admin/service_requests/index', [AdminServiceRequestController::class, 'index'])->name('admin.service_requests');
+    Route::get('admin/service_requests/view/{id}', [AdminServiceRequestController::class, 'show'])->name('admin.service_requests.view');
+    Route::post('admin/service_requests/update_status/{id}', [AdminServiceRequestController::class, 'updateStatus'])->name('admin.service_requests.update_status');
+    
 
 Route::get('admin/profile/list', [ProfileController::class, 'profile_list']);
 Route::get('admin/profile/add', [ProfileController::class, 'profile_add']);
@@ -145,14 +151,14 @@ Route::get('admin/profile/delete/{id}', [ProfileController::class, 'profile_dele
     Route::get('user/dashboard', [DashboardController::class, 'user_dashboard']);
 
 
-   Route::get('user/book_service/add', [BookServiceController::class, 'book_service_add']);
-   Route::post('user/book_service/sub_category', [BookServiceController::class, 'sub_category_dropdown']);
-   Route::post('user/book_service/add', [BookServiceController::class, 'book_service_store']);
-   Route::get('user/service_history/list',  [BookServiceController::class, 'service_history_list']);
-   Route::get('user//edit{id}', [BookServiceController::class, 'service_history_edit']);
-   Route::get('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_edit']);
-   Route::post('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_update']);
-   Route::get('user/book_service/delete/{id}', [BookServiceController::class, 'book_service_delete']);
+  Route::get('user/book_service/add', [BookServiceController::class, 'book_service_add']);
+    Route::post('user/book_service/sub_category', [BookServiceController::class, 'sub_category_dropdown']);
+    Route::get('user/service_history/list', [BookServiceController::class, 'service_history_list']);
+    Route::get('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_edit']);
+    Route::post('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_update']);
+    Route::get('user/book_service/delete/{id}', [BookServiceController::class, 'book_service_delete']);
+    Route::post('user/book_service/add', [BookServiceController::class, 'book_service_store']);
+    Route::post('user/book_service/store', [BookServiceController::class, 'book_service_store'])->name('user.book_service.store');
    
 
   Route::get('user/maintenance_agreement/list', [MaintenanceAgreementController::class, 'maintenance_agreement_list']);

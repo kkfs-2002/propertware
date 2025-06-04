@@ -89,9 +89,7 @@
                     <div class="card border-0 rounded-3 shadow-sm h-100 overflow-hidden bg-warning bg-opacity-10">
                         <div class="card-body p-3">
                             <div class="d-flex align-items-center">
-                                <div class="bg-warning bg-opacity-15 p-3 rounded-3 me-3">
-                                    <i class="ti ti-currency-rupee text-white fs-4"></i>
-                                </div>
+                                
                                 <div>
                                     <h6 class="text-muted mb-1 fs-7">Total Payments</h6>
                                     <h4 class="mb-0 fw-bold">2.15M</h4>

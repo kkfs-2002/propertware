@@ -2,9 +2,9 @@
 <aside class="left-sidebar">
   <!-- Sidebar scroll-->
   <div>
-    <div class="brand-logo d-flex align-items-center justify-content-between">
+    <div class="brand-logo d-flex align-items-center justify-content-between py-2">
       <a href="./index.html" class="text-nowrap logo-img">
-        <img src="{{ asset('images/logos/logo2_.png') }}" alt="Company Logo" width="200">
+        <img src="{{ asset('images/logos/logo2.png') }}" alt="Company Logo" width="200">
       </a>
       <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
         <i class="ti ti-x fs-6"></i>
@@ -13,180 +13,217 @@
     <!-- Sidebar navigation-->
     <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
       <style>
+        :root {
+          --sidebar-bg: #1e1e2d;
+          --sidebar-active-bg: rgba(113, 106, 202, 0.2);
+          --sidebar-hover-bg: rgba(135, 127, 247, 0.1);
+          --sidebar-text: #a2a3b7;
+          --sidebar-active-text: #aabefe;
+          --sidebar-hover-text: #cdb4ee;
+          --sidebar-icon: #5d5d6a;
+          --sidebar-active-icon: #7d7dff;
+          --sidebar-divider: rgba(255,255,255,0.05);
+          --sidebar-transition: all 0.2s ease;
+        }
+        
+        .left-sidebar {
+          background: var(--sidebar-bg);
+          width: 240px;
+        }
+        
         .sidebar-item .sidebar-link {
-          transition: all 0.3s ease !important;
-          border-radius: 8px !important;
+          transition: var(--sidebar-transition) !important;
+          border-radius: 6px !important;
           margin: 2px 8px !important;
+          padding: 8px 12px !important;
+          color: var(--sidebar-text);
+          font-size: 0.875rem;
         }
+        
+        .sidebar-item .sidebar-link i {
+          color: var(--sidebar-icon);
+          font-size: 1rem;
+          margin-right: 10px;
+          width: 20px;
+          text-align: center;
+        }
+        
         .sidebar-item .sidebar-link:hover {
-          background-color: rgba(135, 127, 247, 0.1) !important;
+          background-color: var(--sidebar-hover-bg) !important;
         }
-        .sidebar-item .sidebar-link.active {
-          background-color: rgba(113, 106, 202, 0.2) !important;
-          font-weight: 500 !important;
-        }
-        .sidebar-item .sidebar-link.active .hide-menu {
-          color:rgb(170, 190, 254) !important;
-          font-weight: 800 !important;
-        }
+        
         .sidebar-item .sidebar-link:hover .hide-menu,
         .sidebar-item .sidebar-link:hover i {
-          color:rgb(205, 180, 238) !important;
+          color: var(--sidebar-hover-text) !important;
         }
-        #sidebarnav .sidebar-item .sidebar-link.collapsed:not(.active):hover {
-          background-color: rgba(147, 141, 229, 0.1) !important;
+        
+        .sidebar-item .sidebar-link.active {
+          background-color: var(--sidebar-active-bg) !important;
         }
-        .collapse .sidebar-item .sidebar-link {
-          padding-left: 15px !important;
+        
+        .sidebar-item .sidebar-link.active .hide-menu {
+          color: var(--sidebar-active-text) !important;
+          font-weight: 500 !important;
+        }
+        
+        .sidebar-item .sidebar-link.active i {
+          color: var(--sidebar-active-icon);
+        }
+        
+        .nav-small-cap {
+          color: var(--sidebar-text);
+          opacity: 0.6;
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          padding: 8px 16px !important;
+          margin-top: 4px;
+        }
+        
+        .sidebar-link.has-arrow:after {
+          border-color: var(--sidebar-text);
+          right: 1.25rem;
+          transition: var(--sidebar-transition);
+          width: 5px;
+          height: 5px;
+          margin-top: -4px;
+        }
+        
+        #categoryMenu .sidebar-item .sidebar-link {
+          padding: 6px 12px 6px 32px !important;
+        }
+        
+        #categoryMenu .sidebar-item .sidebar-link i.ti-circle {
+          font-size: 0.5rem;
+          margin-right: 12px;
+        }
+        
+        .brand-logo {
+          padding-left: 12px;
+          padding-right: 12px;
+          min-height: 64px;
+          margin-top:30px;
+        }
+        
+        .logo-img img {
+          transition: all 0.3s ease;
+        }
+        
+        .sidebar-nav {
+          padding-top: 8px;
         }
       </style>
       <ul id="sidebarnav">
         <li class="nav-small-cap">
-          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">Menu</span>
         </li>
+        
         <li class="sidebar-item">
-          <a class="sidebar-link @if(Request::segment(2) == 'dashboard') active @else collapsed @endif" href="{{ url('admin/dashboard') }}" aria-expanded="false">
-            <i class="ti ti-atom"></i>
+          <a class="sidebar-link @if(Request::segment(2) == 'dashboard') active @endif" href="{{ url('admin/dashboard') }}">
+            <i class="ti ti-layout-dashboard"></i>
             <span class="hide-menu">Dashboard</span>
           </a>
         </li>
         
         <li class="sidebar-item">
-          <a class="sidebar-link  @if(Request::segment(2) == 'vendor') active @else collapsed @endif" href="{{ url('admin/vendor/list') }}" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-              <span class="d-flex">
-                <i class="ti ti-list"></i>
-              </span>
-              <span class="hide-menu">Vendor List</span>
-            </div>
+          <a class="sidebar-link @if(Request::segment(2) == 'vendor') active @endif" href="{{ url('admin/vendor/list') }}">
+            <i class="ti ti-users"></i>
+            <span class="hide-menu">Vendor List</span>
           </a>
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link @if(Request::segment(2) == 'user')  @else collapsed @endif"   href="{{ url('admin/user/list') }}" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-              <span class="d-flex">
-                <i class="ti ti-users"></i>
-              </span>
-              <span class="hide-menu">User List</span>
-            </div>
+          <a class="sidebar-link @if(Request::segment(2) == 'user') active @endif" href="{{ url('admin/user/list') }}">
+            <i class="ti ti-user"></i>
+            <span class="hide-menu">User List</span>
           </a>
         </li>
         
+  <li class="sidebar-item">
+    <a class="sidebar-link @if(Request::segment(2) == 'user') active @endif"  href="{{ url('admin/service_requests/index') }}">
+      <i class="ti ti-list"></i>
+        <span>Service Requests</span>
+    </a>
+</li>
+
         <li class="sidebar-item">
-          <a class="sidebar-link @if(Request::segment(2) == 'service_type') active @endif" href="{{ url('admin/service_type/list') }}" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-              <span class="d-flex">
-                <i class="ti ti-briefcase"></i>
-              </span>
-              <span class="hide-menu">Service Type</span>
-            </div>
+          <a class="sidebar-link @if(Request::segment(2) == 'service_type') active @endif" href="{{ url('admin/service_type/list') }}">
+            <i class="ti ti-settings"></i>
+            <span class="hide-menu">Service Type</span>
           </a>
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link  @if(Request::segment(2) == 'Vendor_type') active @endif"  href="{{ url('admin/Vendor_type/list') }}" aria-expanded="false">
-            <div class="d-flex align-items-center gap-2">
-              <span class="d-flex">
-                <i class="ti ti-building-store"></i>
-              </span>
-              <span class="hide-menu">Vendor Type</span>
-            </div>
+          <a class="sidebar-link @if(Request::segment(2) == 'Vendor_type') active @endif" href="{{ url('admin/Vendor_type/list') }}">
+            <i class="ti ti-building-store"></i>
+            <span class="hide-menu">Vendor Type</span>
           </a>
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link has-arrow collapsed @if(Request::segment(2) == 'category' || Request::segment(2) == 'sub_category') active @endif" href="#categoryMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="categoryMenu">
-            <div class="d-flex align-items-center gap-2">
-              <span class="d-flex">
-                <i class="ti ti-tag"></i>
-              </span>
-              <span class="hide-menu">Categories</span>
-            </div>
+          <a class="sidebar-link has-arrow @if(Request::segment(2) == 'category' || Request::segment(2) == 'sub_category') active @endif" 
+             href="#categoryMenu" data-bs-toggle="collapse" aria-expanded="@if(Request::segment(2) == 'category' || Request::segment(2) == 'sub_category') true @else false @endif">
+            <i class="ti ti-category"></i>
+            <span class="hide-menu">Categories</span>
           </a>
-
-          <ul class="collapse" id="categoryMenu">
+          <ul class="collapse @if(Request::segment(2) == 'category' || Request::segment(2) == 'sub_category') show @endif" id="categoryMenu">
             <li class="sidebar-item">
-              <a href="{{ url('admin/category/list') }}" class="sidebar-link @if(Request::segment(2) == 'category') active @else collapsed @endif">
-                <div class="d-flex align-items-center gap-2 ps-4">
-                  <i class="ti ti-circle"></i>
-                  <span class="hide-menu">Category List</span>
-                </div>
+              <a href="{{ url('admin/category/list') }}" class="sidebar-link @if(Request::segment(2) == 'category') active @endif">
+                <i class="ti ti-circle"></i>
+                <span class="hide-menu">Categories</span>
               </a>
             </li>
-
             <li class="sidebar-item">
-              <a href="{{ url('admin/sub_category/list') }}" class="sidebar-link @if(Request::segment(2) == 'sub_category') active @else collapsed @endif">
-                <div class="d-flex align-items-center gap-2 ps-4">
-                  <i class="ti ti-circle"></i>
-                  <span class="hide-menu">Subcategory List</span>
-                </div>
+              <a href="{{ url('admin/sub_category/list') }}" class="sidebar-link @if(Request::segment(2) == 'sub_category') active @endif">
+                <i class="ti ti-circle"></i>
+                <span class="hide-menu">Subcategories</span>
               </a>
             </li>
           </ul>
         </li>
         
         <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between @if(Request::segment(2) == 'amc') active @else collapsed @endif" href="{{ url('admin/amc/list') }}">
-            <div class="d-flex align-items-center gap-2">
-              <span class="d-flex">
-                <i class="ti ti-clipboard-list"></i>
-              </span>
-              <span class="hide-menu">AMC List</span>
-            </div>
-          </a>
-        </li>
-
-           <li class="sidebar-item">
-  <a class="sidebar-link justify-content-between @if(Request::segment(2) == 'payments') active @else collapsed @endif" href="{{ url('admin/payments/list') }}">
-    <div class="d-flex align-items-center gap-2">
-      <span class="d-flex">
-        <i class="ti ti-credit-card"></i> 
-      </span>
-      <span class="hide-menu">User Payment show</span>
-    </div>
-  </a>
-</li>
-
-
-
-        <li class="sidebar-item">
-          <a class="sidebar-link @if(Request::segment(2) == 'profile') active @else collapsed @endif" href="{{ url('admin/profile/list') }}">
-            <div class="d-flex align-items-center gap-2">
-              <span class="d-flex">
-                <i class="fas fa-user-cog"></i>
-              </span>
-              <span class="hide-menu">Profile Update</span>
-            </div>
+          <a class="sidebar-link @if(Request::segment(2) == 'amc') active @endif" href="{{ url('admin/amc/list') }}">
+            <i class="ti ti-checklist"></i>
+            <span class="hide-menu">AMC List</span>
           </a>
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link justify-content-between" href="{{ url('logout') }}">
-            <div class="d-flex align-items-center gap-2">
-              <span class="d-flex">
-                <i class="ti ti-logout"></i>
-              </span>
-              <span class="hide-menu">Logout</span>
-            </div>
+          <a class="sidebar-link @if(Request::segment(2) == 'payments') active @endif" href="{{ url('admin/payments/list') }}">
+            <i class="ti ti-credit-card"></i>
+            <span class="hide-menu">Payments</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a class="sidebar-link @if(Request::segment(2) == 'profile') active @endif" href="{{ url('admin/profile/list') }}">
+            <i class="ti ti-user-circle"></i>
+            <span class="hide-menu">Profile</span>
+          </a>
+        </li>
+        
+        <li class="nav-small-cap">
+          <span class="hide-menu">Account</span>
+        </li>
+        
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{{ url('logout') }}">
+            <i class="ti ti-logout"></i>
+            <span class="hide-menu">Logout</span>
           </a>
         </li>
       </ul>
 
       <script>
         document.addEventListener('DOMContentLoaded', function() {
-          // Keep submenu open when a subcategory is active
-          const categoryMenu = document.getElementById('categoryMenu');
+          // Handle active states for category menu
           const activeSubItems = document.querySelectorAll('#categoryMenu .sidebar-link.active');
-          
           if (activeSubItems.length > 0) {
-            // Show the collapse menu if any subitem is active
-            const bsCollapse = new bootstrap.Collapse(categoryMenu, {
-              toggle: false
-            });
+            const categoryMenu = document.getElementById('categoryMenu');
+            const bsCollapse = new bootstrap.Collapse(categoryMenu, { toggle: false });
             bsCollapse.show();
             
-            // Add 'active' class to parent item
             const parentItem = document.querySelector('.sidebar-link[href="#categoryMenu"]');
             if (parentItem) {
               parentItem.classList.add('active');
@@ -194,15 +231,6 @@
               parentItem.classList.remove('collapsed');
             }
           }
-
-          // Prevent collapse when clicking on active submenu items
-          document.querySelectorAll('#categoryMenu .sidebar-link').forEach(item => {
-            item.addEventListener('click', function(e) {
-              if (this.classList.contains('active')) {
-                e.stopPropagation();
-              }
-            });
-          });
         });
       </script>
     </nav>

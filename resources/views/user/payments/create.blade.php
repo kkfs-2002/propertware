@@ -71,18 +71,7 @@
                                     </label>
                                 </div>
                                 
-                                <div class="col-md-4">
-                                    <input type="radio" class="btn-check" name="payment_method" 
-                                           id="paypal" value="paypal" autocomplete="off">
-                                    <label class="card card-hover h-100 border-2" for="paypal">
-                                        <div class="card-body text-center p-3">
-                                            <div class="mb-2">
-                                                <i class="bi bi-paypal fs-2" style="color: #003087;"></i>
-                                            </div>
-                                            <h6 class="mb-0">PayPal</h6>
-                                        </div>
-                                    </label>
-                                </div>
+                               
                                 
                                 <div class="col-md-4">
                                     <input type="radio" class="btn-check" name="payment_method" 

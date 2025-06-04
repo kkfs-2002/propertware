@@ -90,7 +90,7 @@
 
                                 {{-- Category --}}
                                 <div class="col-md-6">
-                                    <label class="form-label">Category <span class="text-danger">*</span></label>
+                                    <label class="form-label">Category <span class="text-danger"></span></label>
                                     <select name="category_id" class="{{ $inputClass }}" required>
                                         <option value=""> Select Category </option>
                                         @foreach($getCategory as $value2)

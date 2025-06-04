@@ -131,6 +131,14 @@
                                                 <a onclick="return confirm('Are you sure you want to delete?')" href="{{ url('admin/vendor/delete/'.$value->id) }}" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash" aria-hidden="true" title="Delete"></i>
                                                 </a>
+
+                                                <!-- New Select button -->
+    <form action="{{ url('admin/vendor/select/'.$value->id) }}" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" class="btn btn-info btn-sm" onclick="return confirm('Select this vendor?')">
+            <i class="fa fa-check" aria-hidden="true"></i> Select
+        </button>
+    </form>
                                             </td>
                                         </tr>
                                     @empty

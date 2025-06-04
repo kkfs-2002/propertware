@@ -16237,3 +16237,19 @@ ul {
 }
 
 /*# sourceMappingURL=styles.min.css.map */
+
+
+.scroll-sidebar {
+  height: calc(100vh - 94px);
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scroll-sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.simplebar-track.simplebar-vertical {
+  display: none !important;
+}

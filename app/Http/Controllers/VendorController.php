@@ -11,6 +11,7 @@ use Mail;
 use Hash;
 use App\Mail\VendorRegisterMail;
 use App\Http\Requests\ResetPassword;
+use App\Mail\VendorSelectedMail;
 
 class VendorController extends Controller
 {
@@ -179,6 +180,18 @@ public function vendor_update($id, Request $request)
     $vendor->save();
 
     return redirect('admin/vendor/list')->with('success', 'Record successfully updated.');
+}
+
+public function select_vendor($id)
+{
+    $vendor = User::findOrFail($id);
+
+    // Send email
+    Mail::to($vendor->email)->send(new VendorSelectedMail($vendor));
+
+    // Optionally update a status or log the selection
+
+    return back()->with('success', 'Vendor selected and notification email sent!');
 }
 
 public function vendor_delete($id, Request $request)
