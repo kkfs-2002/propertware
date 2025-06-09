@@ -135,7 +135,7 @@ Route::patch('/admin/payments/{payment}/update-note', [AdminPaymentController::c
        Route::get('admin/service_requests/index', [AdminServiceRequestController::class, 'index'])->name('admin.service_requests');
     Route::get('admin/service_requests/view/{id}', [AdminServiceRequestController::class, 'show'])->name('admin.service_requests.view');
     Route::post('admin/service_requests/update_status/{id}', [AdminServiceRequestController::class, 'updateStatus'])->name('admin.service_requests.update_status');
-    
+    Route::get('admin/vendor/select/{id}', [AdminServiceRequestController::class, 'select_vendor']);
 
 Route::get('admin/profile/list', [ProfileController::class, 'profile_list']);
 Route::get('admin/profile/add', [ProfileController::class, 'profile_add']);
@@ -153,14 +153,19 @@ Route::get('admin/profile/delete/{id}', [ProfileController::class, 'profile_dele
 
   Route::get('user/book_service/add', [BookServiceController::class, 'book_service_add']);
     Route::post('user/book_service/sub_category', [BookServiceController::class, 'sub_category_dropdown']);
-    Route::get('user/service_history/list', [BookServiceController::class, 'service_history_list']);
+  Route::get('user/service_history/list', [BookServiceController::class, 'service_history_list']);
     Route::get('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_edit']);
     Route::post('user/book_service/edit/{id}', [BookServiceController::class, 'book_service_update']);
     Route::get('user/book_service/delete/{id}', [BookServiceController::class, 'book_service_delete']);
     Route::post('user/book_service/add', [BookServiceController::class, 'book_service_store']);
     Route::post('user/book_service/store', [BookServiceController::class, 'book_service_store'])->name('user.book_service.store');
-   
-
+ Route::post('/user/book_service/update_status', [BookServiceController::class, 'updateStatus'])
+    ->name('user.book_service.update_status')
+    ->middleware('user');
+Route::post('/user/notifications/mark-read', [BookServiceController::class, 'markNotificationAsRead'])
+    ->name('user.notifications.mark_read')
+    ->middleware('auth');
+    
   Route::get('user/maintenance_agreement/list', [MaintenanceAgreementController::class, 'maintenance_agreement_list']);
   Route::get('user/maintenance_agreement/add', [MaintenanceAgreementController::class, 'maintenance_agreement_add']);
   Route::post('user/maintenance_agreement/store', [MaintenanceAgreementController::class, 'maintenance_agreement_store']);
@@ -173,10 +178,14 @@ Route::post('user/comments/store', [CommentController::class, 'comments_store'])
 Route::delete('user/comments/{comment}', [CommentController::class, 'comments_delete'])->name('comments.delete');
 
         Route::get('user/payments/list', [PaymentController::class, 'list'])->name('user.payments.list');
-        Route::get('user/payments/create', [PaymentController::class, 'create'])->name('user.payments.create');
+        Route::get('/user/payments/create', [PaymentController::class, 'create'])->name('user.payments.create');
         Route::post('user/payments/store', [PaymentController::class, 'store'])->name('user.payments.store');
         Route::get('user/payments/show/{payment}', [PaymentController::class, 'show'])->name('user.payments.show');
 
+        Route::get('user/notifications', [UserNotificationController::class, 'index'])->name('user.notifications.index');
+Route::post('user/notifications/mark-as-read/{id}', [UserNotificationController::class, 'markAsRead'])->name('user.notifications.markAsRead');
+Route::delete('user/notifications/{id}', [UserNotificationController::class, 'destroy'])->name('user.notifications.destroy');
+Route::post('user/notifications/mark-all-as-read', [UserNotificationController::class, 'markAllAsRead'])->name('user.notifications.markAllAsRead');
 
 Route::get('user/_profile/list', [_ProfileController::class, '_profile_list']);
 Route::get('user/_profile/add', [_ProfileController::class, '_profile_add']);
@@ -240,8 +249,12 @@ Route::post('vendor/vprofile/edit/{id}', [VendorProfileController::class, 'vprof
 Route::get('vendor/vprofile/delete/{id}', [VendorProfileController::class, 'vprofile_delete']);
 
    
-   
-
+Route::post('user/notification/read/{id}', function($id) {
+    $notification = \App\Models\UserNotification::where('user_id', Auth::id())->findOrFail($id);
+    $notification->is_read = true;
+    $notification->save();
+    return back();
+});
 });
 
 Route::get('logout', [AuthController::class, 'logout']);

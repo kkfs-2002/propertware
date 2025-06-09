@@ -1,4 +1,3 @@
-<!-- list.blade.php -->
 @extends('admin.layouts.app')
 @section('content')
 
@@ -35,10 +34,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach($requests as $request)
-                                    <tr>
+                                    <tr class="
+                                        @if($request->status == \App\Models\BookServiceModel::STATUS_APPROVED) table-success
+                                        @elseif($request->status == \App\Models\BookServiceModel::STATUS_REJECTED) table-danger
+                                        @endif
+                                    ">
                                         <td>{{ $request->id }}</td>
                                         <td>{{ $request->user->name }}</td>
-                                        <td>{{ $request->get_service_type_name->name ?? 'N/A' }}</td>
+                                        <td>{{ $request->serviceType->name ?? 'N/A' }}</td>
                                         <td>{{ Str::limit($request->description, 50) }}</td>
                                         <td>
                                             <span class="badge bg-{{ 
@@ -53,13 +56,17 @@
                                             <a href="{{ url('admin/service_requests/view', $request->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="bi bi-eye"></i> View
                                             </a>
+                                            @if($request->status == \App\Models\BookServiceModel::STATUS_APPROVED)
+                                                <a href="{{ url('admin/vendor/select/'.$request->id) }}" class="btn btn-success btn-sm">
+                                                    Assign Vendor
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-                        
                         <div class="mt-3">
                             {{ $requests->links() }}
                         </div>
@@ -69,5 +76,4 @@
         </div>
     </section>
 </div>
-
 @endsection

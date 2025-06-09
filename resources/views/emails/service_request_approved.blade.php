@@ -14,8 +14,8 @@ Your service request (ID: {{ $serviceRequest->id }}) has been **approved** by ou
 
 Thank you for using our services.
 
-@component('mail::button', ['url' => url('/user/service_history/list')])
-View Your Requests
+@component('mail::button', ['url' => url('/user/service_history/list?decision='.$serviceRequest->id)])
+View Your Request
 @endcomponent
 
 Thanks,<br>

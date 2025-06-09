@@ -7,7 +7,7 @@
             <!-- Summary Cards Row -->
             <div class="row g-4 mb-4">
                 <!-- Upcoming Assignments -->
-                <div class="col-sm-6 col-xl-3">
+            <div class="col-sm-6 col-xl-3">
                     <div class="card border-0 rounded-3 shadow-sm h-100 overflow-hidden bg-primary bg-opacity-10">
                         <div class="card-body p-3">
                             <div class="d-flex align-items-center">
@@ -84,7 +84,7 @@
                     </div>
                 </div>
 
-                <!-- Customer Ratings -->
+    <!-- Customer Ratings -->
                 <div class="col-sm-6 col-xl-3">
                     <div class="card border-0 rounded-3 shadow-sm h-100 overflow-hidden bg-warning bg-opacity-10">
                         <div class="card-body p-3">
@@ -280,13 +280,13 @@
                                 <h5 class="fw-bold mb-0 text-success">Recent Payments</h5>
                                 <button class="btn btn-sm btn-success">View All</button>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="bg-success bg-opacity-10 p-2 rounded-3 me-3">
-                                    <i class="ti ti-currency-rupee text-success fs-4"></i>
-                                </div>
-                                <div>
+                </div>
+                <div class="card-body">
+             <div class="d-flex align-items-center mb-3">
+                <div class="bg-success bg-opacity-10 p-2 rounded-3 me-3">
+                                    
+              </div>
+                <div>
                                     <h6 class="mb-1 fw-bold">Rs 8,500</h6>
                                     <p class="text-muted fs-7 mb-0">Beverly Hills - AC Repair</p>
                                     <small class="text-muted">Completed on Dec 2, 2024</small>
@@ -294,7 +294,7 @@
                             </div>
                             <div class="d-flex align-items-center mb-3">
                                 <div class="bg-primary bg-opacity-10 p-2 rounded-3 me-3">
-                                    <i class="ti ti-currency-rupee text-primary fs-4"></i>
+                                    
                                 </div>
                                 <div>
                                     <h6 class="mb-1 fw-bold">Rs 12,000</h6>
@@ -304,7 +304,7 @@
                             </div>
                             <div class="d-flex align-items-center mb-3">
                                 <div class="bg-warning bg-opacity-10 p-2 rounded-3 me-3">
-                                    <i class="ti ti-currency-rupee text-warning fs-4"></i>
+                                  
                                 </div>
                                 <div>
                                     <h6 class="mb-1 fw-bold">Rs 6,750</h6>
@@ -314,7 +314,7 @@
                             </div>
                             <div class="d-flex align-items-center">
                                 <div class="bg-info bg-opacity-10 p-2 rounded-3 me-3">
-                                    <i class="ti ti-currency-rupee text-info fs-4"></i>
+                                    
                                 </div>
                                 <div>
                                     <h6 class="mb-1 fw-bold">Rs 15,500</h6>

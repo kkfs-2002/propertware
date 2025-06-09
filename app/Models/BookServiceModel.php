@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookServiceModel extends Model
 {
-    protected $table = 'book_service';
+      protected $table = 'book_service';
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
-     protected $casts = [
-    'created_at' => 'datetime',
-    'updated_at' => 'datetime',
-     ];
     protected $fillable = [
         'user_id',
         'service_type_id',
@@ -28,38 +28,26 @@ class BookServiceModel extends Model
         'estimated_response_time',
         'approved_at'
     ];
-        public static function getBookService($user_id, $request)
-    {
-        $query = self::query()
-            ->with(['serviceType', 'category', 'subCategory', 'amcFreeService', 'images'])
-            ->where('user_id', $user_id)
-            ->orderBy('id', 'desc');
 
-        // Filtering example
-        if ($request->has('status') && $request->status !== null && $request->status !== '') {
-            $query->where('status', $request->status);
-        }
+    // Status constants (0: approved, 1: rejected, 2: pending [optional])
+ // In BookServiceModel.php
+const STATUS_PENDING = 0;
+const STATUS_APPROVED = 1;
+const STATUS_REJECTED = 2;
+const STATUS_ASSIGNED = 3;
+const STATUS_USERAPPROVED = 4;
 
-        return $query->paginate(20);
-    }
-    // Add these status constants
-    const STATUS_PENDING = 0;
-    const STATUS_APPROVED = 1;
-    const STATUS_REJECTED = 2;
-
-    public function getStatusLabelAttribute()
+public function getStatusLabelAttribute()
 {
     switch ($this->status) {
-        case self::STATUS_APPROVED:
-            return 'APPROVED';
-        case self::STATUS_REJECTED:
-            return 'REJECTED';
-        default:
-            return 'pending';
+        case self::STATUS_APPROVED: return 'APPROVED';
+        case self::STATUS_REJECTED: return 'REJECTED';
+        case self::STATUS_USERAPPROVED: return 'USER APPROVED';
+        case self::STATUS_ASSIGNED: return 'ASSIGNED';
+        default: return 'PENDING';
     }
-}
 
-    // Relationships
+}   // Relationships
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -83,5 +71,19 @@ class BookServiceModel extends Model
     public function images()
     {
         return $this->hasMany(BookServiceImageModel::class, 'book_service_id');
+    }
+
+    public static function getBookService($user_id, $request)
+    {
+        $query = self::query()
+            ->with(['serviceType', 'category', 'subCategory', 'amcFreeService', 'images'])
+            ->where('user_id', $user_id)
+            ->orderBy('id', 'desc');
+
+        if ($request->has('status') && $request->status !== null && $request->status !== '') {
+            $query->where('status', $request->status);
+        }
+
+        return $query->paginate(20);
     }
 }

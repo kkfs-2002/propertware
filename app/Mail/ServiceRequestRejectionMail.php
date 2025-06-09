@@ -14,13 +14,6 @@ class ServiceRequestRejectionMail extends Mailable
     public $serviceRequest;
     public $reason;
 
-    /**
-     * Create a new message instance.
-     *
-     * @param $user
-     * @param $serviceRequest
-     * @param $reason
-     */
     public function __construct($user, $serviceRequest, $reason = null)
     {
         $this->user = $user;

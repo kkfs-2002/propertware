@@ -12,6 +12,10 @@ We regret to inform you that your service request (ID: {{ $serviceRequest->id }}
 
 If you have any questions, please contact support.
 
+@component('mail::button', ['url' => url('/user/service_history/list?decision='.$serviceRequest->id)])
+View Your Request
+@endcomponent
+
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
