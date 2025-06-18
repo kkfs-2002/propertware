@@ -64,6 +64,11 @@
                                         <td colspan="7" class="text-center">No payments found</td>
                                     </tr>
                                     @endforelse
+
+                                    <!-- In your table columns -->
+<td>{{ $payment->bank_name ?? 'N/A' }}</td>
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -77,7 +82,41 @@
         </div>
     </section>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set default payment date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('payment_date').value = today;
+    
+    // Toggle required fields based on payment method
+    const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
+    
+    paymentMethods.forEach(method => {
+        method.addEventListener('change', function() {
+            if (this.value === 'bank_transfer') {
+                document.getElementById('bank_name').required = true;
+            } else {
+                document.getElementById('bank_name').required = false;
+            }
+        });
+    });
+    
+    // Your existing JavaScript code...
+    // Format card number
+    const cardNumber = document.getElementById('card_number');
+    if (cardNumber) {
+        cardNumber.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '');
+            if (value.length > 0) {
+                value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+            }
+            e.target.value = value;
+        });
+    }
 
+    
+});
+</script>
 @endsection
 
 @section('script')

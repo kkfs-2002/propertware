@@ -38,6 +38,20 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mb-3">
+    
+    <div class="col-md-6">
+        <label class="form-label fw-semibold">Payment Date:</label>
+        <p class="form-control-static">{{ $payment->payment_date->format('M d, Y') }}</p>
+    </div>
+</div>
+
+<div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Bank Name:</label>
+                            <p class="form-control-static">{{ $payment->b_name ?? 'N/A' }}</p>
+                        </div>
                     
                     @if($payment->description)
                     <div class="border-top pt-3 mt-3">

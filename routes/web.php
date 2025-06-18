@@ -136,7 +136,10 @@ Route::patch('/admin/payments/{payment}/update-note', [AdminPaymentController::c
     Route::get('admin/service_requests/view/{id}', [AdminServiceRequestController::class, 'show'])->name('admin.service_requests.view');
     Route::post('admin/service_requests/update_status/{id}', [AdminServiceRequestController::class, 'updateStatus'])->name('admin.service_requests.update_status');
     Route::get('admin/vendor/select/{id}', [AdminServiceRequestController::class, 'select_vendor']);
+   Route::post('/notifications/mark_read', [AdminServiceRequestController::class, 'markNotificationAsRead'])
+    ->name('admin.notifications.mark_read');
 
+    
 Route::get('admin/profile/list', [ProfileController::class, 'profile_list']);
 Route::get('admin/profile/add', [ProfileController::class, 'profile_add']);
 Route::post('admin/profile/add', [ProfileController::class, 'profile_store']);

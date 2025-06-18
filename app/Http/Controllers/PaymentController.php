@@ -27,17 +27,27 @@ class PaymentController extends Controller
         $validated = $request->validate([
             'amount' => 'required|numeric|min:1',
             'payment_method' => 'required|string|in:credit_card,paypal,bank_transfer',
+            'payment_date' => 'required|date',
+            'b_name' => 'required|string|max:100',
+            'card_holder' => 'required_if:payment_method,credit_card|nullable|string|max:100',
             'description' => 'nullable|string|max:255'
         ]);
 
-        $payment = Payment::create([
+        $paymentData = [
             'user_id' => Auth::id(),
             'amount' => $validated['amount'],
             'payment_method' => $validated['payment_method'],
+            'payment_date' => $validated['payment_date'],
+            'b_name' => $validated['b_name'],
             'status' => 'pending',
-            'description' => $validated['description'] ?? 'Payment for services'
-        ]);
+            'description' => $validated['description'] ?? 'Payment for services',
+        ];
 
+        if ($validated['payment_method'] === 'credit_card') {
+            $paymentData['card_holder'] = $validated['card_holder'];
+        }
+
+        $payment = Payment::create($paymentData);
         $this->processPayment($payment);
 
         return redirect()->route('user.payments.list')->with('success', 'Payment initiated successfully!');

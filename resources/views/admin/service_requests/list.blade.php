@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('content')
 
+@section('content')
 <div class="body-wrapper">
     <div class="pagetitle">
         <h1 class="ms-4 mt-3">Service Requests</h1>
@@ -11,6 +11,26 @@
             </ol>
         </nav>
     </div>
+
+    {{-- ✅ Admin Notifications --}}
+  @isset($adminNotifications)
+    @foreach($adminNotifications as $notification)
+        <div class="alert alert-{{ $notification->type }} alert-dismissible fade show mb-3" id="notification-{{ $notification->id }}">
+            <strong>{{ $notification->title }}</strong>
+            <p class="mb-2">{{ $notification->message }}</p>
+            <button type="button" class="btn-close" onclick="markNotificationAsRead({{ $notification->id }})" data-bs-dismiss="alert"></button>
+            @if(str_contains($notification->message, 'assign a vendor'))
+                <div class="mt-2">
+                   
+                    <a href="{{ url('admin/vendor/list') }}" 
+                       class="btn btn-sm btn-info ms-2">
+                        <i class="bi bi-list-ul me-1"></i> View Vendors
+                    </a>
+                </div>
+            @endif
+        </div>
+    @endforeach
+@endisset
 
     <section class="section">
         <div class="row">
@@ -28,7 +48,6 @@
                                         <th>Service Type</th>
                                         <th>Description</th>
                                         <th>Status</th>
-                                        <th>Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -46,21 +65,19 @@
                                         <td>
                                             <span class="badge bg-{{ 
                                                 $request->status == \App\Models\BookServiceModel::STATUS_APPROVED ? 'success' : 
-                                                ($request->status == \App\Models\BookServiceModel::STATUS_REJECTED ? 'danger' : 'warning') 
+                                                ($request->status == \App\Models\BookServiceModel::STATUS_REJECTED ? 'danger' : 
+                                                ($request->status == \App\Models\BookServiceModel::STATUS_USERAPPROVED ? 'info' : 'warning')) 
                                             }}">
                                                 {{ $request->status_label }}
                                             </span>
+                                            @if($request->status == \App\Models\BookServiceModel::STATUS_USERAPPROVED)
+                                                <span class="badge bg-primary">Waiting for Admin</span>
+                                            @endif
                                         </td>
-                                        <td>{{ $request->created_at->format('d M Y') }}</td>
                                         <td>
                                             <a href="{{ url('admin/service_requests/view', $request->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="bi bi-eye"></i> View
                                             </a>
-                                            @if($request->status == \App\Models\BookServiceModel::STATUS_APPROVED)
-                                                <a href="{{ url('admin/vendor/select/'.$request->id) }}" class="btn btn-success btn-sm">
-                                                    Assign Vendor
-                                                </a>
-                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
@@ -76,4 +93,25 @@
         </div>
     </section>
 </div>
+
+@push('scripts')
+<script>
+function markNotificationAsRead(notificationId) {
+    fetch('{{ route("admin.notifications.mark_read") }}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ id: notificationId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            document.getElementById('notification-' + notificationId).remove();
+        }
+    });
+}
+</script>
+@endpush
 @endsection

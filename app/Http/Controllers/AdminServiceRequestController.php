@@ -22,15 +22,23 @@ class AdminServiceRequestController extends Controller
 
         // ... other code ...
     }
-    public function index()
-    {
-        $requests = BookServiceModel::with(['user', 'serviceType', 'category', 'subCategory'])
-            ->orderBy('id', 'desc')
-            ->paginate(20);
+  public function index()
+{
+    $requests = BookServiceModel::with(['user', 'serviceType', 'category', 'subCategory'])
+        ->orderBy('id', 'desc')
+        ->paginate(20);
 
-        return view('admin.service_requests.list', compact('requests'));
-    }
+    // Get unread notifications for admin (assuming admin user_id is 1)
+    $adminNotifications = UserNotification::where('user_id', 1)
+        ->where('is_read', 0)
+        ->orderBy('created_at', 'desc')
+        ->get();
 
+    return view('admin.service_requests.list', [
+        'requests' => $requests,
+        'adminNotifications' => $adminNotifications
+    ]);
+}
     public function show($id)
     {
         $request = BookServiceModel::with([
@@ -112,14 +120,17 @@ public function storeVendorAssignment(Request $request, $id)
         'assigned_date' => 'required|date',
     ]);
     
-    $serviceRequest->vendor_id = $request->vendor_id;
-    $serviceRequest->assigned_date = $request->assigned_date;
-    $serviceRequest->status = self::STATUS_ASSIGNED; // Add this constant
-    $serviceRequest->save();
+    $serviceRequest->update([
+        'vendor_id' => $request->vendor_id,
+        'assigned_date' => $request->assigned_date,
+        'status' => BookServiceModel::STATUS_ASSIGNED
+    ]);
     
-    // Notify vendor and user here
+    // Send notifications
+    Notification::send($serviceRequest->user, new VendorAssignedNotification($serviceRequest));
+    Notification::send($serviceRequest->vendor->user, new ServiceAssignedNotification($serviceRequest));
     
-    return redirect()->route('admin.service_requests')
+    return redirect()->route('admin.service_requests.index')
            ->with('success', 'Vendor assigned successfully');
 }
 

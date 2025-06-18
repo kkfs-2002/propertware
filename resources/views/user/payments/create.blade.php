@@ -73,7 +73,7 @@
                                 
                                
                                 
-                                <div class="col-md-4">
+                                <!----<div class="col-md-4">
                                     <input type="radio" class="btn-check" name="payment_method" 
                                            id="bank_transfer" value="bank_transfer" autocomplete="off">
                                     <label class="card card-hover h-100 border-2" for="bank_transfer">
@@ -89,7 +89,7 @@
                             @error('payment_method')
                                 <div class="text-danger small mt-2">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>----->
 
                         <!-- Credit Card Details (shown by default) -->
                         <div id="credit_card_section" class="bg-light p-4 rounded-3 mb-4">
@@ -110,7 +110,7 @@
                                     <div class="text-danger small mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                                
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="expiry_date" class="form-label">Expiry Date <span class="text-danger">*</span></label>
@@ -136,6 +136,29 @@
                                 </div>
                             </div>
 
+                             <!-- Bank Name Field (Added for all payment methods) -->
+                        <div class="mb-3">
+                            <label for="b_name" class="form-label">Bank Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-control-lg" id="b_name" name="b_name" 
+                                   placeholder="e.g. Chase Bank" required>
+                            @error('b_name')
+                                <div class="text-danger small mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+</div>
+                                 
+                            <div class="mb-4">
+    <label for="payment_date" class="form-label fw-semibold text-dark">Payment Date <span class="text-danger">*</span></label>
+    <input type="date" class="form-control form-control-lg" 
+           id="payment_date" name="payment_date" 
+           value="{{ old('payment_date', date('Y-m-d')) }}" required>
+    @error('payment_date')
+        <div class="text-danger small mt-2">{{ $message }}</div>
+    @enderror
+</div>
+<div>
+
+
                             <div class="mt-3">
                                 <label for="card_holder" class="form-label">Card Holder Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-lg" id="card_holder" name="card_holder" 
@@ -145,6 +168,9 @@
                                 @enderror
                             </div>
                         </div>
+          
+
+
 
                         <!-- Bank Transfer Details (hidden by default) -->
                         <div id="bank_details_section" class="bg-light p-4 rounded-3 mb-4" style="display: none;">
@@ -176,14 +202,7 @@
                             </div>
                         </div>
 
-                        <!-- PayPal Info (hidden by default) -->
-                        <div id="paypal_section" class="alert alert-primary d-flex align-items-center" style="display: none;">
-                            <i class="bi bi-info-circle-fill me-3 fs-4"></i>
-                            <div>
-                                <h6 class="alert-heading mb-2">PayPal Payment</h6>
-                                <p class="mb-0">You'll be redirected to PayPal to securely complete your payment after submitting this form.</p>
-                            </div>
-                        </div>
+                        
 
                         <!-- Description Field -->
                         <div class="mb-4">

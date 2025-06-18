@@ -80,60 +80,56 @@ class BookServiceController extends Controller
     }
 
     public function updateStatus(Request $request)
-    {
-        $serviceRequestId = $request->service_request_id ?? $request->id;
+{
+    $serviceRequestId = $request->service_request_id ?? $request->id;
 
-        if (empty($serviceRequestId)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Service request ID is missing'
-            ]);
-        }
-
-        $service = BookServiceModel::find($serviceRequestId);
-        if (!$service) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Service request not found'
-            ]);
-        }
-
-        if ($request->action == 'approve') {
-            $service->status = BookServiceModel::STATUS_APPROVED;
-        } elseif ($request->action == 'reject') {
-            $service->status = BookServiceModel::STATUS_REJECTED;
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Invalid action'
-            ]);
-        }
-        $service->save();
-
-        // Create notification for user
-        UserNotification::create([
-            'user_id' => $service->user_id,
-            'service_request_id' => $service->id,
-            'type' => $request->action == 'approve' ? 'success' : 'danger',
-            'title' => $request->action == 'approve' ? 'Service Request Approved' : 'Service Request Rejected',
-            'message' => $request->action == 'approve'
-                ? 'Your service request (ID: ' . $service->id . ') has been approved.'
-                : 'Your service request (ID: ' . $service->id . ') has been rejected.',
-            'status' => $request->action == 'approve'
-                ? UserNotification::STATUS_APPROVED
-                : UserNotification::STATUS_REJECTED,
-        ]);
-
+    $service = BookServiceModel::find($serviceRequestId);
+    if (!$service) {
         return response()->json([
-            'success' => true,
-            'status' => $service->status,
-            'status_label' => $service->status_label,
-            'message' => $request->action == 'approve'
-                ? 'Service request approved!'
-                : 'Service request rejected!',
+            'success' => false,
+            'message' => 'Service request not found'
         ]);
     }
 
+    if ($request->action == 'approve') {
+        $service->status = BookServiceModel::STATUS_USERAPPROVED; // Changed from APPROVED to USERAPPROVED
+    } elseif ($request->action == 'reject') {
+        $service->status = BookServiceModel::STATUS_REJECTED;
+    }
+    $service->save();
+
+    // Create notification for ADMIN
+    UserNotification::create([
+        'user_id' => 1, // Assuming admin user ID is 1
+        'service_request_id' => $service->id,
+        'type' => $request->action == 'approve' ? 'info' : 'danger',
+        'title' => $request->action == 'approve' 
+            ? 'User Approved Service Request' 
+            : 'User Rejected Service Request',
+        'message' => $request->action == 'approve'
+            ? 'User has approved service request (ID: ' . $service->id . '). Please assign a vendor.'
+            : 'User has rejected service request (ID: ' . $service->id . ').',
+        'status' => $request->action == 'approve'
+            ? UserNotification::STATUS_APPROVED
+            : UserNotification::STATUS_REJECTED,
+    ]);
+
+    return response()->json([
+        'success' => true,
+        'status' => $service->status,
+        'status_label' => $service->status_label,
+        'message' => $request->action == 'approve'
+            ? 'Service request approved! Admin will now assign a vendor.'
+            : 'Service request rejected!',
+    ]);
+}
+public function markNotificationAsRead($id)
+{
+    $notification = UserNotification::findOrFail($id);
+    $notification->update(['is_read' => 1]);
+    
+    return response()->json(['success' => true]);
+}
     public function book_service_delete($id)
     {
         $record = BookServiceModel::where('id', $id)->where('user_id', Auth::id())->first();
